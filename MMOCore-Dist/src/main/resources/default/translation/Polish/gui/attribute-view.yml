@@ -1,5 +1,5 @@
 #GUI display name
-name: Player Attributes
+name: Atrybuty gracza
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 27
@@ -9,13 +9,13 @@ items:
       - 26
     function: reallocation
     item: CAULDRON
-    name: '&aAttribute Points'
+    name: '&aPunkty atrybutów'
     lore:
       - ''
-      - 'You have spent a total of &6{total}&7 attribute points.'
-      - '&7Right click to reallocate them.'
+      - 'Wydałeś łącznie &6{total}&7 punktów atrybutów.'
+      - '&7Kliknij prawym przyciskiem myszy, aby je rozdzielić.'
       - ''
-      - '&eCosts 1 attribute reallocation point.'
+      - '&eKosztuje 1 punkt realokacji atrybutów.'
       - '&e◆ Attribute Reallocation Points: &6{points}'
   str:
     slots:
