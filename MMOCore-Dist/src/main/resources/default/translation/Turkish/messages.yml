@@ -1,18 +1,18 @@
 #Level & Experience
 level-up:
   - ''
-  - '&eCongratulations, you reached level &6{level}&e!'
-  - '&eUse &6/p &eto see your new statistics!'
+  - '&eTebrikler, &6{level}&e''e ulaştın!'
+  - '&eYeni istatistiklerinizi görmek için &6/p &ekullanın!'
   - ''
 profession-level-up:
   - '&eYou are now level &6{level}&e in &6{profession}&e!'
 exp-notification: '%&f{profession} &e{progress} &e{ratio}%'
 exp-hologram: '&e+{exp} EXP!'
-class-select: '&eYou are now a &6{class}&e!'
-already-on-class: '&cYou are already a {class}.'
+class-select: '&eArtık bir &6{sınıf}&esın! '
+already-on-class: '&cSen zaten bir {class}sın.'
 death-exp-loss:
   - ''
-  - '&4You died and lost {loss} experience.'
+  - '&4Öldün ve {loss} deneyim kaybettin.'
   - ''
 #General
 booster-main:
@@ -23,19 +23,19 @@ booster-skill:
   - '&e'
   - '&eA &6{multiplier}x&e &6{profession} &eEXP multiplier is now active!'
   - '&e'
-booster-expired: '&cExpired!'
+booster-expired: '&cSüresi doldu!'
 #Fishing Profession
-caught-fish: '&cYou caught a fish!'
-fish-out-water: '&aWell done!'
-fish-out-water-crit: '&aCritical Fish!'
+caught-fish: '&cBir balık yakaladın!'
+fish-out-water: '&aTebrikler!'
+fish-out-water-crit: '&aBüyük Fish!'
 #Player Input
 player-input:
   anvil:
-    friend-request: 'Friend name..'
-    party-invite: 'Player name..'
-    guild-invite: 'Player name..'
-    guild-creation-tag: 'Guild tag..'
-    guild-creation-name: 'Guild name..'
+    friend-request: 'Arkadaş ismi..'
+    party-invite: 'Oyuncu ismi..'
+    guild-invite: 'Oyuncu ismi..'
+    guild-creation-tag: 'Klan etiketi..'
+    guild-creation-name: 'Klan ismi..'
   chat:
     friend-request: '&eWrite in the chat the player name.'
     party-invite: '&eWrite in the chat the player you want to invite.'
@@ -51,13 +51,13 @@ casting:
     no-mana: '&6[{index}] &9&l{skill}'
     no-stamina: '&6[{index}] &9&l{skill}'
   split: '&7 &7 - &7 '
-  no-longer: '%&cYou cancelled skill casting.'
-  no-mana: '&cYou do not have enough {mana}!'
+  no-longer: '%&cYetenek kullanımını iptal ettin.'
+  no-mana: '&cYeterli {mana}''n yok!'
   no-stamina: '&cYou do not have enough stamina!'
-  on-cooldown: '&cThis skill is on cooldown.'
+  on-cooldown: '&cBu yetenek bekleme süresinde.'
 #Combat Log
-now-in-combat: '%&cYou are now in combat!'
-leave-combat: '%&aYou left combat.'
+now-in-combat: '%&cŞu anda savaştasınız!'
+leave-combat: '%&aÇatışmayı bıraktın.'
 #Waypoints
 new-waypoint: '%&eYou unlocked the &6{waypoint} &ewaypoint!'
 new-waypoint-book: '%&eYou unlocked the &6{waypoint} &ewaypoint!'
@@ -161,7 +161,7 @@ skill-max-level-hit: '&cYou already hit the max level for that skill.'
 no-skill-placeholder: 'No Skill Bound'
 not-skill-reallocation-point: '&cYou do not have 1 skill reallocation point.'
 no-skill-points-spent: '&cYou have not spent any skill points.'
-skill-points-reallocated: '&eYou successfully reset your attributes. You now have &6{points} &eskill points.'
+skill-points-reallocated: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
 max-points-reached: '&cYou reached the maximum points you can spend. You need to reallocate your points to rollback.'
 #Skill Trees
 no-skill-tree-points-spent: '&cYou have not spent any skill tree points.'
