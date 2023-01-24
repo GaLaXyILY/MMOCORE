@@ -1,5 +1,5 @@
 #GUI display name
-name: Friend Removal
+name: Xoá bạn bè
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 27
@@ -9,12 +9,12 @@ items:
       - 12
     item: RED_TERRACOTTA
     function: 'yes'
-    name: '&aRemove {name}'
+    name: '&aXoá {name}'
     lore: { }
   back:
     slots:
       - 14
     item: GREEN_TERRACOTTA
     function: 'back'
-    name: '&aKeep {name}'
+    name: '&aGiữ {name}'
     lore: { }
