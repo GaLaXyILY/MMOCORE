@@ -1,6 +1,6 @@
 #GUI display name
-name: Waypoints
-name-on-waypoint: 'Waypoint: {waypoint}'
+name: 航路点
+name-on-waypoint: '航路点: {waypoint}'
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 45
@@ -36,7 +36,7 @@ items:
       lore: { }
     #Displayed when the waypoint has not been unlocked yet.
     locked:
-      name: '&c- Locked -'
+      name: '&c- 已锁定 -'
       item: GRAY_DYE
       lore: { }
     #When the two waypoints are not linked together
@@ -47,40 +47,40 @@ items:
       #ready (not dynamic, or not enough stellium)
       not-ready: ENDER_PEARL
       lore:
-        - '&7You cannot teleport as the two waypoints are not linked.'
+        - '&7你不能传送, 因为两个航路点没有连接.'
     #When you cannot teleport to a non dynamic waypoint
     not-dynamic:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
-        - '&7You cannot teleport as you are not standing on a waypoint.'
+        - '&7你不能传送, 因为你没有站在航路点附近.'
     current-waypoint:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
-        - '&7The waypoint you are standing at.'
+        - '&7你所处的航路点.'
     #When you don't have enough stellium
     not-enough-stellium:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
-        - '&7You cannot teleport as you do not have enough Stellium.'
-        - '&7Teleporting costs &b{normal_cost}&7/&b{dynamic_cost} &7Stellium.'
+        - '&7你不能传送, 因为你的星光不足.'
+        - '&7传送花费 &b{normal_cost}&7/&b{dynamic_cost} &7星光.'
     #Displayed when the waypoint is unlocked and usable
     display:
       name: '&a{name}'
       item: ENDER_EYE
       lore:
-        - '&7You can teleport to this waypoint.'
-        - '&7Intermediary waypoints: {intermediary_waypoints}'
-        - '&7Click to teleport for &b{current_cost} &7Stellium.'
+        - '&7你可以传送到这个航路点.'
+        - '&7中转航路点: {intermediary_waypoints}'
+        - '&7点击花费 &b{current_cost} &7星光以传送.'
   next:
     slots:
       - 26
     function: next
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
-    name: '&aNext Page'
+    name: '&a下一页'
     lore: [ ]
   previous:
     slots:
@@ -88,5 +88,5 @@ items:
     function: previous
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
-    name: '&aPrevious Page'
+    name: '&a上一页'
     lore: [ ]
