@@ -1,5 +1,5 @@
 #GUI display name
-name: 'Selected Skill: &6{skill}'
+name: '所选技能: &6{skill}'
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -22,9 +22,9 @@ items:
     name: '&a{skill} &6[{level}]'
     lore:
       - ''
-      - '{unlocked}&a✔ Requires Level {unlock}'
-      - '{locked}&c✖ Requires Level {unlock}'
-      - '{max_level}&e✔ Maximum Level Hit!'
+      - '{unlocked}&a✔ 所需等级 {unlock}'
+      - '{locked}&c✖ 所需等级 {unlock}'
+      - '{max_level}&e✔ 已达到最大等级!'
       - ''
       - '{lore}'
   next:
@@ -33,7 +33,7 @@ items:
     function: next
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
-    name: '&aNext'
+    name: '&a下一页'
     lore: { }
   previous:
     slots:
@@ -41,21 +41,21 @@ items:
     function: previous
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
-    name: '&aPrevious'
+    name: '&a上一页'
     lore: { }
   reallocate:
     slots:
       - 45
     function: reallocation
     item: CAULDRON
-    name: '&aReallocate Skill Points'
+    name: '&a重新分配技能点数'
     lore:
       - ''
-      - 'You have spent a total of &6{total}&7 skill points.'
-      - '&7Right click to reallocate them.'
+      - '你总共拥有 &6{total}&7 技能点数.'
+      - '&7右键点击以重新分配.'
       - ''
-      - '&eCosts 1 skill reallocation point.'
-      - '&e◆ Skill Reallocation Points: &6{points}'
+      - '&e花费1点技能点重分配点数.'
+      - '&e◆ 技能点重分配点数: &6{points}'
   passive-skill-slot:
     slots:
       - 7
@@ -68,13 +68,13 @@ items:
     item: BOOK
     #Material used when the slot is empty
     empty-item: BLUE_DYE
-    name: '&aPassive Skill Slot {slot}'
-    no-skill: '&cNone'
+    name: '&a被动技能槽 {slot}'
+    no-skill: '&c无'
     lore:
-      - '&7Current Passive Skill: &6{skill}'
+      - '&7当前被动技能: &6{skill}'
       - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
+      - '&e► 左键点击以绑定 {selected}.'
+      - '&e► 右键点击以取消绑定.'
   skill-slot:
     slots:
       - 8
@@ -87,16 +87,16 @@ items:
     item: BOOK
     #Material used when the slot is empty
     empty-item: GRAY_DYE
-    name: '&aSkill Slot {slot}'
-    no-skill: '&cNone'
+    name: '&a技能槽 {slot}'
+    no-skill: '&c无'
     lore:
-      - '&7Current Skill: &6{skill}'
+      - '&7当前技能: &6{skill}'
       - ''
-      - '&7&oCast this spell by pressing [F] followed'
-      - '&7&oby the keybind displayed on the action bar.'
+      - '&7&o按下 [F] 并点击显示在动作栏上的按键'
+      - '&7&o以释放这个技能.'
       - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
+      - '&e► 左键点击以绑定 {selected}.'
+      - '&e► 右键点击以取消绑定.'
   skill-level:
     slots:
       - 6
@@ -115,7 +115,7 @@ items:
     too-low:
       item: AIR
     item: LIME_DYE
-    name: '&a{skill} Level {roman}'
+    name: '&a{skill} 等级 {roman}'
     lore:
       - ''
       - '{lore}'
@@ -124,8 +124,8 @@ items:
       - 15
     function: upgrade
     item: GREEN_STAINED_GLASS_PANE
-    name: '&a&lUPGRADE {skill_caps}'
+    name: '&a&l升级 {skill_caps}'
     lore:
-      - '&7Costs 1 skill point.'
+      - '&7花费1点技能点数.'
       - ''
-      - '&eCurrent Skill Points: {skill_points}'
+      - '&e当前技能点数: {skill_points}'
