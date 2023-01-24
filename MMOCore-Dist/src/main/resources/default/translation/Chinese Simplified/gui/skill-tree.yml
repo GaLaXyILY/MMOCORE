@@ -1,5 +1,5 @@
 #GUI display name
-name: '&eCurrent Skill Tree: &6{skill-tree-name}'
+name: '&e当前技能树: &6{skill-tree-name}'
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -7,28 +7,28 @@ items:
   up:
     function: up
     item: PLAYER_HEAD
-    name: "Up"
+    name: "上"
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTk5YWFmMjQ1NmE2MTIyZGU4ZjZiNjI2ODNmMmJjMmVlZDlhYmI4MWZkNWJlYTFiNGMyM2E1ODE1NmI2NjkifX19
     slots:
       - 50
   down:
     function: down
     item: PLAYER_HEAD
-    name: "Down"
+    name: "下"
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzkxMmQ0NWIxYzc4Y2MyMjQ1MjcyM2VlNjZiYTJkMTU3NzdjYzI4ODU2OGQ2YzFiNjJhNTQ1YjI5YzcxODcifX19
     slots:
       - 49
   right:
     function: right
     item: PLAYER_HEAD
-    name: "Right"
+    name: "右"
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTNmYzUyMjY0ZDhhZDllNjU0ZjQxNWJlZjAxYTIzOTQ3ZWRiY2NjY2Y2NDkzNzMyODliZWE0ZDE0OTU0MWY3MCJ9fX0=
     slots:
       - 51
   left:
     function: left
     item: PLAYER_HEAD
-    name: "Left"
+    name: "左"
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYxMzNlOTE5MTlkYjBhY2VmZGMyNzJkNjdmZDg3YjRiZTg4ZGM0NGE5NTg5NTg4MjQ0NzRlMjFlMDZkNTNlNiJ9fX0=
     slots:
       - 48
@@ -41,14 +41,14 @@ items:
       - 27
     lore:
       - ''
-      - '&aDescription:'
+      - '&a描述:'
       - '{tree-lore}'
       - ''
       - '-----------------'
-      - '&e◆Max points&e: &6{max-point-spent}'
-      - '&e◆Points spent&e:&6 {point-spent}'
-      - '&e◆Current {name} &epoints: &6{skill-tree-points}'
-      - '&e◆Current Global points: &6{global-points}'
+      - '&e◆最大点数&e: &6{max-point-spent}'
+      - '&e◆点数花费&e:&6 {point-spent}'
+      - '&e◆当前 {name} &e点数: &6{skill-tree-points}'
+      - '&e◆当前全局点数: &6{global-points}'
   next-tree-list-page:
     function: 'next-tree-list-page'
     item: PLAYER_HEAD
@@ -66,15 +66,15 @@ items:
     item: CAULDRON
     slots:
       - 45
-    name: '&aReallocate Skill Tree Points'
+    name: '&a重新分配技能树点数'
     lore:
       - ''
-      - '&7You have spent a total of &6{point-spent}&7 skill tree points.'
-      - '&7The maximum points that can be spent is: &6{max-point-spent}'
-      - '&7Right click to reallocate them.'
+      - '&7你总共花费了 &6{point-spent}&7 技能树点数.'
+      - '&7可以使用的最大点数数量: &6{max-point-spent}'
+      - '&7右键点击以重新分配.'
       - ''
-      - '&eCosts 1 attribute reallocation point.'
-      - '&e◆ Skill Tree Reallocation Points: &6{realloc-points}'
+      - '&e花费1点技能树重分配点数.'
+      - '&e◆ 技能树重分配点数: &6{realloc-points}'
   skill-tree-node:
     function: 'skill-tree-node'
     slots:
@@ -120,23 +120,23 @@ items:
       - 44
     #The lore that will be displayed after the lore of the node
     lore:
-      - '&7Current State: &6{current-state}'
-      - '&7Current Level: &6{current-level}'
-      - '&7Max Level: &6{max-level}'
-      - '&7Max Children: &6{max-children}'
-      - '&7Size: &6{size}'
+      - '&7当前状态: &6{current-state}'
+      - '&7当前等级: &6{current-level}'
+      - '&7最大等级: &6{max-level}'
+      - '&7最大子级: &6{max-children}'
+      - '&7大小: &6{size}'
       - '-----------------'
-      - '&7⧆ &6Requirements: '
-      - '&fStrong Parents: '
+      - '&7⧆ &6需求: '
+      - '&f强父级: '
       - '{strong-parents}'
       - ''
-      - '&fSoft Parents: '
+      - '&f弱父级: '
       - '{soft-parents}'
       - '-----------------'
       - '{node-lore}'
       - '-----------------'
-      - '&e◆Max points for {skill-tree}&e: &6{max-point-spent}'
-      - '&e◆Points spent for {skill-tree}&e:&6 {point-spent}'
-      - '&e◆Current {skill-tree} &epoints: &6{skill-tree-points}'
-      - '&e◆Current &6global&e points: &6{global-points}'
+      - '&e◆{skill-tree}&e 最大点数: &6{max-point-spent}'
+      - '&e◆{skill-tree}&e 已花费点数:&6 {point-spent}'
+      - '&e◆当前 {skill-tree} &e点数: &6{skill-tree-points}'
+      - '&e◆当前 &6全局&e 点数: &6{global-points}'
 
