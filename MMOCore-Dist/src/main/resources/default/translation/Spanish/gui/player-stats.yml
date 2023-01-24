@@ -1,5 +1,5 @@
 #GUI display name
-name: Your Character
+name: Tu personaje
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -9,11 +9,11 @@ items:
       - 10
     function: profession_mining
     item: IRON_PICKAXE
-    name: '&aMining'
+    name: '&aMinería'
     hide-flags: true
     lore:
       - ''
-      - '&7Current Level: &e{level}'
+      - '&7Nivel actual: &e{level}'
       - '&8[&e{progress}&8] &e{percent}%'
       - ''
       - '&7&oMining unlocks rare ores and raw materials.'
