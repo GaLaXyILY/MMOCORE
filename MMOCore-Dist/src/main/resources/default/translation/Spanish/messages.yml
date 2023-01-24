@@ -1,47 +1,47 @@
 #Level & Experience
 level-up:
   - ''
-  - '&eCongratulations, you reached level &6{level}&e!'
-  - '&eUse &6/p &eto see your new statistics!'
+  - '&e¡Felicidades, has alcanzado el nivel &6{level}&e!'
+  - '&e¡Usa &6/p &epara ver tus nuevas estadísticas!'
   - ''
 profession-level-up:
-  - '&eYou are now level &6{level}&e in &6{profession}&e!'
+  - '&e¡Has alcanzado el nivel &6{level}&e en &6{profession}&e!'
 exp-notification: '%&f{profession} &e{progress} &e{ratio}%'
 exp-hologram: '&e+{exp} EXP!'
-class-select: '&eYou are now a &6{class}&e!'
-already-on-class: '&cYou are already a {class}.'
+class-select: '&e¡Ahora eres un &6{class}&e!'
+already-on-class: '&cYa eres un {class}.'
 death-exp-loss:
   - ''
-  - '&4You died and lost {loss} experience.'
+  - '&4Has muerto y has perdido {loss} de experiencia.'
   - ''
 #General
 booster-main:
   - '&e'
-  - '&eA &6{multiplier}x&e EXP multiplier is now active!'
+  - '&e¡Un multiplicador de EXP &6x{multiplier}&e está activo!'
   - '&e'
 booster-skill:
   - '&e'
-  - '&eA &6{multiplier}x&e &6{profession} &eEXP multiplier is now active!'
+  - '&e¡Un multiplicador de EXP &6x{multiplier}&e para &6{profession} &eestá activo!'
   - '&e'
-booster-expired: '&cExpired!'
+booster-expired: '&c¡Caducado!'
 #Fishing Profession
-caught-fish: '&cYou caught a fish!'
-fish-out-water: '&aWell done!'
+caught-fish: '&c¡Has atrapado un pez!'
+fish-out-water: '&a¡Bien hecho!'
 fish-out-water-crit: '&aCritical Fish!'
 #Player Input
 player-input:
   anvil:
-    friend-request: 'Friend name..'
-    party-invite: 'Player name..'
-    guild-invite: 'Player name..'
-    guild-creation-tag: 'Guild tag..'
-    guild-creation-name: 'Guild name..'
+    friend-request: 'Nombre de tu amigo..'
+    party-invite: 'Nombre del jugador..'
+    guild-invite: 'Nombre del jugador..'
+    guild-creation-tag: 'Etiqueta del gremio..'
+    guild-creation-name: 'Nombre del gremio..'
   chat:
-    friend-request: '&eWrite in the chat the player name.'
-    party-invite: '&eWrite in the chat the player you want to invite.'
-    guild-invite: '&eWrite in the chat the player you want to invite.'
-    guild-creation-tag: '&eWrite in the chat the TAG of the Guild you want to create.'
-    guild-creation-name: '&eWrite in the chat the name of the Guild you want to create.'
+    friend-request: '&eEscribe el nombre del jugador en el chat.'
+    party-invite: '&eEscribe en el chat el nombre del jugador que quieres invitar.'
+    guild-invite: '&eEscribe en el chat el nombre del jugador que quieres invitar.'
+    guild-creation-tag: '&eEscribe en el chat la etiqueta del gremio que quieres crear.'
+    guild-creation-name: '&eEscribe en el chat el nombre del gremio que quieres crear.'
     cancel: '&eWrite &c''cancel'' &eto cancel.'
 #Spell Casting
 casting:
@@ -161,7 +161,7 @@ skill-max-level-hit: '&cYou already hit the max level for that skill.'
 no-skill-placeholder: 'No Skill Bound'
 not-skill-reallocation-point: '&cYou do not have 1 skill reallocation point.'
 no-skill-points-spent: '&cYou have not spent any skill points.'
-skill-points-reallocated: '&eYou successfully reset your attributes. You now have &6{points} &eskill points.'
+skill-points-reallocated: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
 max-points-reached: '&cYou reached the maximum points you can spend. You need to reallocate your points to rollback.'
 #Skill Trees
 no-skill-tree-points-spent: '&cYou have not spent any skill tree points.'
