@@ -1,5 +1,5 @@
 #GUI display name
-name: Player Attributes
+name: Atributos del jugador
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 27
@@ -9,14 +9,14 @@ items:
       - 26
     function: reallocation
     item: CAULDRON
-    name: '&aAttribute Points'
+    name: '&aPuntos de atributo'
     lore:
       - ''
-      - 'You have spent a total of &6{total}&7 attribute points.'
-      - '&7Right click to reallocate them.'
+      - 'Has gastado un total de &6{total}&7 puntos de atributo.'
+      - '&7Click derecho para reasignarlos.'
       - ''
-      - '&eCosts 1 attribute reallocation point.'
-      - '&e◆ Attribute Reallocation Points: &6{points}'
+      - '&eTe costará 1 punto de reasignación de atributos.'
+      - '&e◆ Puntos de Reasignación de atributos: &6{points}'
   str:
     slots:
       - 11
@@ -25,15 +25,15 @@ items:
     item: GOLDEN_APPLE
     lore:  #{buffs} returns amount of buffs
       - ''
-      - '&7Points Spent: &6{spent}&7/&6{max}'
-      - '&7Current {name}: &6&l{current}'
+      - '&7Puntos gastados: &6{spent}&7/&{max}'
+      - '&7{name} actual: &6&l{current}'
       - ''
-      - '&8When Leveled Up:'
-      - '&7  +{buff_weapon_damage}% Weapon Damage (&a+{total_weapon_damage}%&7)'
-      - '&7  +{buff_max_health} Max Health (&a+{total_max_health}&7)'
+      - '&8Cuando subas de nivel:'
+      - '&7 +{buff_weapon_damage}% Daño de Armas (&a+{total_weapon_damage}%&7)'
+      - '&7 +{buff_max_health} Vida Máxima (&a+{total_max_health}&7)'
       - ''
-      - '&eClick to level up for 1 attribute point.'
-      - '&e◆ Current Attribute Points: {attribute_points}'
+      - '&eClick para subir de nivel por un punto de atributo.'
+      - '&e◆ Puntos de atributo actuales: {attribute_points}'
   dex:
     slots:
       - 13
@@ -43,16 +43,16 @@ items:
     hide-flags: true
     lore:
       - ''
-      - '&7Points Spent: &6{spent}&7/&6{max}'
-      - '&7Current {name}: &6&l{current}'
+      - '&7Puntos gastados: &6{spent}&7/&6{max}'
+      - '&7{name} actual: &6&l{current}'
       - ''
-      - '&8When Leveled Up:'
-      - '&7  +{buff_physical_damage}% Physical Damage (&a+{total_physical_damage}%&7)'
-      - '&7  +{buff_projectile_damage}% Projectile Damage (&a+{total_projectile_damage}%&7)'
-      - '&7  +{buff_attack_speed} Attack Speed (&a+{total_attack_speed}&7)'
+      - '&8Cuando subas de nivel:'
+      - '&7 +{buff_physical_damage}% Daño Físico (&a+{total_physical_damage}%&7)'
+      - '&7 +{buff_projectile_damage}% Daño por Proyectil (&a+{total_projectile_damage}%&7)'
+      - '&7 +{buff_attack_speed} Velocidad de Ataque (&a+{total_attack_speed}&7)'
       - ''
-      - '&eClick to level up for 1 attribute point.'
-      - '&e◆ Current Attribute Points: {attribute_points}'
+      - '&eClick para subir de nivel por 1 punto de atributo.'
+      - '&e◆ Puntos de atributo actuales: {attribute_points}'
   int:
     slots:
       - 15
@@ -61,12 +61,12 @@ items:
     item: BOOK
     lore:
       - ''
-      - '&7Points Spent: &6{spent}&7/&6{max}'
-      - '&7Current {name}: &6&l{current}'
+      - '&7Puntos gastados: &6{spent}&7/&6{max}'
+      - '&7 {name} actual: &6&l{current}'
       - ''
-      - '&8When Leveled Up:'
-      - '&7  +{buff_magic_damage}% Magic Damage (&a+{total_magic_damage}%&7)'
-      - '&7  +{buff_cooldown_reduction}% Cooldown Reduction (&a+{total_cooldown_reduction}%&7)'
+      - '&8Cuando subas de nivel:'
+      - '&7 +{buff_magic_damage}% Daño Mágico (&a+{total_magic_damage}%&7)'
+      - '&7 +{buff_cooldown_reduction}% Reducción de Enfriamiento (&a+{total_cooldown_reduction}%&7)'
       - ''
-      - '&eClick to level up for 1 attribute point.'
-      - '&e◆ Current Attribute Points: {attribute_points}'
+      - '&eClick para subir de nivel por 1 punto de atributo.'
+      - '&e◆ Puntos de atributo actuales: {attribute_points}'
