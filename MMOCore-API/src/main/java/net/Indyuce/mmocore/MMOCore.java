@@ -80,6 +80,8 @@ public class MMOCore extends JavaPlugin {
     public final MMOLoadManager loadManager = new MMOLoadManager();
     public final RestrictionManager restrictionManager = new RestrictionManager();
     public final SkillTreeManager skillTreeManager = new SkillTreeManager();
+
+    public final SpawnPointManager spawnPointManager = new SpawnPointManager();
     public final StatManager statManager = new StatManager();
     public final GuildDataManager nativeGuildManager = new YAMLGuildDataManager();
     public final PlayerDataManager playerDataManager = new PlayerDataManager(this);

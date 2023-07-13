@@ -11,6 +11,10 @@ import net.Indyuce.mmocore.api.quest.trigger.*;
 import net.Indyuce.mmocore.experience.source.*;
 import net.Indyuce.mmocore.loot.chest.condition.*;
 import net.Indyuce.mmocore.loot.droptable.dropitem.*;
+import net.Indyuce.mmocore.spawnpoint.def.DefaultSpawnOption;
+import net.Indyuce.mmocore.spawnpoint.def.GlobalSpawnOption;
+import net.Indyuce.mmocore.spawnpoint.def.LastSpawnOption;
+import net.Indyuce.mmocore.spawnpoint.def.LocationSpawnOption;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class DefaultMMOLoader extends MMOLoader {
@@ -23,7 +27,7 @@ public class DefaultMMOLoader extends MMOLoader {
         if (config.getKey().equals("stat"))
             return new StatTrigger(config);
 
-        if(config.getKey().equals("unlock_slot"))
+        if (config.getKey().equals("unlock_slot"))
             return new UnlockSlotTrigger(config);
 
         if (config.getKey().equals("unlock_skill"))
@@ -35,7 +39,7 @@ public class DefaultMMOLoader extends MMOLoader {
         if (config.getKey().equals("levelup_skill"))
             return new LevelUpSkillTrigger(config);
 
-        if (config.getKey().equals("skill_buff")||config.getKey().equals("skill_modifier"))
+        if (config.getKey().equals("skill_buff") || config.getKey().equals("skill_modifier"))
             return new SkillModifierTrigger(config);
 
         if (config.getKey().equals("message"))
@@ -202,6 +206,17 @@ public class DefaultMMOLoader extends MMOLoader {
         if (config.getKey().equalsIgnoreCase("skull") || config.getKey().equals("head") || config.getKey().equals("playerhead"))
             return new SkullBlockType(config);
 
+        return null;
+    }
+
+    @Override
+    public DefaultSpawnOption loadDefaultSpawnOption(MMOLineConfig config) {
+        if (config.getKey().equals("global"))
+            return new GlobalSpawnOption();
+        if (config.getKey().equals("last"))
+            return new LastSpawnOption();
+        if (config.getKey().equals("location"))
+            return new LocationSpawnOption(config);
         return null;
     }
 }

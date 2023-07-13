@@ -8,6 +8,7 @@ import net.Indyuce.mmocore.experience.source.type.ExperienceSource;
 import net.Indyuce.mmocore.loot.chest.condition.Condition;
 import net.Indyuce.mmocore.loot.droptable.dropitem.DropItem;
 import net.Indyuce.mmocore.api.block.BlockType;
+import net.Indyuce.mmocore.spawnpoint.def.DefaultSpawnOption;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -40,4 +41,9 @@ public class MMOLoader {
     public BlockType loadBlockType(MMOLineConfig config) {
         return null;
     }
+
+    public DefaultSpawnOption loadDefaultSpawnOption(MMOLineConfig config) {
+        return null;
+    }
+
 }

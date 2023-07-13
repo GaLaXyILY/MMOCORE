@@ -11,6 +11,7 @@ import net.Indyuce.mmocore.api.quest.trigger.Trigger;
 import net.Indyuce.mmocore.experience.dispenser.ExperienceDispenser;
 import net.Indyuce.mmocore.loot.chest.condition.Condition;
 import net.Indyuce.mmocore.loot.droptable.dropitem.DropItem;
+import net.Indyuce.mmocore.spawnpoint.def.DefaultSpawnOption;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -59,6 +60,11 @@ public class MMOLoadManager {
     public BlockType loadBlockType(MMOLineConfig config) {
         return load("block type", config, loader -> loader.loadBlockType(config));
     }
+
+    public DefaultSpawnOption loadDefaultSpawnOption(MMOLineConfig config) {
+        return load("default spawn", config, loader -> loader.loadDefaultSpawnOption(config));
+    }
+
 
     private <T> T load(String objName, MMOLineConfig config, Function<MMOLoader, T> func) {
 
