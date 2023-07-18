@@ -1,24 +1,22 @@
 package net.Indyuce.mmocore.manager.data.sql;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import io.lumine.mythic.lib.gson.JsonArray;
+import io.lumine.mythic.lib.gson.JsonObject;
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.data.sql.SQLDataSource;
 import io.lumine.mythic.lib.data.sql.SQLSynchronizedDataHandler;
 import net.Indyuce.mmocore.MMOCore;
-import net.Indyuce.mmocore.manager.data.OfflinePlayerData;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.api.player.profess.PlayerClass;
 import net.Indyuce.mmocore.api.player.profess.SavedClassInformation;
+import net.Indyuce.mmocore.manager.data.OfflinePlayerData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, OfflinePlayerData, MMOCoreDataSynchronizer> {
+public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, OfflinePlayerData> {
     public SQLDataHandler(SQLDataSource dataSource) {
         super(dataSource);
     }
@@ -34,7 +32,9 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
             "health", "FLOAT",
             "mana", "FLOAT",
             "stamina", "FLOAT",
-            "stellium", "FLOAT"};
+            "stellium", "FLOAT",
+            "last_spawn_point", "LONGTEXT",
+            "spawn_when_join", "TINYINT"};
 
     @Override
     public void setup() {
@@ -67,6 +67,8 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
                 "stellium FLOAT," +
                 "unlocked_items LONGTEXT," +
                 "class_info LONGTEXT," +
+                "last_spawn_point LONGTEXT," +
+                "spawn_when_join TINYINT," +
                 "is_saved TINYINT," +
                 "PRIMARY KEY (uuid));");
 
@@ -122,6 +124,7 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
         updater.addData("professions", data.getCollectionSkills().toJsonString());
         updater.addData("quests", data.getQuestData().toJsonString());
         updater.addData("class_info", createClassInfoData(data).toString());
+        updater.addData("last_spawn_point", data.getLastSpawnPointContext().toJson());
         updater.addJSONArray("unlocked_items", data.getUnlockedItems());
         if (!autosave)
             updater.addData("is_saved", 1);

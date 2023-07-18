@@ -104,6 +104,7 @@ public class ConfigManager {
         loadDefaultFile("triggers.yml");
         loadDefaultFile("conditions.yml");
         loadDefaultFile("guilds.yml");
+        loadDefaultFile("spawn-points.yml");
 
         final ConfigurationSection config = MMOCore.plugin.getConfig();
         commandVerbose.reload(MMOCore.plugin.getConfig().getConfigurationSection("command-verbose"));

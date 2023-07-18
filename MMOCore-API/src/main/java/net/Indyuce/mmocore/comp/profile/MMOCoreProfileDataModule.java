@@ -34,7 +34,7 @@ public class MMOCoreProfileDataModule implements ProfileDataModule, Listener {
     @Override
     public void processPlaceholderRequest(PlaceholderRequest placeholderRequest) {
         final PlayerData fictiveData = new PlayerData(new MMOPlayerData(placeholderRequest.getProfile().getUniqueId()));
-        MMOCore.plugin.playerDataManager.getDataHandler().loadData(fictiveData).thenRun(() -> {
+        MMOCore.plugin.playerDataManager.loadData(fictiveData).thenRun(() -> {
             placeholderRequest.addPlaceholder("class", fictiveData.getProfess().getName());
             placeholderRequest.addPlaceholder("level", fictiveData.getLevel());
 

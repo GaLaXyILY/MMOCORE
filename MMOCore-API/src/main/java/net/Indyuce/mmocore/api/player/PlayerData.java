@@ -49,6 +49,7 @@ import net.Indyuce.mmocore.skill.cast.SkillCastingMode;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
 import net.Indyuce.mmocore.skilltree.SkillTreeStatus;
 import net.Indyuce.mmocore.skilltree.tree.SkillTree;
+import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
 import net.Indyuce.mmocore.waypoint.Waypoint;
 import net.Indyuce.mmocore.waypoint.WaypointOption;
 import net.md_5.bungee.api.ChatMessageType;
@@ -84,6 +85,8 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      */
     private double health;
     private Guild guild;
+
+    private SpawnPointContext lastSpawnPointContext;
     private SkillCastingInstance skillCasting;
     private final PlayerQuests questData;
     private final PlayerStats playerStats;
@@ -127,6 +130,8 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      * exp item in exp tables, for both exp tables used
      */
     private final Map<String, Integer> tableItemClaims = new HashMap<>();
+
+    private boolean shouldTeleportWhenJoin;
 
     // NON-FINAL player data stuff made public to facilitate field change
     public boolean noCooldown;
@@ -189,6 +194,21 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         for (SkillTree skillTree : MMOCore.plugin.skillTreeManager.getAll())
             for (SkillTreeNode node : skillTree.getNodes())
                 node.getExperienceTable().claimRemovableTrigger(this, node);
+    }
+
+    /**
+     * This method is called when a player connects to a server and has shouldTeleportWhenJoin set to true.
+     * If the player is alive it means that he has been teleported to this server because of spawnpoints.
+     * If he is dead this will be done when he respawns.
+     */
+    public void setupSpawnPoint() {
+        Validate.isTrue(MMOCore.plugin.spawnPointManager.isSpawnPoint(lastSpawnPointContext.getId()));
+        if (isOnline() && shouldTeleportWhenJoin && (lastSpawnPointContext.getServer().isEmpty() ||
+                lastSpawnPointContext.getServer().get().equalsIgnoreCase(MMOCore.plugin.pluginMessageManager.getServerName()))
+                && !getPlayer().isDead()) {
+            MMOCore.plugin.spawnPointManager.getSpawnPoint(lastSpawnPointContext.getId()).whenRespawn(this);
+            shouldTeleportWhenJoin = false;
+        }
     }
 
     public int getPointSpent(SkillTree skillTree) {
@@ -351,7 +371,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
     /**
      * @return If the item is unlocked by the player
-     *         This is used for skills that can be locked & unlocked.
+     * This is used for skills that can be locked & unlocked.
      */
     public boolean hasUnlocked(Unlockable unlockable) {
         return unlockable.isUnlockedByDefault() || unlockedItems.contains(unlockable.getUnlockNamespacedKey());
@@ -366,7 +386,8 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         Validate.isTrue(!unlockable.isUnlockedByDefault(), "Cannot unlock an item unlocked by default");
         unlockable.whenUnlocked(this);
         final boolean wasLocked = unlockedItems.add(unlockable.getUnlockNamespacedKey());
-        // Call the event synchronously
+        Bukkit.broadcastMessage("Unlocked " + unlockable.getUnlockNamespacedKey());
+                // Call the event synchronously
         if (wasLocked)
             Bukkit.getScheduler().runTask(MythicLib.plugin, () -> Bukkit.getPluginManager().callEvent(new ItemUnlockedEvent(this, unlockable.getUnlockNamespacedKey())));
         return wasLocked;
@@ -452,6 +473,18 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
     public void setLastActivity(PlayerActivity activity, long timestamp) {
         this.lastActivity.put(activity, timestamp);
+    }
+
+    public SpawnPointContext getLastSpawnPointContext() {
+        return lastSpawnPointContext;
+    }
+
+    public void setLastSpawnPointContext(SpawnPointContext lastSpawnPointContext) {
+        this.lastSpawnPointContext = lastSpawnPointContext;
+    }
+
+    public void setShouldTeleportWhenJoin(boolean shouldTeleport) {
+        this.shouldTeleportWhenJoin = shouldTeleport;
     }
 
     @Override
@@ -1221,7 +1254,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      * checks if they could potentially upgrade to one of these
      *
      * @return If the player can change its current class to
-     *         a subclass
+     * a subclass
      */
     @Deprecated
     public boolean canChooseSubclass() {

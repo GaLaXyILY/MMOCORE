@@ -12,7 +12,7 @@ public record SkillTreePath(SkillTree tree, IntegerCoordinates coordinates, Skil
         SkillTreeStatus toStatus = playerData.getNodeStatus(to);
         if (fromStatus == SkillTreeStatus.UNLOCKED && toStatus == SkillTreeStatus.UNLOCKED)
             return PathStatus.UNLOCKED;
-        if ((fromStatus == SkillTreeStatus.UNLOCKABLE && toStatus == SkillTreeStatus.LOCKED) || (fromStatus == SkillTreeStatus.LOCKED && toStatus == SkillTreeStatus.UNLOCKABLE))
+        if ((fromStatus == SkillTreeStatus.UNLOCKABLE && toStatus == SkillTreeStatus.UNLOCKED) || (fromStatus == SkillTreeStatus.UNLOCKED && toStatus == SkillTreeStatus.UNLOCKABLE))
             return PathStatus.UNLOCKABLE;
         if (fromStatus == SkillTreeStatus.FULLY_LOCKED || toStatus == SkillTreeStatus.FULLY_LOCKED)
             return PathStatus.FULLY_LOCKED;

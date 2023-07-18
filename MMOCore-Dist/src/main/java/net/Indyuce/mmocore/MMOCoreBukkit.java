@@ -45,6 +45,7 @@ public class MMOCoreBukkit {
         Bukkit.getPluginManager().registerEvents(new FishingListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerCollectStats(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerPressKeyListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new SpawnPointsListener(), plugin);
         // Bukkit.getPluginManager().registerEvents(new ClassTriggers(), plugin);
     }
 }

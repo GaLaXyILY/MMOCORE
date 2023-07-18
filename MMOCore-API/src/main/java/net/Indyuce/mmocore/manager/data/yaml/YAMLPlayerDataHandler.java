@@ -10,6 +10,7 @@ import net.Indyuce.mmocore.guild.provided.Guild;
 import net.Indyuce.mmocore.manager.data.OfflinePlayerData;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
+import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
 import org.apache.commons.lang.Validate;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
@@ -17,6 +18,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -38,6 +40,7 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
 
     @Override
     public void loadFromSection(PlayerData data, ConfigurationSection config) {
+        MMOCore.log("LOAD");
 
         // Reset stats linked to triggers.
         data.resetTriggerStats();
@@ -133,14 +136,17 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         data.setMana(config.contains("mana") ? config.getDouble("mana") : data.getStats().getStat("MAX_MANA"));
         data.setStamina(config.contains("stamina") ? config.getDouble("stamina") : data.getStats().getStat("MAX_STAMINA"));
         data.setStellium(config.contains("stellium") ? config.getDouble("stellium") : data.getStats().getStat("MAX_STELLIUM"));
-
+        data.setLastSpawnPointContext(new SpawnPointContext(config.getString("last-spawn-point.id"),
+                Optional.ofNullable(config.getString("last-spawn-point.server"))));
+        data.setShouldTeleportWhenJoin(config.getBoolean("should-teleport-when-join", false));
+        data.setupSpawnPoint();
         if (data.isOnline() && !data.getPlayer().isDead())
             data.getPlayer().setHealth(MMOCoreUtils.fixResource(config.getDouble("health"), data.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
     }
 
     @Override
     public void saveInSection(PlayerData data, ConfigurationSection config) {
-
+        MMOCore.log("SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVE");
         config.set("class-points", data.getClassPoints());
         config.set("skill-points", data.getSkillPoints());
         config.set("skill-reallocation-points", data.getSkillReallocationPoints());
@@ -168,6 +174,7 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
 
         config.set("bound-skills", null);
         data.mapBoundSkills().forEach((slot, skill) -> config.set("bound-skills." + slot, skill));
+        MMOCore.log(data.getUnlockedItems().size()+" unlocked.");
         config.set("unlocked-items", data.getUnlockedItems().stream().collect(Collectors.toList()));
         config.set("attribute", null);
         config.createSection("attribute");

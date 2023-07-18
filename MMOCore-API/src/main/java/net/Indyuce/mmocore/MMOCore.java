@@ -49,6 +49,7 @@ import net.Indyuce.mmocore.script.mechanic.ManaMechanic;
 import net.Indyuce.mmocore.script.mechanic.StaminaMechanic;
 import net.Indyuce.mmocore.script.mechanic.StelliumMechanic;
 import net.Indyuce.mmocore.skill.cast.SkillCastingMode;
+import net.Indyuce.mmocore.spawnpoint.SpawnPoint;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -82,6 +83,8 @@ public class MMOCore extends JavaPlugin {
     public final SkillTreeManager skillTreeManager = new SkillTreeManager();
 
     public final SpawnPointManager spawnPointManager = new SpawnPointManager();
+
+    public final PluginMessageManager pluginMessageManager = new PluginMessageManager();
     public final StatManager statManager = new StatManager();
     public final GuildDataManager nativeGuildManager = new YAMLGuildDataManager();
     public final PlayerDataManager playerDataManager = new PlayerDataManager(this);
@@ -183,6 +186,10 @@ public class MMOCore extends JavaPlugin {
             MMOCore.plugin.getLogger().log(Level.INFO, "Hooked onto MythicMobs");
         }
 
+        //Registers plugin message channel to teleport players to other servers.
+        MMOCore.plugin.getServer().getMessenger().registerOutgoingPluginChannel(MMOCore.plugin, "BungeeCord");
+
+
         /*
          * Resource regeneration. Must check if entity is dead otherwise regen
          * will make the 'respawn' button glitched plus HURT entity effect bug
@@ -198,6 +205,21 @@ public class MMOCore extends JavaPlugin {
                         }
             }
         }.runTaskTimer(MMOCore.plugin, 100, 20);
+
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (PlayerData playerData : PlayerData.getAll()) {
+                    for (SpawnPoint spawnPoint : spawnPointManager.getAll()) {
+                        if (!playerData.hasUnlocked(spawnPoint) && spawnPoint.matchesCondition(playerData)) {
+                            playerData.unlock(spawnPoint);
+                        }
+                    }
+                }
+            }
+        }.runTaskTimer(this, 5*20L, 5 * 20L);
+
 
         /*
          * For the sake of the lord, make sure they aren't using MMOItems Mana and
@@ -331,6 +353,8 @@ public class MMOCore extends JavaPlugin {
         requestManager.initialize(clearBefore);
         soundManager.initialize(clearBefore);
         configItems.initialize(clearBefore);
+        spawnPointManager.initialize(clearBefore);
+        pluginMessageManager.initialize(clearBefore);
         //Needs to be loaded after the class manager.
         InventoryManager.load();
 

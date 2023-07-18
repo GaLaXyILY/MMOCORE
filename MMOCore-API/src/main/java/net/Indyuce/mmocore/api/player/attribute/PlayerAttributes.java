@@ -1,8 +1,8 @@
 package net.Indyuce.mmocore.api.player.attribute;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import io.lumine.mythic.lib.gson.Gson;
+import io.lumine.mythic.lib.gson.JsonElement;
+import io.lumine.mythic.lib.gson.JsonObject;
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.player.EquipmentSlot;
 import io.lumine.mythic.lib.player.modifier.Closeable;
