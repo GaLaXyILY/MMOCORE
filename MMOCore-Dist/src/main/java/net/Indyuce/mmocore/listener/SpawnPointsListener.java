@@ -6,6 +6,7 @@ import net.Indyuce.mmocore.spawnpoint.SpawnPoint;
 import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
 import net.Indyuce.mmocore.spawnpoint.def.DefaultSpawnOption;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +23,7 @@ public class SpawnPointsListener implements Listener {
     public void onTeleport(PlayerTeleportEvent event) {
         if (!event.getFrom().getWorld().equals(event.getTo().getWorld())) {
             PlayerData playerData = PlayerData.get(event.getPlayer());
-            getLastSpawnPointContext(playerData).ifPresent(playerData::setLastSpawnPointContext);
+            getLastSpawnPointContext(event.getFrom(), playerData).ifPresent(playerData::setLastSpawnPointContext);
         }
     }
 
@@ -43,7 +44,7 @@ public class SpawnPointsListener implements Listener {
         Optional<SpawnPointContext> context = getLastSpawnPointContext(playerData);
         if (context.isPresent()) {
             SpawnPointContext spawnPointContext = context.get();
-            if (!spawnPointContext.isOtherServer()){
+            if (!spawnPointContext.isOtherServer()) {
                 event.setRespawnLocation(spawnPointContext.getLocation());
             }
 
@@ -51,8 +52,8 @@ public class SpawnPointsListener implements Listener {
         }
     }
 
-    public Optional<SpawnPointContext> getLastSpawnPointContext(PlayerData playerData) {
-        World world = playerData.getPlayer().getWorld();
+    public Optional<SpawnPointContext> getLastSpawnPointContext(Location location, PlayerData playerData) {
+        World world = location.getWorld();
         List<SpawnPoint> reachableSpawnPoints = MMOCore.plugin.spawnPointManager.
                 getAll()
                 .stream()
@@ -63,7 +64,7 @@ public class SpawnPointsListener implements Listener {
             double minDistance = Double.MAX_VALUE;
             SpawnPoint closestSpawnPoint = null;
             for (SpawnPoint spawnPoint : reachableSpawnPoints) {
-                double distance = spawnPoint.getLocation().distance(playerData.getPlayer().getLocation());
+                double distance = spawnPoint.getLocation().distance(location);
                 distance = distance / spawnPoint.getStrength();
                 if (distance < minDistance) {
                     minDistance = distance;
@@ -72,10 +73,17 @@ public class SpawnPointsListener implements Listener {
             }
             return Optional.of(new SpawnPointContext(closestSpawnPoint.getId()));
         } else
-            for (DefaultSpawnOption defaultSpawnOption : MMOCore.plugin.spawnPointManager.getDefaultSpawnOptions())
+            for (DefaultSpawnOption defaultSpawnOption : MMOCore.plugin.spawnPointManager.getDefaultSpawnOptions()) {
+                Bukkit.broadcastMessage("world: " + world.getName() + " matches: " + defaultSpawnOption.matches(world));
                 if (defaultSpawnOption.matches(world)) {
                     return Optional.of(defaultSpawnOption.getSpawnPointContext(playerData));
                 }
+            }
+
         return Optional.empty();
+    }
+
+    public Optional<SpawnPointContext> getLastSpawnPointContext(PlayerData playerData) {
+        return getLastSpawnPointContext(playerData.getPlayer().getLocation(), playerData);
     }
 }
