@@ -33,6 +33,8 @@ public class SpawnPoint implements Unlockable {
     private final Optional<Skill> unlockScript;
     private final Optional<Skill> respawnScript;
 
+    private final boolean overridesUnlockCondition, overridesRespawnScript, overridesUnlockScript;
+
     public SpawnPoint(ConfigurationSection section) {
         id = section.getName();
         location = UtilityMethods.readLocation(new ConfigSectionObject(section.getConfigurationSection("location")));
@@ -41,22 +43,26 @@ public class SpawnPoint implements Unlockable {
                 new ConfigSectionObject(section.getConfigurationSection("unlock-condition")));
 
         strength = section.getDouble("strength", 1);
+        overridesRespawnScript = section.getBoolean("override-respawn-script", false);
+        overridesUnlockScript = section.getBoolean("override-unlock-script", false);
+        overridesUnlockCondition = section.getBoolean("override-unlock-condition", false);
         Skill unlockScript = null;
         if (section.isConfigurationSection("unlock-script"))
             try {
                 final Script script = MythicLib.plugin.getSkills().loadScript(section.getConfigurationSection("unlock-script"));
                 unlockScript = new SimpleSkill(TriggerType.CAST, new MythicLibSkillHandler(script));
             } catch (RuntimeException exception) {
-                MMOCore.plugin.getLogger().log(Level.WARNING, "Could not load unlock script: " + exception.getMessage());
+                MMOCore.log(Level.WARNING, "Could not load unlock script: " + exception.getMessage());
             }
         this.unlockScript = Optional.ofNullable(unlockScript);
+
         Skill respawnScript = null;
         if (section.isConfigurationSection("respawn-script"))
             try {
                 final Script script = MythicLib.plugin.getSkills().loadScript(section.getConfigurationSection("respawn-script"));
                 respawnScript = new SimpleSkill(TriggerType.CAST, new MythicLibSkillHandler(script));
             } catch (RuntimeException exception) {
-                MMOCore.plugin.getLogger().log(Level.WARNING, "Could not load respawn script: " + exception.getMessage());
+                MMOCore.log(Level.WARNING, "Could not load respawn script: " + exception.getMessage());
             }
         this.respawnScript = Optional.ofNullable(respawnScript);
     }
@@ -89,16 +95,24 @@ public class SpawnPoint implements Unlockable {
 
     @Override
     public void whenUnlocked(PlayerData playerData) {
-        PlayerMetadata caster = playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND);
-        unlockScript.ifPresent(skill -> skill.cast(new TriggerMetadata(caster)));
+        TriggerMetadata triggerMetadata = new TriggerMetadata(playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND));
+        if (!overridesUnlockScript)
+            MMOCore.plugin.spawnPointManager.getUnlockScript().ifPresent(skill -> skill.cast(triggerMetadata));
+        unlockScript.ifPresent(skill -> skill.cast(triggerMetadata));
     }
 
     public boolean matchesCondition(PlayerData playerData) {
-        return unlockCondition.isMet(new SkillMetadata(null, playerData.getMMOPlayerData()));
+        SkillMetadata metadata = new SkillMetadata(null, playerData.getMMOPlayerData());
+        if (!overridesUnlockCondition && !MMOCore.plugin.spawnPointManager.getUnlockCondition()
+                .map((condition) -> condition.isMet(metadata)).orElse(true))
+            return false;
+        return unlockCondition.isMet(metadata);
     }
 
     public void whenRespawn(PlayerData playerData) {
-       PlayerMetadata caster = playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND);
-        respawnScript.ifPresent(skill -> skill.cast(new TriggerMetadata(caster)));
+        TriggerMetadata triggerMetadata = new TriggerMetadata(playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND));
+        if (!overridesRespawnScript)
+            MMOCore.plugin.spawnPointManager.getRespawnScript().ifPresent(skill -> skill.cast(triggerMetadata));
+        respawnScript.ifPresent(skill -> skill.cast(triggerMetadata));
     }
 }
