@@ -202,8 +202,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      * If he is dead this will be done when he respawns.
      */
     public void setupSpawnPoint() {
-        Validate.isTrue(MMOCore.plugin.spawnPointManager.isSpawnPoint(lastSpawnPointContext.getId()));
-        if (isOnline() && shouldTeleportWhenJoin && (lastSpawnPointContext.getServer().isEmpty() ||
+        if (lastSpawnPointContext != null && isOnline() && shouldTeleportWhenJoin && (lastSpawnPointContext.getServer().isEmpty() ||
                 lastSpawnPointContext.getServer().get().equalsIgnoreCase(MMOCore.plugin.pluginMessageManager.getServerName()))
                 && !getPlayer().isDead()) {
             MMOCore.plugin.spawnPointManager.getSpawnPoint(lastSpawnPointContext.getId()).whenRespawn(this);
@@ -386,8 +385,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         Validate.isTrue(!unlockable.isUnlockedByDefault(), "Cannot unlock an item unlocked by default");
         unlockable.whenUnlocked(this);
         final boolean wasLocked = unlockedItems.add(unlockable.getUnlockNamespacedKey());
-        Bukkit.broadcastMessage("Unlocked " + unlockable.getUnlockNamespacedKey());
-                // Call the event synchronously
+        // Call the event synchronously
         if (wasLocked)
             Bukkit.getScheduler().runTask(MythicLib.plugin, () -> Bukkit.getPluginManager().callEvent(new ItemUnlockedEvent(this, unlockable.getUnlockNamespacedKey())));
         return wasLocked;
