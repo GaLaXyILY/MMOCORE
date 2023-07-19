@@ -40,7 +40,6 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
 
     @Override
     public void loadFromSection(PlayerData data, ConfigurationSection config) {
-        MMOCore.log("LOAD");
 
         // Reset stats linked to triggers.
         data.resetTriggerStats();
@@ -136,8 +135,10 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         data.setMana(config.contains("mana") ? config.getDouble("mana") : data.getStats().getStat("MAX_MANA"));
         data.setStamina(config.contains("stamina") ? config.getDouble("stamina") : data.getStats().getStat("MAX_STAMINA"));
         data.setStellium(config.contains("stellium") ? config.getDouble("stellium") : data.getStats().getStat("MAX_STELLIUM"));
-        data.setLastSpawnPointContext(new SpawnPointContext(config.getString("last-spawn-point.id"),
-                Optional.ofNullable(config.getString("last-spawn-point.server"))));
+        if (config.contains("last-spawn-point")) {
+            data.setLastSpawnPointContext(new SpawnPointContext(config.getString("last-spawn-point.id"),
+                    Optional.ofNullable(config.getString("last-spawn-point.server"))));
+        }
         data.setShouldTeleportWhenJoin(config.getBoolean("should-teleport-when-join", false));
         data.setupSpawnPoint();
         if (data.isOnline() && !data.getPlayer().isDead())
@@ -146,7 +147,6 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
 
     @Override
     public void saveInSection(PlayerData data, ConfigurationSection config) {
-        MMOCore.log("SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVE");
         config.set("class-points", data.getClassPoints());
         config.set("skill-points", data.getSkillPoints());
         config.set("skill-reallocation-points", data.getSkillReallocationPoints());
@@ -174,7 +174,6 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
 
         config.set("bound-skills", null);
         data.mapBoundSkills().forEach((slot, skill) -> config.set("bound-skills." + slot, skill));
-        MMOCore.log(data.getUnlockedItems().size()+" unlocked.");
         config.set("unlocked-items", data.getUnlockedItems().stream().collect(Collectors.toList()));
         config.set("attribute", null);
         config.createSection("attribute");
@@ -209,6 +208,7 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
             info.mapBoundSkills().forEach((slot, skill) -> config.set("class-info." + key + ".bound-skills." + slot, skill));
             config.set("class-info." + key + ".unlocked-items", new ArrayList<>(info.getUnlockedItems()));
         }
+
     }
 
     @NotNull
