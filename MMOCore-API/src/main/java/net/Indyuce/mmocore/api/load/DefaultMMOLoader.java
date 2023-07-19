@@ -12,7 +12,7 @@ import net.Indyuce.mmocore.experience.source.*;
 import net.Indyuce.mmocore.loot.chest.condition.*;
 import net.Indyuce.mmocore.loot.droptable.dropitem.*;
 import net.Indyuce.mmocore.spawnpoint.def.DefaultSpawnOption;
-import net.Indyuce.mmocore.spawnpoint.def.LastSpawnOption;
+import net.Indyuce.mmocore.spawnpoint.def.LastOption;
 import net.Indyuce.mmocore.spawnpoint.def.SpawnPointOption;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -211,7 +211,7 @@ public class DefaultMMOLoader extends MMOLoader {
     @Override
     public DefaultSpawnOption loadDefaultSpawnOption(MMOLineConfig config) {
         if (config.getKey().equals("last"))
-            return new LastSpawnOption(config);
+            return new LastOption(config);
         if (config.getKey().equals("spawnpoint"))
             return new SpawnPointOption(config);
         return null;

@@ -87,6 +87,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     private Guild guild;
 
     private SpawnPointContext lastSpawnPointContext;
+    private SpawnPointContext lastUsedSpawnPointContext;
     private SkillCastingInstance skillCasting;
     private final PlayerQuests questData;
     private final PlayerStats playerStats;
@@ -477,8 +478,17 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         return lastSpawnPointContext;
     }
 
+    public SpawnPointContext getLastUsedSpawnPointContext() {
+        return lastUsedSpawnPointContext;
+    }
+
+
     public void setLastSpawnPointContext(SpawnPointContext lastSpawnPointContext) {
         this.lastSpawnPointContext = lastSpawnPointContext;
+    }
+
+    public void setLastUsedSpawnPointContext(SpawnPointContext lastUsedSpawnPointContext) {
+        this.lastUsedSpawnPointContext = lastUsedSpawnPointContext;
     }
 
     public void setShouldTeleportWhenJoin(boolean shouldTeleport) {
