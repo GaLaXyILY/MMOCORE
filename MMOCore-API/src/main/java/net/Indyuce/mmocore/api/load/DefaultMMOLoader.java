@@ -29,6 +29,9 @@ public class DefaultMMOLoader extends MMOLoader {
         if (config.getKey().equals("unlock_slot"))
             return new UnlockSlotTrigger(config);
 
+        if (config.getKey().equals("unlock_spawn_point"))
+            return new UnlockSpawnPointTrigger(config);
+
         if (config.getKey().equals("unlock_skill"))
             return new UnlockSkillTrigger(config);
 
