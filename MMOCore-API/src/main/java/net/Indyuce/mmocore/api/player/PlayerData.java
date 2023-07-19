@@ -49,7 +49,7 @@ import net.Indyuce.mmocore.skill.cast.SkillCastingMode;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
 import net.Indyuce.mmocore.skilltree.SkillTreeStatus;
 import net.Indyuce.mmocore.skilltree.tree.SkillTree;
-import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
+import net.Indyuce.mmocore.spawnpoint.SpawnPoint;
 import net.Indyuce.mmocore.waypoint.Waypoint;
 import net.Indyuce.mmocore.waypoint.WaypointOption;
 import net.md_5.bungee.api.ChatMessageType;
@@ -86,8 +86,8 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     private double health;
     private Guild guild;
 
-    private SpawnPointContext lastSpawnPointContext;
-    private SpawnPointContext lastUsedSpawnPointContext;
+    private SpawnPoint lastSpawnPoint;
+    private SpawnPoint lastUsedSpawnPoint;
     private SkillCastingInstance skillCasting;
     private final PlayerQuests questData;
     private final PlayerStats playerStats;
@@ -203,10 +203,9 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      * If he is dead this will be done when he respawns.
      */
     public void setupSpawnPoint() {
-        if (lastSpawnPointContext != null && isOnline() && shouldTeleportWhenJoin && (lastSpawnPointContext.getServer().isEmpty() ||
-                lastSpawnPointContext.getServer().get().equalsIgnoreCase(MMOCore.plugin.pluginMessageManager.getServerName()))
+        if (lastSpawnPoint != null && isOnline() && shouldTeleportWhenJoin && !lastSpawnPoint.isOtherServer()
                 && !getPlayer().isDead()) {
-            MMOCore.plugin.spawnPointManager.getSpawnPoint(lastSpawnPointContext.getId()).whenRespawn(this);
+            MMOCore.plugin.spawnPointManager.getSpawnPoint(lastSpawnPoint.getId()).whenRespawn(this);
             shouldTeleportWhenJoin = false;
         }
     }
@@ -474,21 +473,21 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         this.lastActivity.put(activity, timestamp);
     }
 
-    public SpawnPointContext getLastSpawnPointContext() {
-        return lastSpawnPointContext;
+    public SpawnPoint getLastSpawnPoint() {
+        return lastSpawnPoint;
     }
 
-    public SpawnPointContext getLastUsedSpawnPointContext() {
-        return lastUsedSpawnPointContext;
+    public SpawnPoint getLastUsedSpawnPoint() {
+        return lastUsedSpawnPoint;
     }
 
 
-    public void setLastSpawnPointContext(SpawnPointContext lastSpawnPointContext) {
-        this.lastSpawnPointContext = lastSpawnPointContext;
+    public void setLastSpawnPoint(SpawnPoint lastSpawnPoint) {
+        this.lastSpawnPoint = lastSpawnPoint;
     }
 
-    public void setLastUsedSpawnPointContext(SpawnPointContext lastUsedSpawnPointContext) {
-        this.lastUsedSpawnPointContext = lastUsedSpawnPointContext;
+    public void setLastUsedSpawnPoint(SpawnPoint lastUsedSpawnPoint) {
+        this.lastUsedSpawnPoint = this.lastUsedSpawnPoint;
     }
 
     public void setShouldTeleportWhenJoin(boolean shouldTeleport) {

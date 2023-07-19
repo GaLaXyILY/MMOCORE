@@ -3,7 +3,6 @@ package net.Indyuce.mmocore.spawnpoint;
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.player.EquipmentSlot;
-import io.lumine.mythic.lib.player.PlayerMetadata;
 import io.lumine.mythic.lib.script.Script;
 import io.lumine.mythic.lib.script.condition.Condition;
 import io.lumine.mythic.lib.skill.SimpleSkill;
@@ -17,7 +16,6 @@ import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.player.Unlockable;
 import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -26,6 +24,8 @@ import java.util.logging.Level;
 
 public class SpawnPoint implements Unlockable {
     private final String id;
+
+    private final Optional<String> server;
     private final Location location;
     private final Condition unlockCondition;
     private final double strength;
@@ -37,6 +37,7 @@ public class SpawnPoint implements Unlockable {
 
     public SpawnPoint(ConfigurationSection section) {
         id = section.getName();
+        server = Optional.ofNullable(section.getString("server"));
         location = UtilityMethods.readLocation(new ConfigSectionObject(section.getConfigurationSection("location")));
         Validate.isTrue(section.isConfigurationSection("unlock-condition"), "You must specify an unlock condition.");
         unlockCondition = MythicLib.plugin.getSkills().loadCondition(
@@ -101,6 +102,10 @@ public class SpawnPoint implements Unlockable {
         unlockScript.ifPresent(skill -> skill.cast(triggerMetadata));
     }
 
+    public boolean isOtherServer() {
+        return !server.isEmpty() && server.get() != MMOCore.plugin.pluginMessageManager.getServerName();
+    }
+
     public boolean matchesCondition(PlayerData playerData) {
         SkillMetadata metadata = new SkillMetadata(null, playerData.getMMOPlayerData());
         if (!overridesUnlockCondition && !MMOCore.plugin.spawnPointManager.getUnlockCondition()
@@ -110,9 +115,15 @@ public class SpawnPoint implements Unlockable {
     }
 
     public void whenRespawn(PlayerData playerData) {
-        TriggerMetadata triggerMetadata = new TriggerMetadata(playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND));
-        if (!overridesRespawnScript)
-            MMOCore.plugin.spawnPointManager.getRespawnScript().ifPresent(skill -> skill.cast(triggerMetadata));
-        respawnScript.ifPresent(skill -> skill.cast(triggerMetadata));
+        if (isOtherServer()) {
+            MMOCore.plugin.pluginMessageManager.teleportToOtherServer(playerData, server.get());
+        } else {
+            playerData.setLastUsedSpawnPoint(this);
+            TriggerMetadata triggerMetadata = new TriggerMetadata(playerData.getMMOPlayerData().getStatMap().cache(EquipmentSlot.MAIN_HAND));
+            if (!overridesRespawnScript)
+                MMOCore.plugin.spawnPointManager.getRespawnScript().ifPresent(skill -> skill.cast(triggerMetadata));
+            respawnScript.ifPresent(skill -> skill.cast(triggerMetadata));
+        }
+
     }
 }

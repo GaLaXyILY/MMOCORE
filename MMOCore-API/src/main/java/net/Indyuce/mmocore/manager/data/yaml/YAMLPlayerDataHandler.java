@@ -10,7 +10,6 @@ import net.Indyuce.mmocore.guild.provided.Guild;
 import net.Indyuce.mmocore.manager.data.OfflinePlayerData;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
-import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
 import org.apache.commons.lang.Validate;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
@@ -135,14 +134,12 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         data.setMana(config.contains("mana") ? config.getDouble("mana") : data.getStats().getStat("MAX_MANA"));
         data.setStamina(config.contains("stamina") ? config.getDouble("stamina") : data.getStats().getStat("MAX_STAMINA"));
         data.setStellium(config.contains("stellium") ? config.getDouble("stellium") : data.getStats().getStat("MAX_STELLIUM"));
-        if (config.contains("last-spawn-point")) {
-            data.setLastSpawnPointContext(new SpawnPointContext(config.getString("last-spawn-point.id"),
-                    Optional.ofNullable(config.getString("last-spawn-point.server"))));
-        }
-        if (config.contains("last-used-spawn-point")) {
-            data.setLastUsedSpawnPointContext(new SpawnPointContext(config.getString("last-used-spawn-point.id"),
-                    Optional.ofNullable(config.getString("last-used-spawn-point.server"))));
-        }
+        if (config.contains("last-spawn-point"))
+            data.setLastSpawnPoint(MMOCore.plugin.spawnPointManager.getSpawnPoint(config.getString("last-spawn-point")));
+
+        if (config.contains("last-used-spawn-point"))
+            data.setLastUsedSpawnPoint(MMOCore.plugin.spawnPointManager.getSpawnPoint(config.getString("last-used-spawn-point")));
+
         data.setShouldTeleportWhenJoin(config.getBoolean("should-teleport-when-join", false));
         data.setupSpawnPoint();
         if (data.isOnline() && !data.getPlayer().isDead())
@@ -182,10 +179,10 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         config.set("attribute", null);
         config.createSection("attribute");
         data.getAttributes().save(config.getConfigurationSection("attribute"));
-        if (data.getLastSpawnPointContext() != null)
-            data.getLastUsedSpawnPointContext().save(config.createSection("last-used-spawn-point"));
-        if (data.getLastUsedSpawnPointContext() != null)
-            data.getLastUsedSpawnPointContext().save(config.createSection("last-used-spawn-point"));
+        if (data.getLastSpawnPoint() != null)
+            config.set("last-spawn-point", data.getLastSpawnPoint().getId());
+        if (data.getLastUsedSpawnPoint() != null)
+            config.set("last-used-spawn-point", data.getLastUsedSpawnPoint().getId());
         config.set("profession", null);
         config.createSection("profession");
         data.getCollectionSkills().save(config.getConfigurationSection("profession"));

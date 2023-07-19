@@ -126,8 +126,8 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
         updater.addData("professions", data.getCollectionSkills().toJsonString());
         updater.addData("quests", data.getQuestData().toJsonString());
         updater.addData("class_info", createClassInfoData(data).toString());
-        updater.addData("last_spawn_point", data.getLastSpawnPointContext().toJson());
-        updater.addData("last_used_spawn_point", data.getLastUsedSpawnPointContext().toJson());
+        updater.addData("last_spawn_point", data.getLastSpawnPoint().getId());
+        updater.addData("last_used_spawn_point", data.getLastUsedSpawnPoint().getId());
         updater.addJSONArray("unlocked_items", data.getUnlockedItems());
         if (!autosave)
             updater.addData("is_saved", 1);

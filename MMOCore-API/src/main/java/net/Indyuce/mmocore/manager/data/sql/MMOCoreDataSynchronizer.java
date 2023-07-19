@@ -6,8 +6,6 @@ import io.lumine.mythic.lib.data.sql.SQLDataSynchronizer;
 import io.lumine.mythic.lib.gson.JsonArray;
 import io.lumine.mythic.lib.gson.JsonElement;
 import io.lumine.mythic.lib.gson.JsonObject;
-import io.lumine.mythic.lib.gson.JsonParser;
-
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.player.profess.PlayerClass;
@@ -17,7 +15,6 @@ import net.Indyuce.mmocore.guild.provided.Guild;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
 import net.Indyuce.mmocore.skilltree.tree.SkillTree;
-import net.Indyuce.mmocore.spawnpoint.SpawnPointContext;
 import org.apache.commons.lang.Validate;
 import org.bukkit.attribute.Attribute;
 import org.jetbrains.annotations.Nullable;
@@ -93,9 +90,10 @@ public class MMOCoreDataSynchronizer extends SQLDataSynchronizer<PlayerData> {
         if (!isEmpty(result.getString("friends")))
             MMOCoreUtils.jsonArrayToList(result.getString("friends")).forEach(str -> getData().getFriends().add(UUID.fromString(str)));
         if (!isEmpty(result.getString("last_spawn_point")))
-            getData().setLastSpawnPointContext(new SpawnPointContext(new JsonParser().parseString(result.getString("last_spawn_point")).getAsJsonObject()));
+            getData().setLastSpawnPoint(MMOCore.plugin.spawnPointManager.getSpawnPoint(result.getString("last_spawn_point")));
+
         if (!isEmpty(result.getString("last_used_spawn_point")))
-            getData().setLastUsedSpawnPointContext(new SpawnPointContext(new JsonParser().parseString(result.getString("last_spawn_point")).getAsJsonObject()));
+            getData().setLastUsedSpawnPoint(MMOCore.plugin.spawnPointManager.getSpawnPoint(result.getString("last_spawn_point")));
 
         getData().setShouldTeleportWhenJoin(result.getBoolean("should_teleport_when_join"));
         getData().setupSpawnPoint();
