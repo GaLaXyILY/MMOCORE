@@ -94,6 +94,9 @@ public class MMOCoreDataSynchronizer extends SQLDataSynchronizer<PlayerData> {
             MMOCoreUtils.jsonArrayToList(result.getString("friends")).forEach(str -> getData().getFriends().add(UUID.fromString(str)));
         if (!isEmpty(result.getString("last_spawn_point")))
             getData().setLastSpawnPointContext(new SpawnPointContext(new JsonParser().parseString(result.getString("last_spawn_point")).getAsJsonObject()));
+        if (!isEmpty(result.getString("last_used_spawn_point")))
+            getData().setLastUsedSpawnPointContext(new SpawnPointContext(new JsonParser().parseString(result.getString("last_spawn_point")).getAsJsonObject()));
+
         getData().setShouldTeleportWhenJoin(result.getBoolean("should_teleport_when_join"));
         getData().setupSpawnPoint();
 

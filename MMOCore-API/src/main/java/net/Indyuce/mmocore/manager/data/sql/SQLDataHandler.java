@@ -34,6 +34,7 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
             "stamina", "FLOAT",
             "stellium", "FLOAT",
             "last_spawn_point", "LONGTEXT",
+            "last_used_spawn_point", "LONGTEXT",
             "spawn_when_join", "TINYINT"};
 
     @Override
@@ -68,6 +69,7 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
                 "unlocked_items LONGTEXT," +
                 "class_info LONGTEXT," +
                 "last_spawn_point LONGTEXT," +
+                "last_used_spawn_point LONGTEXT," +
                 "spawn_when_join TINYINT," +
                 "is_saved TINYINT," +
                 "PRIMARY KEY (uuid));");
@@ -125,6 +127,7 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
         updater.addData("quests", data.getQuestData().toJsonString());
         updater.addData("class_info", createClassInfoData(data).toString());
         updater.addData("last_spawn_point", data.getLastSpawnPointContext().toJson());
+        updater.addData("last_used_spawn_point", data.getLastUsedSpawnPointContext().toJson());
         updater.addJSONArray("unlocked_items", data.getUnlockedItems());
         if (!autosave)
             updater.addData("is_saved", 1);

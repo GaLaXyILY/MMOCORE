@@ -139,6 +139,10 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
             data.setLastSpawnPointContext(new SpawnPointContext(config.getString("last-spawn-point.id"),
                     Optional.ofNullable(config.getString("last-spawn-point.server"))));
         }
+        if (config.contains("last-used-spawn-point")) {
+            data.setLastUsedSpawnPointContext(new SpawnPointContext(config.getString("last-used-spawn-point.id"),
+                    Optional.ofNullable(config.getString("last-used-spawn-point.server"))));
+        }
         data.setShouldTeleportWhenJoin(config.getBoolean("should-teleport-when-join", false));
         data.setupSpawnPoint();
         if (data.isOnline() && !data.getPlayer().isDead())
@@ -178,7 +182,10 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         config.set("attribute", null);
         config.createSection("attribute");
         data.getAttributes().save(config.getConfigurationSection("attribute"));
-
+        if (data.getLastSpawnPointContext() != null)
+            data.getLastUsedSpawnPointContext().save(config.createSection("last-used-spawn-point"));
+        if (data.getLastUsedSpawnPointContext() != null)
+            data.getLastUsedSpawnPointContext().save(config.createSection("last-used-spawn-point"));
         config.set("profession", null);
         config.createSection("profession");
         data.getCollectionSkills().save(config.getConfigurationSection("profession"));
