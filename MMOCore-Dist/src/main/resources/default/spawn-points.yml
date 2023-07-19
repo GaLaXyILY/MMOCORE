@@ -1,0 +1,96 @@
+global:
+  #This condition will need to be matched as well as the spawn point's condition unless
+  #overrides-unlock-condition is set to true in the spawn point's config.
+  unlock-condition:
+    type: boolean
+    formula: "true"
+
+  #Will be run for each spawn point unless it has the option overrides-unlock-script set to true.
+  unlock-script:
+    mechanics:
+      play_sound:
+        type: sound
+        sound: ENTITY_PLAYER_LEVELUP
+
+  #Will be run for each spawn point unless it has the option overrides-respawn-script set to true.
+  respawn-script:
+    mechanics:
+      play_sound:
+        type: sound
+        sound: BLOCK_BEACON_ACTIVATE
+
+
+spawn-points:
+  default:
+    location:
+      world: world
+      x: -7.5
+      y: -59
+      z: 2.5
+      yaw: 0.0
+      pitch: 0.0
+    unlock-condition:
+      type: boolean
+      formula: "true"
+    strength: 1
+
+    overrides-unlock-condition: false
+    overrides-unlock-script: false
+    #The global respawn script will not be run for this spawn point.
+    overrides-respawn-script: true
+    respawn-script:
+      mechanics:
+        send_message:
+          type: tell
+          format: 'You just respawned to the lobby.'
+        play_sound:
+          type: sound
+          sound: ENTITY_PLAYER_LEVELUP
+
+
+  village1:
+    location:
+      world: world
+      x: 10
+      y: -59
+      z: 0
+      yaw: 0.0
+      pitch: 0.0
+
+    unlock-condition:
+      type: boolean
+      formula: "false"
+      # type: distance
+      # location: # Location targeter needed here
+      #   type: custom
+      #   world: world
+      #   x: 10
+      #   y: -59
+      #   z: 0
+      #   source: false
+      #   relative: false
+      # max: 100 # 10 blocks away max
+      # source: true
+
+    strength: 1
+    unlock-script:
+      mechanics:
+        send_message:
+          type: tell
+          format: 'Unlocked the village.'
+        play_sound:
+          type: sound
+          sound: ENTITY_PLAYER_LEVELUP
+    respawn-script:
+      mechanics:
+        send_message:
+          type: tell
+          format: 'You just respawned to the village.'
+        #play_sound:
+        #  type: sound
+        #  sound: ENTITY_PLAYER_LEVELUP
+
+default-spawn:
+  #- 'spawnpoint{world-expression="world_nether";id="default"}'
+  - 'last{world-expression="world_nether"}'
+
