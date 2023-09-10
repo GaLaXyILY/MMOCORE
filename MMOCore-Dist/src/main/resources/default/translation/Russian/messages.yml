@@ -15,6 +15,8 @@ death-exp-loss:
   - '&4Вы умерли и потеряли {loss} EXP.'
   - ''
 #General
+not-enough-perms: '&cУ вас недостаточно прав.'
+#Experience boosters
 booster-main:
   - '&e'
   - '&eМножитель &6{multiplier}x&e EXP теперь активен!'
@@ -24,6 +26,30 @@ booster-skill:
   - '&eМножитель &6{multiplier}x&e EXP теперь активен!'
   - '&e'
 booster-expired: '&cИстекло!'
+#PvP Mode
+pvp-mode:
+  cooldown: '&cПожалуйста, подождите {remaining} секунд, чтобы использовать эту команду снова.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&cLevel difference is too high to fight this player.'
+    low-level-target: '&cYou cannot fight this player as their level is too low.'
+    low-level-self: '&cYour level is too low to fight other players.'
+    pvp-mode-disabled-target: '&cThis player has not toggled on PvP.'
+    pvp-mode-disabled-self: '&cYou have not toggled on PvP.'
+    invulnerable-self: '&cYou are still out of combat for {left} seconds.'
+    invulnerable-target: '&cThis player is out of combat for {left} seconds.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&aYou will now be able to fight other players in dedicated areas.'
+    on-invulnerable: '&aYou will be able to fight other players in {time} seconds.'
+    off-safe: '&cYou can no longer fight other players.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&cYou left a PVP zone but are still vulnerable for {remaining} seconds!'
+    pvp-denied: '&cYou left the PVP zone.'
+  enter:
+    pvp-mode-on: '&aYou entered a PVP zone and gained invulnerability for {time} seconds!'
+    pvp-mode-off: '&aYou entered a PVP zone. You may use /pvpmode to fight other players.'
 #Fishing Profession
 caught-fish: '&cВы поймали рыбу!'
 fish-out-water: '&aОтлично!'
@@ -52,9 +78,9 @@ casting:
     no-stamina: '&6[{index}] &9&l{skill}'
   split: '&7 &7 - &7 '
   no-longer: '%&cYou cancelled skill casting.'
-  no-mana: '&cУ вас недостаточно {mana}!'
+  no-mana: '&cУ вас недостаточно {mana}, необходимо {mana-required}!'
   no-stamina: '&cВам не хватает выносливости!'
-  on-cooldown: '&cЭтот навык находится на перезарядке.'
+  on-cooldown: '&cThis skill is on a {cooldown}s cooldown.'
 #Combat Log
 now-in-combat: '%&cТеперь вы в бою!'
 leave-combat: '%&aТы ушел из боя.'
@@ -90,7 +116,7 @@ already-friends: '&cВы уже дружите с {player}.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &ejust отправил вам запрос на добавление в друзья!"}'
-  - '[{"text":"        ","hoverEvent":{}},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eНажмите, чтобы принять!"}},{"text":"&r             ","hoverEvent":{}},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eНажмите, чтобы отклонить."}}]'
+  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[Party] {player}: {message}'
@@ -136,10 +162,6 @@ quest-level-restriction: '&cВы должны быть {level} {count}.'
 cant-redo-quest: '&cВы не можете начать это задание дважды.'
 quest-cooldown: '&cВам нужно подождать {delay}.'
 start-quest: '&eВы успешно начали &6{quest}&e.'
-cant-choose-new-class:
-  - '&cДля выполнения этого действия вам нужно одно очко класса.'
-no-permission-for-class:
-  - "&cУ вас нет разрешения на использование этой команды."
 #Attributes
 no-attribute-points-spent: '&cВы не потратили ни одного очка атрибутов.'
 not-attribute-reallocation-point: '&cУ вас нет 1 очка перераспределения.'
@@ -148,27 +170,33 @@ not-attribute-point-shift: '&cУ вас должно быть &4{shift_points} �
 attribute-points-reallocated: '&eВы успешно сбросили атрибуты. Теперь у вас есть &6{points} &eочков атрибутов.'
 attribute-max-points-hit: '&cВы больше не можете повысить уровень этого атрибута.'
 attribute-level-up: '&eВы успешно повысили уровень &6{attribute}&e.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&cДля выполнения этого действия вам нужно одно очко класса.'
+no-permission-for-class:
+  - "&cУ вас нет разрешения на использование этой команды."
 #Skills
 no-class-skill: '&cУ вашего класса нет навыков.'
 not-enough-skill-points: '&cНеобходимо одно очко навыка.'
 not-enough-skill-points-shift: '&cВам нужно {shift_points} очков навыка.'
 upgrade-skill: '&eВаш уровень &6{skill} &eтеперь &6{level}&!'
-not-unlocked-skill: '&cВы еще не разблокировали этот навык.'
+skill-level-not-met: '&cYou cannot use this skill yet.'
 no-skill-bound: '&cУ вас нет привязанных навыков привязанных к этому слоту.'
-not-active-skill: '&cЭто не активный навык.'
-not-passive-skill: '&cЭто не пассивный навык.'
+not-compatible-skill: '&cThe selected skill is not compatible with this slot.'
+cant-manually-bind: "&cYou can't manually bind/unbind a skill to this slot."
 skill-max-level-hit: '&cВы уже достигли максимального уровня для этого навыка.'
 no-skill-placeholder: 'Навыки не найдены'
 not-skill-reallocation-point: '&cУ вас нет 1 очка перераспределения навыков.'
 no-skill-points-spent: '&cВы не потратили ни одного очка навыков.'
-skill-points-reallocated: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
+skill-points-reallocated: '&eВы успешно сбросили атрибуты. Теперь у вас есть &6{points} &eочков навыков.'
 max-points-reached: '&cВы достигли максимального количества очков, которое вы можете потратить. Вам необходимо перераспределить ваши очки.'
 #Skill Trees
 no-skill-tree-points-spent: '&cВы не потратили ни одного очка дерева навыков.'
 locked-node: '&cЭтот навык заблокирован!'
-upgrade-skill-node: '&eYour skill node &6{skill-node} &eis now Level &6{level}&e!'
-skill-node-max-level-hit: '&cYou already hit the max level for that skill node.'
-not-enough-skill-tree-points: '&cНеобходимо одно очко дерева навыков.'
+upgrade-skill-node: '&eВаш уровень &6{skill-node} &eтеперь &6{level}&!'
+skill-node-max-level-hit: '&cВы уже достигли максимального уровня для этого навыка.'
+missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
+not-enough-skill-tree-points: '&cYou need {point} skill tree point.'
 reallocated-points: '&eВы успешно сбросили дерево навыков {skill-tree}. Теперь у вас есть &6{points} &eочков дерева навыков.'
 not-skill-tree-reallocation-point: '&cУ вас нет 1 очка перераспределения дерева навыков.'
 no-skill-tree: '&cУ вашего класса нет дерева навыков.'
