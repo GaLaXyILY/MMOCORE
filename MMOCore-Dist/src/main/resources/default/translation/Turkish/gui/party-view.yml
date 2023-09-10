@@ -1,5 +1,5 @@
 #GUI display name
-name: Party ({players}/{max})
+name: Parti ({players}/{max})
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -17,24 +17,24 @@ items:
     function: member
     empty:
       item: GRAY_STAINED_GLASS_PANE
-      name: '&aNo Player'
+      name: '&aOyuncu Yok'
     member:
       item: PLAYER_HEAD
       name: '&a{name}'
       lore:
-        - '&7Level {level} {class}'
-        - '&7Online Since: {since}'
+        - '&7Seviye {level} {class}'
+        - '&7{since}''dir online'
   leave:
     slots:
       - 50
     function: leave
     item: REDSTONE
-    name: '&cLeave Party'
+    name: '&cPartiden Ayrıl'
     lore: { }
   request:
     slots:
       - 48
     function: invite
     item: WRITABLE_BOOK
-    name: '&aInvite a player..'
+    name: '&aOyuncu davet et..'
     lore: { }
