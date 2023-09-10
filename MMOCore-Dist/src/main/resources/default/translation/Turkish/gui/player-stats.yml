@@ -1,5 +1,5 @@
 #GUI display name
-name: Your Character
+name: Karakteriniz
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -9,15 +9,15 @@ items:
       - 10
     function: profession_mining
     item: IRON_PICKAXE
-    name: '&aMining'
+    name: '&aMadencilik'
     hide-flags: true
     lore:
       - ''
-      - '&7Current Level: &e{level}'
+      - '&7Geçerli Seviye: &e{level}'
       - '&8[&e{progress}&8] &e{percent}%'
       - ''
-      - '&7&oMining unlocks rare ores and raw materials.'
-      - '&7&oThis is vital to your rise in power and strength,'
+      - '&7&oMadencilik nadir cevherlerin ve hammaddelerin kilidini açar.'
+      - '&7&oBu, güç ve kuvvetteki yükselişiniz için hayati öneme sahiptir,'
       - '&7&omine frequently for unique and rare drops.'
   woodcutting-profession:
     slots:
@@ -183,8 +183,8 @@ items:
       - '&7&ogreatly encourages you!'
       - ''
       - '&7Party Bonuses ({count}):'
-      - '&8- +{buff_additional_experience}% Experience Earned!'
-      - '&8- +{buff_health_regeneration}% Health Regeneration'
+      - '&8+{buff_additional_experience} Experience Earned!'
+      - '&8+{buff_health_regeneration} Health Regeneration'
   stats:
     slots:
       - 15
