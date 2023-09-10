@@ -1,0 +1,257 @@
+#GUI display name
+name: 你的角色
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  mining-profession:
+    slots:
+      - 10
+    function: profession_mining
+    item: IRON_PICKAXE
+    name: '&a礦工'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o採礦解鎖稀有礦物及原礦'
+      - '&7&o對於你的力量及力量的提升有幫助,'
+      - '&7&o長時間開採獨特且稀有的掉落物'
+  woodcutting-profession:
+    slots:
+      - 11
+    function: profession_woodcutting
+    item: IRON_AXE
+    name: '&a木工'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o雖然說木工看起來是個無聊的工作'
+      - '&7&o對於獲得用於製作及交易的材料來說是很重要的,'
+      - '&7&o並能幫你在秘術方面佔上風'
+  farming-profession:
+    slots:
+      - 12
+    function: profession_farming
+    item: IRON_HOE
+    name: '&a農夫'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o擁有大量的新食物及消耗品製作方式'
+      - '&7&o你會需要留在農莊中'
+      - '以便獲得最營養的食物和飲料使自身保持健康'
+  fishing-profession:
+    slots:
+      - 19
+    function: profession_fishing
+    item: FISHING_ROD
+    name: '&a漁夫'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o釣魚也許會給你特別的掉落物'
+      - '&7&o這是在其他地方找不到的'
+      - '&7&o越多魚的地方, 越容易發現這些東西'
+      - ''
+      - '&7釣魚強度: &c{fishing_strength}%'
+      - '&7額外釣魚獲利機率: &c{critical_fishing_chance}%'
+      - '&7額外失敗機率: &c{critical_fishing_failure_chance}%'
+  alchemy-profession:
+    slots:
+      - 20
+    function: profession_alchemy
+    item: BREWING_STAND
+    name: '&a鍊金術師'
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o不再侷限在製作簡單的藥水'
+      - '&7&o嘗試學習更多新的釀造方式'
+      - '&7&o讓自己在戰鬥中佔上風'
+  smithing-profession:
+    slots:
+      - 21
+    function: profession_smithing
+    item: ANVIL
+    name: '&a鍛造師'
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o最糟糕的是攻擊了敵人卻還讓留他活口'
+      - '&7&o成為一名熟能生巧的鍛造師'
+      - '&7&o&n在戰場中使用最鋒利的武器來取勝'
+  enchanting-profession:
+    slots:
+      - 28
+    function: profession_enchanting
+    item: ENCHANTED_BOOK
+    name: '&a附魔師'
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oLorem ipsum dolor sit amet, consectetur'
+      - '&7&oadipiscing elit. Proin malesuada maximus massa,'
+      - '&7&osodales imperdiet sapien fermentum at.'
+  smelting-profession:
+    slots:
+      - 29
+    function: profession_smelting
+    item: FURNACE
+    name: '&a冶煉師'
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&o使眉毛上揚是必須的'
+      - '&7&o你會長時間在烤爐前'
+      - '&7&o這會使你對於使用烤爐更靈活'
+  boost-display:
+    slots:
+      - 47
+      - 48
+      - 49
+      - 50
+      - 51
+    function: boost
+    item: BARRIER
+    no-boost:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&a沒有提升加成'
+      lore: { }
+    #Profession experience boosters
+    profession:
+      item: EXPERIENCE_BOTTLE
+      name: '&a經驗加成'
+      lore:
+        - '&7數量: &6+{value}%'
+        - '&7剩餘時間: &6{left}'
+        - '&7職業: &6{profession}'
+        - '&7'
+        - '&e由 {author} 發佈'
+    #Main class experience boosters
+    main-level:
+      item: EXPERIENCE_BOTTLE
+      name: '&a經驗加成'
+      lore:
+        - '&7數量: &6+{value}%'
+        - '&7剩餘時間: &6{left}'
+        - '&7'
+        - '&e由 {author} 發佈'
+  boost-next:
+    slots:
+      - 52
+    function: boost-next
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
+    name: '&a下一頁'
+    lore: { }
+  boost-prev:
+    slots:
+      - 46
+    function: boost-previous
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
+    name: '&a上一頁'
+    lore: { }
+  party:
+    slots:
+      - 16
+    function: party
+    item: CAKE
+    name: '&a隊伍風氣'
+    lore:
+      - '&7&o與好友一起遊玩'
+      - '&7&o對你讚許有加!'
+      - ''
+      - '&7隊伍獎金 ({count}):'
+      - '&8+{buff_additional_experience} 獲得的經驗!'
+      - '&8- +{buff_health_regeneration} 生命值回復'
+  stats:
+    slots:
+      - 15
+    function: profile
+    item: PLAYER_HEAD
+    name: '&e{player}'
+    lore:
+      - ''
+      - '&7目前等級: &e{level}'
+      - '&7進度: &e{exp} / {next_level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - '&7技能點數: &6{skill_points}'
+      - ''
+      - '&7目前職業: &c{class}'
+      - '&7職業點數: &c{class_points}'
+  phys:
+    slots:
+      - 32
+    function: stats
+    name: '&c物理'
+    item: GOLDEN_APPLE
+    hide-flags: true
+    lore:
+      - ''
+      - '目前力量: &c&l{attribute_strength}'
+      - ''
+      - '✦ 攻擊傷害: &c{attack_damage} &7(&c{attack_damage_base} &7+ &c{attack_damage_extra}&7)'
+      - '✦ 攻擊速度: &c{attack_speed} &7(&c{attack_speed_base} &7+ &c{attack_speed_extra}&7)'
+      - ''
+      - '❤ 最大生命值: &c{max_health} &7(&c{max_health_base} &7+ &c{max_health_extra}&7)'
+      - '❤ 生命值回復 &c{health_regeneration} &7(&c{health_regeneration_base} &7+ &c{health_regeneration_extra}&7)'
+      - ''
+      - '✤ 最大耐力值: &9{max_stamina} &7(&9{max_stamina_base} &7+ &9{max_stamina_extra}&7)'
+      - '✤ 耐力值回復: &9{stamina_regeneration} &7(&9{stamina_regeneration_base} &7+ &9{stamina_regeneration_extra}&7)'
+      - ''
+      - '❖ 護甲值: &c{armor} &7(&c{armor_base} &7+ &c{armor_extra}&7)'
+      - '❖ 護甲韌性: &c{armor_toughness} &7(&c{armor_toughness_base} &7+ &c{armor_toughness_extra}&7)'
+  dex:
+    slots:
+      - 33
+    function: stats
+    name: '&a敏捷'
+    item: LEATHER_BOOTS
+    hide-flags: true
+    lore:
+      - ''
+      - '當前敏捷: &a&l{attribute_dexterity}'
+      - ''
+      - '✤ 擊退抗性: &f{knockback_resistance} &7(&f{knockback_resistance_base} &7+ &f{knockback_resistance_extra}&7)'
+      - '✤ 移動速度: &f{movement_speed} &7(&f{movement_speed_base} &7+ &f{movement_speed_extra}&7)'
+      - '✤ 飽食度消耗減緩: &f{speed_malus_reduction}% &7(&f{speed_malus_reduction_base} &7+ &f{speed_malus_reduction_extra}&7)'
+  int:
+    slots:
+      - 34
+    function: stats
+    name: '&b智力'
+    item: BOOK
+    hide-flags: true
+    lore:
+      - ''
+      - '目前智力值: &b&l{attribute_intelligence}'
+      - ''
+      - '✤ 最大魔力值: &9{max_mana} &7(&9{max_mana_base} &7+ &9{max_mana_extra}&7)'
+      - '✤ 魔力值回復: &9{mana_regeneration} &7(&9{mana_regeneration_base} &7+ &9{mana_regeneration_extra}&7)'
+      - ''
+      - '✤ 技能冷卻減緩: &9{cooldown_reduction} &7(&9{cooldown_reduction_base} &7+ &9{cooldown_reduction_extra}&7)'
+      - '✤ 額外經驗: &9{additional_experience} &7(&9{additional_experience_base} &7+ &9{additional_experience_extra}&7)'
+      - ''
+      - '❊ 最大群星值: &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
+      - '❊ 群星值: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'
