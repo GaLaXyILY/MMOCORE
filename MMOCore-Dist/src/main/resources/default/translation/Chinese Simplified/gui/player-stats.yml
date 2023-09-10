@@ -107,9 +107,9 @@ items:
       - '&7职业等级: &e{level}'
       - '&8[&e{progress}&8] &e{percent}%'
       - ''
-      - '&7占位文本'
-      - '&7占位文本'
-      - '&7占位文本'
+      - '&7&oLorem ipsum dolor sit amet, consectetur'
+      - '&7&oadipiscing elit. Proin malesuada maximus massa,'
+      - '&7&osodales imperdiet sapien fermentum at.'
   smelting-profession:
     slots:
       - 29
@@ -183,8 +183,8 @@ items:
       - '&7&o可以大幅激励你!'
       - ''
       - '&7队伍加成 ({count}):'
-      - '&8- +{buff_additional_experience}% 经验获取!'
-      - '&8- +{buff_health_regeneration}% 生命恢复'
+      - '&8+{buff_additional_experience} 经验获取!'
+      - '&8+{buff_health_regeneration} 生命恢复'
   stats:
     slots:
       - 15
