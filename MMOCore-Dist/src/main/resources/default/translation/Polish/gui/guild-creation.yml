@@ -1,5 +1,5 @@
 #GUI display name
-name: Guild Creation
+name: Tworzenie Gildii
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 27
@@ -9,12 +9,12 @@ items:
       - 12
     item: GREEN_TERRACOTTA
     function: 'create'
-    name: '&aCreate a guild!'
+    name: '&aUtwórz gildię!'
     lore: { }
   back:
     slots:
       - 14
     item: RED_TERRACOTTA
     function: back
-    name: '&aBack'
+    name: '&aWstecz'
     lore: { }
