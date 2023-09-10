@@ -65,9 +65,9 @@ items:
       - '&7которые вы больше нигде не сможете найти. Чем больше вы'
       - '&7&oрыбачите, тем будет проще их найти.'
       - ''
-      - '&7Fishing Strength: &c{fishing_strength}%'
-      - '&7Crit Fishing Rate: &c{critical_fishing_chance}%'
-      - '&7Crit Failure Rate: &c{critical_fishing_failure_chance}%'
+      - '&7Навык Рабалки: &c{fishing_strength}%'
+      - '&7Навык Удачи Рыбалки: &c{critical_fishing_chance}%'
+      - '&7Шанс Неудачи Рыбалки: &c{critical_fishing_failure_chance}%'
   alchemy-profession:
     slots:
       - 20
@@ -121,9 +121,9 @@ items:
       - '&7Текущий Уровень: &e{level}'
       - '&8[&e{progress}&8] &e{percent}%'
       - ''
-      - '&7&oSinging your eyebrows will become standard.'
-      - '&7&oYour long hours over the heat will make you'
-      - '&7&ofaster and more efficient with your oven.'
+      - '&7&oПечать бровей станет стандартным.'
+      - '&7&oДолгие часы, проведенные на огне, позволят вам'
+      - '&7&oбыстрее и эффективнее использовать печь..'
   boost-display:
     slots:
       - 47
@@ -135,12 +135,12 @@ items:
     item: BARRIER
     no-boost:
       item: GRAY_STAINED_GLASS_PANE
-      name: '&aNo Booster'
+      name: '&aНету Ускорителя'
       lore: { }
     #Profession experience boosters
     profession:
       item: EXPERIENCE_BOTTLE
-      name: '&aEXP Boost'
+      name: '&aУсиление EXP'
       lore:
         - '&7Количество: &6+{value}%'
         - '&7Осталось времени: &6{left}'
@@ -150,7 +150,7 @@ items:
     #Main class experience boosters
     main-level:
       item: EXPERIENCE_BOTTLE
-      name: '&aEXP Boost'
+      name: '&aУсиление EXP'
       lore:
         - '&7Количество: &6+{value}%'
         - '&7Осталось времени: &6{left}'
@@ -183,8 +183,8 @@ items:
       - '&7&oочень поощряет вас!'
       - ''
       - '&7Бонусы Группы ({count}):'
-      - '&8- +{buff_additional_experience}% Получаемого Опыта!'
-      - '&8- +{buff_health_regeneration}% Регенерации Здоровья'
+      - '&8+{buff_additional_experience} Experience Earned!'
+      - '&8+{buff_health_regeneration} Health Regeneration'
   stats:
     slots:
       - 15
@@ -235,7 +235,7 @@ items:
       - ''
       - '✤ Сопротивление Отталкиванию: &f{knockback_resistance} &7(&f{knockback_resistance_base} &7+ &f{knockback_resistance_extra}&7)'
       - '✤ Скорость Передвижения: &f{movement_speed} &7(&f{movement_speed_base} &7+ &f{movement_speed_extra}&7)'
-      - '✤ Speed Malus Reduction: &f{speed_malus_reduction}% &7(&f{speed_malus_reduction_base} &7+ &f{speed_malus_reduction_extra}&7)'
+      - '✤ Сокращение Скорости: &f{speed_malus_reduction}% &7(&f{speed_malus_reduction_base} &7+ &f{speed_malus_reduction_extra}&7)'
   int:
     slots:
       - 34
