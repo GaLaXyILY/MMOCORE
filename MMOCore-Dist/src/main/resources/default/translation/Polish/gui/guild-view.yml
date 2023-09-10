@@ -30,21 +30,21 @@ items:
     function: member
     empty:
       item: GRAY_STAINED_GLASS_PANE
-      name: '&aNo Player'
+      name: '&aBrak gracza'
     member:
       item: PLAYER_HEAD
-      name: '&a{name}'
+      name: '&{name}'
       #leader-name: '&a{name} &c[&aLeader&c]' - Unused right now
       lore:
-        - '&7Level {level} {class}'
-        - '&7Online Since: {since}'
+        - '&7Poziom {level} {class}'
+        - '&7Online od: {since}'
   next:
     slots:
       - 26
     function: next
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
-    name: '&aNext Page'
+    name: '&aNastępna strona'
     lore: [ ]
   previous:
     slots:
@@ -52,14 +52,14 @@ items:
     function: previous
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
-    name: '&aPrevious Page'
+    name: '&aPoprzednia strona'
     lore: [ ]
   leave:
     slots:
       - 49
     function: leave
     item: REDSTONE
-    name: '&cLeave Guild'
+    name: '&cOpuść Gildię'
     lore: [ ]
   #Request and Disband are only available to the Guild Leader
   disband:
@@ -67,12 +67,12 @@ items:
       - 51
     function: disband
     item: BARRIER
-    name: '&cDisband Guild'
+    name: '&cRozwiąż Gildię'
     lore: [ ]
   request:
     slots:
       - 47
     function: invite
     item: WRITABLE_BOOK
-    name: '&aInvite a player..'
+    name: '&aZaproś gracza'
     lore: [ ]
