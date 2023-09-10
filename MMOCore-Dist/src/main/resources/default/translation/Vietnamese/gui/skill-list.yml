@@ -1,5 +1,5 @@
 #GUI display name
-name: 'Selected Skill: &6{skill}'
+name: 'Chọn kỹ năng: &6{skill}'
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -22,9 +22,9 @@ items:
     name: '&a{skill} &6[{level}]'
     lore:
       - ''
-      - '{unlocked}&a✔ Requires Level {unlock}'
-      - '{locked}&c✖ Requires Level {unlock}'
-      - '{max_level}&e✔ Maximum Level Hit!'
+      - '{unlocked}&a✔ Yêu cầu cấp {unlock}'
+      - '{locked}&c✖ Yêu cầu cấp {unlock}'
+      - '{max_level}&e✔ Đạt cấp tối đa!'
       - ''
       - '{lore}'
   next:
@@ -33,7 +33,7 @@ items:
     function: next
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
-    name: '&aNext'
+    name: '&aTiếp'
     lore: { }
   previous:
     slots:
@@ -41,41 +41,22 @@ items:
     function: previous
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
-    name: '&aPrevious'
+    name: '&aLùi'
     lore: { }
   reallocate:
     slots:
       - 45
     function: reallocation
     item: CAULDRON
-    name: '&aReallocate Skill Points'
+    name: '&aPhân bổ lại điểm kỹ năng'
     lore:
       - ''
-      - 'You have spent a total of &6{total}&7 skill points.'
-      - '&7Right click to reallocate them.'
+      - 'Bạn đã dành tổng cộng &6{total}&7 điểm kỹ năng.'
+      - '&7Nhấp chuột phải để phân bổ lại chúng.'
       - ''
-      - '&eCosts 1 skill reallocation point.'
-      - '&e◆ Skill Reallocation Points: &6{points}'
-  passive-skill-slot:
-    slots:
-      - 7
-      - 16
-      - 25
-      - 34
-      - 43
-      - 52
-    function: passive-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: BLUE_DYE
-    name: '&aPassive Skill Slot {slot}'
-    no-skill: '&cNone'
-    lore:
-      - '&7Current Passive Skill: &6{skill}'
-      - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
-  skill-slot:
+      - '&eChi phí 1 điểm phân bổ lại kỹ năng.'
+      - '&e◆ Điểm phân bổ lại kỹ năng: &6{points}'
+  slot:
     slots:
       - 8
       - 17
@@ -83,20 +64,25 @@ items:
       - 35
       - 44
       - 53
-    function: active-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: GRAY_DYE
-    name: '&aSkill Slot {slot}'
+    function: slot
+    item: GRAY_DYE
+    name: '&aKĩ năng số {slot}'
     no-skill: '&cNone'
+    #If this is filled, the item shown in the GUI when a slot is filled will be the item specified here.
+    #Else it will be the display item of the bound skill.
+    #filled-item:
+    #filled-custom-model-data:
     lore:
-      - '&7Current Skill: &6{skill}'
+      - '&7Kĩ năng hiện tại: &6{skill}'
       - ''
-      - '&7&oCast this spell by pressing [F] followed'
-      - '&7&oby the keybind displayed on the action bar.'
+      - '{slot-lore}'
       - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
+      - '&7&oThực hiện phép thuật này bằng cách nhấn [nút đổi thay cầm vật phẩm] theo sau'
+      - '&7&obởi tổ hợp phím được hiển thị trên thanh hành động.'
+      - ''
+      - '&e► Nhấp chuột trái để liên kết {selected}.'
+      - '&e► Nhấp chuột phải để hủy liên kết.'
+      - '&e► Shift nhấp chuột trái để chọn.'
   skill-level:
     slots:
       - 6
@@ -115,7 +101,7 @@ items:
     too-low:
       item: AIR
     item: LIME_DYE
-    name: '&a{skill} Level {roman}'
+    name: '&a{skill} Cấp {roman}'
     lore:
       - ''
       - '{lore}'
@@ -124,8 +110,16 @@ items:
       - 15
     function: upgrade
     item: GREEN_STAINED_GLASS_PANE
-    name: '&a&lUPGRADE {skill_caps}'
+    name: '&a&lNÂNG CẤP {skill_caps}'
     lore:
-      - '&7Costs 1 skill point.'
+      - '&7Tốn 1 điểm kỹ năng.'
       - ''
-      - '&eCurrent Skill Points: {skill_points}'
+      - '&eĐiểm kỹ năng hiện tại: {skill_points}'
+#This will display the selected item in the skill UI.
+#selected:
+#slots: []
+#function: selected
+#name: '&a{skill} &6[{level}]'
+#lore:
+#- ''
+#- '{lore}'
