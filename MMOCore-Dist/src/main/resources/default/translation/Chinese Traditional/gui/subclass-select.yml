@@ -1,0 +1,22 @@
+#GUI display name
+name: 選擇你的路徑...
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  back:
+    function: back
+    slots:
+      - 26
+    item: RED_STAINED_GLASS_PANE
+    name: '&a返回職業選擇'
+    lore: [ ]
+  arcane-mage:
+    slots:
+      - 13
+    function: 子類奧術法師
+    name: '&a&l奧術法師'
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
