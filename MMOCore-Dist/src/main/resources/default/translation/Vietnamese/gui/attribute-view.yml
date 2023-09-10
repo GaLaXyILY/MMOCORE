@@ -12,7 +12,7 @@ items:
     name: '&aĐiểm thông số'
     lore:
       - ''
-      - 'Bạn có tất cả &6{total}&7 điểm thông số.'
+      - 'Bạn sử dụng tất cả &6{total}&7 điểm thông số.'
       - '&7Chuột phải để lấy lại điểm.'
       - ''
       - '&eYêu cầu 1 điểm tái tạo chỉ số.'
