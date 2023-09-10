@@ -56,26 +56,7 @@ items:
       - ''
       - '&eCosts 1 skill reallocation point.'
       - '&e◆ Skill Reallocation Points: &6{points}'
-  passive-skill-slot:
-    slots:
-      - 7
-      - 16
-      - 25
-      - 34
-      - 43
-      - 52
-    function: passive-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: BLUE_DYE
-    name: '&aPassive Skill Slot {slot}'
-    no-skill: '&cNone'
-    lore:
-      - '&7Current Passive Skill: &6{skill}'
-      - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
-  skill-slot:
+  slot:
     slots:
       - 8
       - 17
@@ -83,20 +64,25 @@ items:
       - 35
       - 44
       - 53
-    function: active-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: GRAY_DYE
-    name: '&aSkill Slot {slot}'
-    no-skill: '&cNone'
+    function: yuva
+    item: GRAY_DYE
+    name: '&aBeceri Yuvası {slot}'
+    no-skill: '&cYok'
+    #If this is filled, the item shown in the GUI when a slot is filled will be the item specified here.
+    #Else it will be the display item of the bound skill.
+    #filled-item:
+    #filled-custom-model-data:
     lore:
-      - '&7Current Skill: &6{skill}'
+      - '&7Mevcut Beceri: &6{skill}'
+      - ''
+      - '{slot-lore}'
       - ''
       - '&7&oCast this spell by pressing [F] followed'
       - '&7&oby the keybind displayed on the action bar.'
       - ''
       - '&e► Left click to bind {selected}.'
       - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
@@ -129,3 +115,11 @@ items:
       - '&7Costs 1 skill point.'
       - ''
       - '&eCurrent Skill Points: {skill_points}'
+#This will display the selected item in the skill UI.
+#selected:
+#slots: []
+#function: selected
+#name: '&a{skill} &6[{level}]'
+#lore:
+#- ''
+#- '{lore}'
