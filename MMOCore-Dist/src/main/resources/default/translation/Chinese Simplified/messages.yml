@@ -15,6 +15,8 @@ death-exp-loss:
   - '&4你因死亡而失去了 {loss} 经验.'
   - ''
 #General
+not-enough-perms: '&c你的权限不足.'
+#Experience boosters
 booster-main:
   - '&e'
   - '&e一个 &6{multiplier}x&e 经验加成器已激活!'
@@ -24,6 +26,30 @@ booster-skill:
   - '&e一个 &6{multiplier}x&e &6{profession} &e经验加乘其已激活!'
   - '&e'
 booster-expired: '&c已过期!'
+#PvP Mode
+pvp-mode:
+  cooldown: '&c你必须等待 {remaining}秒 以使用此命令.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&c你和他的等级差距过大，无法去攻击这个玩家'
+    low-level-target: '&c他的等级太低, 你不能攻击他.'
+    low-level-self: '&c你的等级太低, 不能攻击其他玩家.'
+    pvp-mode-disabled-target: '&c这个玩家未开启PvP模式.'
+    pvp-mode-disabled-self: '&c你没有开启PvP模式.'
+    invulnerable-self: '&c你未处于战斗模式 {left}秒.'
+    invulnerable-target: '&c这个玩家已经退出战斗 {left}秒.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&a你现在可以在PVP区域内与其他玩家战斗.'
+    on-invulnerable: '&a你将能在 {time}秒内与其他玩家战斗.'
+    off-safe: '&c你不能再与其他玩家战斗了.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&c你离开了PVP区域, 但在接下来的{remaining}秒内仍能被攻击!'
+    pvp-denied: '&c你离开了PVP区域.'
+  enter:
+    pvp-mode-on: '&c你进入了PVP区域, 并在接下来的 {time}秒内无敌!'
+    pvp-mode-off: '&a你进入了PVP区域. 你可以使用 /pvpmode 来与其他玩家战斗.'
 #Fishing Profession
 caught-fish: '&c你抓到了一条鱼!'
 fish-out-water: '做得好!'
@@ -52,9 +78,9 @@ casting:
     no-stamina: '&6[{index}] &9&l{skill}'
   split: '&7 &7 - &7 '
   no-longer: '%&c你取消了技能释放.'
-  no-mana: '&c你没有足够的 {mana}!'
-  no-stamina: '&c你没有足够的体力!'
-  on-cooldown: '&c技能冷却中.'
+  no-mana: '&c你的 {mana} 不足, 还需 {mana-required}!'
+  no-stamina: '&c你没有足够的耐力!'
+  on-cooldown: '&c此技能正处于 {cooldown}秒冷却'
 #Combat Log
 now-in-combat: '%&c你进入了战斗状态!'
 leave-combat: '%&a你已脱战.'
@@ -90,7 +116,7 @@ already-friends: '&c你与 {player} 已经是好友了.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &e向你发送了好友请求!"}'
-  - '[{"text":"        ","hoverEvent":{}},{"text":"&8[&a&l同意&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&e点击同意!"}},{"text":"&r             ","hoverEvent":{}},{"text":"&8[&c&l拒绝&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e点击拒绝."}}]'
+  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[队伍] {player}: {message}'
@@ -136,10 +162,6 @@ quest-level-restriction: '&c你需要成为 {level} {count}.'
 cant-redo-quest: '&c你不能开始这个任务两次.'
 quest-cooldown: '&c你需要等待 {delay}.'
 start-quest: '&e你成功开始了 &6{quest}&e.'
-cant-choose-new-class:
-  - '&c你需要1格职业点数以继续.'
-no-permission-for-class:
-  - "&c你没有权限选择这个职业."
 #Attributes
 no-attribute-points-spent: '&c你还没有使用过属性点数.'
 not-attribute-reallocation-point: '&c你没有1点重新分配点数.'
@@ -148,27 +170,33 @@ not-attribute-point-shift: '&c你必须有 &4{shift_points} &c属性点数.'
 attribute-points-reallocated: '&e你成功重置了你的属性. 你现在拥有 &6{points} &e属性点数.'
 attribute-max-points-hit: '&c你不能继续升级这个属性了.'
 attribute-level-up: '&e你成功升级了你的 &6{attribute}&e.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&c你需要1格职业点数以继续.'
+no-permission-for-class:
+  - "&c你没有权限选择这个职业."
 #Skills
 no-class-skill: '&c你的职业没有技能.'
 not-enough-skill-points: '&c你需要一个技能点数.'
 not-enough-skill-points-shift: '&c你需要 {shift_points} 技能点数.'
 upgrade-skill: '&e你的 &6{skill} &e升级到了等级 &6{level}&e!'
-not-unlocked-skill: '&c你还未解锁这个技能.'
+skill-level-not-met: '&c你还不能使用此技能.'
 no-skill-bound: '&c你没有绑定到这个槽位的技能.'
-not-active-skill: '&c这不是一个主动技能.'
-not-passive-skill: '&c这不是一个被动技能.'
+not-compatible-skill: '&c选中的技能与这个技能槽不兼容.'
+cant-manually-bind: "&c你不能手动将技能绑定到这个技能槽或从技能槽解绑."
 skill-max-level-hit: '&c你已经达到了这个技能的最大等级.'
 no-skill-placeholder: '没有绑定技能'
 not-skill-reallocation-point: '&c你没有1点技能重新分配点数.'
 no-skill-points-spent: '&c你还没有使用过技能点数.'
-skill-points-reallocated: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
+skill-points-reallocated: '&e你成功重置了你的技能. 你现在拥有 &6{points} &e技能点数.'
 max-points-reached: '&c你达到了可以使用点数的最大数量. 你需要重新分配你的点数.'
 #Skill Trees
 no-skill-tree-points-spent: '&c你还没有使用任何技能树点数.'
 locked-node: '&c技能已被锁定!'
 upgrade-skill-node: '&e你的技能节点 &6{skill-node} &e升级到了等级 &6{level}&e!'
 skill-node-max-level-hit: '&c你已经达到了这个技能节点的最大等级.'
-not-enough-skill-tree-points: '&c你需要一个技能树点数.'
+missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
+not-enough-skill-tree-points: '&c你需要 {point} 技能点点数.'
 reallocated-points: '&e你成功重置了你的技能树 {skill-tree}. &e你现在拥有 &6{points} &e技能树点数.'
 not-skill-tree-reallocation-point: '&c你没有1点技能树重分配点数.'
 no-skill-tree: '&c你的职业没有技能树.'
