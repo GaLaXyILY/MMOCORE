@@ -17,24 +17,24 @@ items:
     function: member
     empty:
       item: GRAY_STAINED_GLASS_PANE
-      name: '&aNo Player'
+      name: '&aKein Spieler'
     member:
       item: PLAYER_HEAD
-      name: '&a{name}'
+      name: '&Ein{name}'
       lore:
         - '&7Level {level} {class}'
-        - '&7Online Since: {since}'
+        - '&7Online seit {since}'
   leave:
     slots:
       - 50
     function: leave
     item: REDSTONE
-    name: '&cLeave Party'
+    name: '&cGruppe verlassen'
     lore: { }
   request:
     slots:
       - 48
     function: invite
     item: WRITABLE_BOOK
-    name: '&aInvite a player..'
+    name: '&aLade einen Spieler ein..'
     lore: { }
