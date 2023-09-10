@@ -56,26 +56,7 @@ items:
       - ''
       - '&eТребуется 1 очко перераспределения навыков.'
       - '&e◆ Очков перераспределения Навыков: &6{points}'
-  passive-skill-slot:
-    slots:
-      - 7
-      - 16
-      - 25
-      - 34
-      - 43
-      - 52
-    function: passive-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: BLUE_DYE
-    name: '&aСлот для Пассивного Навыка {slot}'
-    no-skill: '&cНет'
-    lore:
-      - '&7Текущий Пассивный Навык: &6{skill}'
-      - ''
-      - '&e► ЛКМ, чтобы привязать {selected}.'
-      - '&e► ПКМ, чтобы отвязать.'
-  skill-slot:
+  slot:
     slots:
       - 8
       - 17
@@ -83,20 +64,25 @@ items:
       - 35
       - 44
       - 53
-    function: active-slot
-    item: BOOK
-    #Material used when the slot is empty
-    empty-item: GRAY_DYE
-    name: '&aСлот Навыка {slot}'
-    no-skill: '&cНет'
+    function: slot
+    item: GRAY_DYE
+    name: '&aSkill Slot {slot}'
+    no-skill: '&cNone'
+    #If this is filled, the item shown in the GUI when a slot is filled will be the item specified here.
+    #Else it will be the display item of the bound skill.
+    #filled-item:
+    #filled-custom-model-data:
     lore:
-      - '&7Текущий Навык: &6{skill}'
+      - '&7Current Skill: &6{skill}'
       - ''
-      - '&7&oЧтобы использовать этот навык, нажмите [F]'
-      - '&7&oпо привязанной клавише, отображаемой на панели быстрого доступа.'
+      - '{slot-lore}'
       - ''
-      - '&e► ЛКМ, чтобы привязать {selected}.'
-      - '&e► ПКМ, чтобы отвязать.'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
+      - ''
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
@@ -129,3 +115,11 @@ items:
       - '&7Требуется 1 очко навыка.'
       - ''
       - '&7Текущее Количество Очков Навыка: &{skill_points}'
+#This will display the selected item in the skill UI.
+#selected:
+#slots: []
+#function: selected
+#name: '&a{skill} &6[{level}]'
+#lore:
+#- ''
+#- '{lore}'
