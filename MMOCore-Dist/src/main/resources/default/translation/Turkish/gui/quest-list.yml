@@ -1,5 +1,5 @@
 #GUI display name
-name: Quests
+name: Görevler
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 45
@@ -31,15 +31,15 @@ items:
     #When quest is locked
     locked:
       item: PAPER
-      name: '&c- Unavailable -'
+      name: '&c- Mevcut değil -'
     #When there is no quest to display
     no-quest:
       item: GRAY_STAINED_GLASS_PANE
       name: '&a'
     level-requirement:
       main:
-        hit: '&a  ✔ Requires Level {level}'
-        not-hit: '&c  ✖ Requires Level {level}'
+        hit: '&a ✔ {level} Seviye Gerektirir'
+        not-hit: '&c  ✖ {level} Seviye Gerektirir'
       profession:
         hit: '&a  ✔ Requires {profession} Level {level}'
         not-hit: '&c  ✖ Requires {profession} Level {level}'
@@ -50,7 +50,7 @@ items:
     lore:
       - '{lore}'
       - ''
-      - '{started}&8Quest Started!'
+      - '{started}&8Görev Başladı!'
       - '{started}&7► Progression: &e{progress}%'
       - '{started}&7► &o{objective}'
       - '{started}'
@@ -62,15 +62,15 @@ items:
       - '{completed_delay}&8You can start the quest in {delay}.'
       - '{completed_can_redo}&8You can start this quest.'
       - '{completed}'
-      - '{started}&c► Right click to cancel.'
-      - '{!started}&e► Left click to start.'
+      - '{started}&c► İptal etmek için sağ tıklayın.'
+      - '{!started}&e► Başlatmak için sol tıklayın.'
   next:
     slots:
       - 26
     function: next
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
-    name: '&aNext'
+    name: '&aSonraki'
     lore: { }
   previous:
     slots:
@@ -78,5 +78,5 @@ items:
     function: previous
     item: PLAYER_HEAD
     texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
-    name: '&aPrevious'
+    name: '&aÖnceki'
     lore: { }
