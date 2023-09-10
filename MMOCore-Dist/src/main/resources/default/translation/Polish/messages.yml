@@ -15,6 +15,8 @@ death-exp-loss:
   - '&4Zginąłeś i straciłeś {loss} EXP.'
   - ''
 #General
+not-enough-perms: '&cNie posiadasz wystarczających uprawnień.'
+#Experience boosters
 booster-main:
   - '&e'
   - '&eMnożnik &6{multiplier}x&e EXP został aktywowany!'
@@ -24,25 +26,49 @@ booster-skill:
   - '&eMnożnik &6{multiplier} &eEXP x&e klasy &6{profession} został aktywowany!'
   - '&e'
 booster-expired: '&cWygaśnięte!'
+#PvP Mode
+pvp-mode:
+  cooldown: '&cPlease wait {remaining} seconds to use this command again.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&cLevel difference is too high to fight this player.'
+    low-level-target: '&cYou cannot fight this player as their level is too low.'
+    low-level-self: '&cYour level is too low to fight other players.'
+    pvp-mode-disabled-target: '&cThis player has not toggled on PvP.'
+    pvp-mode-disabled-self: '&cYou have not toggled on PvP.'
+    invulnerable-self: '&cYou are still out of combat for {left} seconds.'
+    invulnerable-target: '&cThis player is out of combat for {left} seconds.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&aYou will now be able to fight other players in dedicated areas.'
+    on-invulnerable: '&aYou will be able to fight other players in {time} seconds.'
+    off-safe: '&cYou can no longer fight other players.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&cYou left a PVP zone but are still vulnerable for {remaining} seconds!'
+    pvp-denied: '&cYou left the PVP zone.'
+  enter:
+    pvp-mode-on: '&aYou entered a PVP zone and gained invulnerability for {time} seconds!'
+    pvp-mode-off: '&aYou entered a PVP zone. You may use /pvpmode to fight other players.'
 #Fishing Profession
 caught-fish: '&cZłowiłeś rybę, super!'
 fish-out-water: '&aGratulacje!'
-fish-out-water-crit: '&aCritical Fish!'
+fish-out-water-crit: '&aRybie szczęście!'
 #Player Input
 player-input:
   anvil:
-    friend-request: 'Friend name..'
-    party-invite: 'Player name..'
-    guild-invite: 'Player name..'
-    guild-creation-tag: 'Guild tag..'
-    guild-creation-name: 'Guild name..'
+    friend-request: 'Nazwa znajomego..'
+    party-invite: 'Nazwa Gracza..'
+    guild-invite: 'Nazwa Gracza..'
+    guild-creation-tag: 'Tag gildii..'
+    guild-creation-name: 'Nazwa Gildii..'
   chat:
-    friend-request: '&eWrite in the chat the player name.'
-    party-invite: '&eWrite in the chat the player you want to invite.'
-    guild-invite: '&eWrite in the chat the player you want to invite.'
-    guild-creation-tag: '&eWrite in the chat the TAG of the Guild you want to create.'
-    guild-creation-name: '&eWrite in the chat the name of the Guild you want to create.'
-    cancel: '&eWrite &c''cancel'' &eto cancel.'
+    friend-request: '&eNapisz na czacie nazwę gracza.'
+    party-invite: '&eNapisz na czacie gracza, który chcesz zaprosić.'
+    guild-invite: '&eNapisz na czacie gracza, który chcesz zaprosić.'
+    guild-creation-tag: '&eNapisz na czacie TAG Gildii, którą chcesz utworzyć.'
+    guild-creation-name: '&eNapisz na czacie nazwę Gildii, którą chcesz utworzyć.'
+    cancel: '&eNapisz &c''cancel'' &eaby anulować.'
 #Spell Casting
 casting:
   action-bar:
@@ -51,31 +77,31 @@ casting:
     no-mana: '&6[{index}] &9&l{skill}'
     no-stamina: '&6[{index}] &9&l{skill}'
   split: '&7 &7 - &7 '
-  no-longer: '%&cYou cancelled skill casting.'
-  no-mana: '&cYou do not have enough {mana}!'
-  no-stamina: '&cYou do not have enough stamina!'
-  on-cooldown: '&cThis skill is on cooldown.'
+  no-longer: '%&cAnulowano rzucanie umiejętności.'
+  no-mana: '&cNie masz wystarczająco {mana}, brakuje {mana-required}!'
+  no-stamina: '&cNie masz wystarczająco staiminy!'
+  on-cooldown: '&cThis skill is on a {cooldown}s cooldown.'
 #Combat Log
-now-in-combat: '%&cYou are now in combat!'
-leave-combat: '%&aYou left combat.'
+now-in-combat: '%&cJesteś teraz w walce!'
+leave-combat: '%&aOpuszczono walkę.'
 #Waypoints
-new-waypoint: '%&eYou unlocked the &6{waypoint} &ewaypoint!'
-new-waypoint-book: '%&eYou unlocked the &6{waypoint} &ewaypoint!'
-not-enough-stellium: '&cYou don''t have enough stellium: you need {more} more.'
-waypoint-cooldown: '&cPlease wait {cooldown} before using a waypoint again.'
-not-unlocked-waypoint: '&cYou have not unlocked that waypoint yet.'
-not-dynamic-waypoint: '&cYou many only teleport to a non-dynamic waypoint while standing on another waypoint.'
-standing-on-waypoint: '&cYou are already standing on this waypoint.'
-warping-canceled: '%&cWaypoint warping canceled.'
-warping-comencing: '%&cDO NOT MOVE!&e You will be warped in {left}sec.'
-cannot-teleport-to: '&cThe two waypoints are not linked.'
+new-waypoint: '%&eOdblokowano punkt nawigacyjny &6{waypoint}!'
+new-waypoint-book: '%&eOdblokowano punkt nawigacyjny &6{waypoint}!'
+not-enough-stellium: '&cNie masz wystarczająco stellium: potrzebujesz jeszcze {more} więcej.'
+waypoint-cooldown: '&cOdczekaj {cooldown} przed ponownym użyciem punktu nawigacyjnego.'
+not-unlocked-waypoint: 'Nie odblokowano jeszcze tego punktu nawigacyjnego.'
+not-dynamic-waypoint: '&cMożesz teleportować się tylko do niedynamicznego punktu nawigacyjnego podczas postoju na innym punkcie nawigacyjnym.'
+standing-on-waypoint: '&cJuż znajdujesz się w tym punkcie nawigacyjnym.'
+warping-canceled: '%&cPrzenoszenie do punktu nawigacyjnego zostało anulowane.'
+warping-comencing: '%&cNIE RUSZAJ SIĘ!&e Przeniesienie nastąpi w ciągu {left}sek.'
+cannot-teleport-to: '&cDwa punkty nawigacyjne nie są powiązane.'
 #Cash
-deposit: '&eYou successfully deposited &6{worth}g&e.'
-withdrawing: '&eType in the chat the amount of &6gold&e you want to &6withdraw&e.'
-withdraw-cancel: '&eWithdrawing canceled.'
-withdrew: '&eYou successfully withdrew &6{worth}g&e.'
-wrong-number: '&c{arg} is not a valid number.'
-not-enough-money: '&cYou don''t have enough money, you need {left} more gold.'
+deposit: '&ePomyślnie wpłacono &6{worth}g&e.'
+withdrawing: '&eWpisz na czacie ilość &6złota&e, którą chcesz wypłacić&e.'
+withdraw-cancel: '&eWypłacanie anulowane.'
+withdrew: '&ePomyślnie wypłacono &6{worth}g&e.'
+wrong-number: '&c{arg} nie jest prawidłową liczbą.'
+not-enough-money: '&cNie masz wystarczająco złota, potrzebujesz jeszcze {left} więcej.'
 stand-near-enderchest: '&cYou must be standing near a bank to do that.'
 #Blocks
 cannot-break: '%&cYou do not have the right tool in order to break that block.'
@@ -90,7 +116,7 @@ already-friends: '&cYou are already friends with {player}.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &ejust sent you a friend request!"}'
-  - '[{"text":"        ","hoverEvent":{}},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             ","hoverEvent":{}},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[Party] {player}: {message}'
@@ -136,10 +162,6 @@ quest-level-restriction: '&cYou need to be {level} {count}.'
 cant-redo-quest: '&cYou can''t start this quest twice.'
 quest-cooldown: '&cYou need to wait {delay}.'
 start-quest: '&eYou successfully started &6{quest}&e.'
-cant-choose-new-class:
-  - '&cYou need one class point to perform this action.'
-no-permission-for-class:
-  - "&cYou don't have the permission to choose this class."
 #Attributes
 no-attribute-points-spent: '&cYou have not spent any attribute points.'
 not-attribute-reallocation-point: '&cYou do not have 1 reallocation point.'
@@ -147,28 +169,34 @@ not-attribute-point: '&cYou have no attribute point.'
 not-attribute-point-shift: '&cYou must have &4{shift_points} &cattribute points.'
 attribute-points-reallocated: '&eYou successfully reset your attributes. You now have &6{points} &eattribute points.'
 attribute-max-points-hit: '&cYou cannot level up this attribute anymore.'
-attribute-level-up: '&eYou successfully leveled up your &6{attribute}&e.' #{level}
+attribute-level-up: '&eUdało Ci się podnieść poziom &6{attribute}&e.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&cYou need one class point to perform this action.'
+no-permission-for-class:
+  - "&cYou don't have the permission to choose this class."
 #Skills
-no-class-skill: '&cYour class has no skill.'
-not-enough-skill-points: '&cYou need one skill point.'
-not-enough-skill-points-shift: '&cYou need {shift_points} skill points.'
-upgrade-skill: '&eYour &6{skill} &eis now Level &6{level}&e!'
-not-unlocked-skill: '&cYou have not unlocked that skill yet.'
-no-skill-bound: '&cYou don''t have any skill bound to this slot.'
-not-active-skill: '&cThis is not an active skill.'
-not-passive-skill: '&cThis is not a passive skill.'
-skill-max-level-hit: '&cYou already hit the max level for that skill.'
-no-skill-placeholder: 'No Skill Bound'
-not-skill-reallocation-point: '&cYou do not have 1 skill reallocation point.'
-no-skill-points-spent: '&cYou have not spent any skill points.'
-skill-points-reallocated: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
-max-points-reached: '&cYou reached the maximum points you can spend. You need to reallocate your points to rollback.'
+no-class-skill: '&cTwoja klasa nie ma umiejętności.'
+not-enough-skill-points: '&cPotrzebujesz jednego punktu umiejętności.'
+not-enough-skill-points-shift: '&cPotrzebujesz {shift_points} punktów umiejętności.'
+upgrade-skill: '&eUmiejętność &6{skill} &ejest teraz na poziomie &6{level}&e!'
+skill-level-not-met: '&cYou cannot use this skill yet.'
+no-skill-bound: '&cNie masz przypisanych żadnych umiejętności do tego slotu.'
+not-compatible-skill: '&cThe selected skill is not compatible with this slot.'
+cant-manually-bind: "&cYou can't manually bind/unbind a skill to this slot."
+skill-max-level-hit: '&cOsiągnięto maksymalny poziom tej umiejętności.'
+no-skill-placeholder: 'Brak przypisanych umiejętności'
+not-skill-reallocation-point: '&cNie masz 1 punktu ponownego przydziału umiejętności.'
+no-skill-points-spent: '&cNie wydano żadnych punktów umiejętności.'
+skill-points-reallocated: '&ePomyślnie zresetowano punkty umiejętności. Posiadasz teraz &6{points} &epunktów umiejętności.'
+max-points-reached: '&cOsiągnięto maksymalną liczbę punktów, które można wydać. Musisz przydzielić punkty ponownie, aby to cofnąć.'
 #Skill Trees
-no-skill-tree-points-spent: '&cYou have not spent any skill tree points.'
-locked-node: '&cThis skill is locked!'
-upgrade-skill-node: '&eYour skill node &6{skill-node} &eis now Level &6{level}&e!'
-skill-node-max-level-hit: '&cYou already hit the max level for that skill node.'
-not-enough-skill-tree-points: '&cYou need one skill tree point.'
-reallocated-points: '&eYou successfully reset the skill tree {skill-tree}. &eYou now have &6{points} &eskill tree points.'
-not-skill-tree-reallocation-point: '&cYou do not have 1 skill tree reallocation point.'
-no-skill-tree: '&cYour class doesn''t have any skill tree.'
+no-skill-tree-points-spent: '&cNie wydano żadnych punktów drzewa umiejętności.'
+locked-node: '&cTa umiejętność jest zablokowana!'
+upgrade-skill-node: '&eWęzeł umiejętności &6{skill-node} &ejest teraz na poziomie &6{level}&e!'
+skill-node-max-level-hit: '&cOsiągnięto maksymalny poziom tego węzła umiejętności.'
+missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
+not-enough-skill-tree-points: '&cYou need {point} skill tree point.'
+reallocated-points: '&ePomyślnie zresetowano punkty drzewa umiejętności {skill-tree}. Posiadasz teraz &6{points} &epunktów drzewa umiejętności.'
+not-skill-tree-reallocation-point: '&cNie masz jednego punktu ponownego przydziału drzewa umiejętności.'
+no-skill-tree: '&cTwoja klasa nie ma drzewa umiejętności.'
