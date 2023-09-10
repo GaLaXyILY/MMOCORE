@@ -1,0 +1,202 @@
+#Level & Experience
+level-up:
+  - ''
+  - '恭喜, 你達到了&6{level}&e!'
+  - '&e使用 &6/p &e查看你新的統計數據！'
+  - ''
+profession-level-up:
+  - '&e你的職業 &6{profession}&e 的等級為 &6{level}&e!'
+exp-notification: '%&f{profession} &e{progress} &e{ratio}%'
+exp-hologram: '&e+{exp} 經驗!'
+class-select: '&e你現在是 &6{class}&e!'
+already-on-class: '&c你已經是 {class} 了.'
+death-exp-loss:
+  - ''
+  - '&4你因死亡而失去了 {loss} 經驗.'
+  - ''
+#General
+not-enough-perms: '&c你的權限不足.'
+#Experience boosters
+booster-main:
+  - '&e'
+  - '&e一個 &6{multiplier}x&e 經驗加成器已啟用!'
+  - '&e'
+booster-skill:
+  - '&e'
+  - '&e一個 &6{multiplier}x&e &6{profession} &e經驗加成器已啟用!'
+  - '&e'
+booster-expired: '&c已過期!'
+#PvP Mode
+pvp-mode:
+  cooldown: '&c你必須等待 {remaining} 秒 才能使用此命令.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&c等級落差太大，不能攻擊這位玩家'
+    low-level-target: '&c你不能和這個玩家戰鬥, 因為他們的等級太低了.'
+    low-level-self: '&c你的等級太低無法與其他玩家戰鬥.'
+    pvp-mode-disabled-target: '&c這個玩家沒有開啟 PvP.'
+    pvp-mode-disabled-self: '&c你沒有開啟 PvP'
+    invulnerable-self: '&c你仍然處於非戰鬥狀態 {left} 秒.'
+    invulnerable-target: '&c該玩家退出戰鬥 {left} 秒.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&a您現在可以在專用區域與其他玩家戰鬥.'
+    on-invulnerable: '&a您將能夠在 {time} 秒內與其他玩家戰鬥.'
+    off-safe: '&c你不能再與其他玩家戰鬥.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&c你離開了 PVP 區域, 但在 {remaining} 秒內仍然容易受到攻擊!'
+    pvp-denied: '&c你離開了 PVP 區域.'
+  enter:
+    pvp-mode-on: '&a您進入了一個 PVP 區域並獲得了 {time} 秒的無敵狀態!'
+    pvp-mode-off: '&a您進入了 PVP 區域. 您可以使用 /pvpmode 與其他玩家戰鬥.'
+#Fishing Profession
+caught-fish: '&c你抓到了一條魚!'
+fish-out-water: '做得好!'
+fish-out-water-crit: '&a爆擊魚!'
+#Player Input
+player-input:
+  anvil:
+    friend-request: '好友名稱..'
+    party-invite: '玩家名稱..'
+    guild-invite: '玩家名稱..'
+    guild-creation-tag: '公會標籤..'
+    guild-creation-name: '公會名稱..'
+  chat:
+    friend-request: '&e在聊天欄輸入玩家名稱.'
+    party-invite: '&e在聊天欄輸入你想邀請的玩家名稱.'
+    guild-invite: '&e在聊天欄輸入你想邀請的玩家名稱.'
+    guild-creation-tag: '&e在聊天欄輸入你想創建的公會標籤.'
+    guild-creation-name: '&e在聊天欄輸入你想創建的公會名稱.'
+    cancel: '&e輸入 &c''cancel'' &e來取消.'
+#Spell Casting
+casting:
+  action-bar:
+    ready: '&6[{index}] &a&l{skill}'
+    on-cooldown: '&6[{index}] &c&l{skill} &6(&c{cooldown}&6)'
+    no-mana: '&6[{index}] &9&l{skill}'
+    no-stamina: '&6[{index}] &9&l{skill}'
+  split: '&7 &7 - &7 '
+  no-longer: '%&c你取消了技能釋放.'
+  no-mana: '&c你的 {mana} 不足, 還需 {mana-required}!'
+  no-stamina: '&c你没有足夠的體力!'
+  on-cooldown: '&c該技能處於 {cooldown} 冷卻時間.'
+#Combat Log
+now-in-combat: '%&c你進入了戰鬥狀態!'
+leave-combat: '%&a你已不是戰鬥狀態.'
+#Waypoints
+new-waypoint: '%&e你解鎖了 &6{waypoint} &e導航點!'
+new-waypoint-book: '%&e你解鎖了 &6{waypoint} &e導航點!'
+not-enough-stellium: '&c你沒有足夠的星光: 你還需要 {more}.'
+waypoint-cooldown: '&c請等待 {cooldown} 以再次使用導航點.'
+not-unlocked-waypoint: '&c你還沒有解鎖這個導航點.'
+not-dynamic-waypoint: '&c你只能站在另一個導航點附近以傳送到一個非動態導航點.'
+standing-on-waypoint: '&c你已經站在導航點附近了.'
+warping-canceled: '%&c導航點傳送已取消.'
+warping-comencing: '%&c不要移動!&e 你將在 {left} 秒後傳送.'
+cannot-teleport-to: '&c兩個導航點未連接.'
+#Cash
+deposit: '&e你成功存入了 &6{worth} 金子&e.'
+withdrawing: '&e在聊天欄輸入你想要&6存入&e的 &6金子&e 的數量.'
+withdraw-cancel: '&e取消存款.'
+withdrew: '&e你成功存入了 &6{worth} 金子&e.'
+wrong-number: '&c{arg} 不是有效的數字.'
+not-enough-money: '&c你的餘額不足, 你還需要 {left}.'
+stand-near-enderchest: '&c你必須站在銀行附近以這樣做.'
+#Blocks
+cannot-break: '%&c你沒有使用正確的工具來破壞這個方塊.'
+#Friends
+no-longer-friends: '&c你和 {unfriend} 不再是好友了.'
+not-online-player: '&c{player} 不在線上.'
+sent-friend-request: '&e你向 &6{player}&e 發送了好友請求.'
+now-friends: '&e你現在和 &6{player}&e 是好友了.'
+friend-request-cooldown: '&c請等待 {cooldown}.'
+cant-request-to-yourself: '&c你不能向自己發送請求.'
+already-friends: '&c你與 {player} 已經是好友了.'
+friend-request:
+  - '{"text":""}'
+  - '{"text":"&6{player} &e向你發送了好友請求!"}'
+  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '{"text":""}'
+#Parties
+party-chat: '&5[隊伍] {player}: {message}'
+sent-party-invite: '&e你向 &6{player}&e 發送了入隊請求.'
+already-in-party: '&c{player} 已經在你的隊伍裡了.'
+party-invite:
+  - '{"text":""}'
+  - '{"text":"&6{player} &e邀請你加入他们的隊伍!"}'
+  - '[{"text":"        "},{"text":"&8[&a&l同意&8]","clickEvent":{"action":"run_command","value":"/party accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&e點擊同意!"}},{"text":"&r             "},{"text":"&8[&c&l拒絕&8]","clickEvent":{"action":"run_command","value":"/party deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e點擊拒絕."}}]'
+  - '{"text":""}'
+party-is-full: '&c抱歉, 你的隊伍已滿員.'
+party-joined: '&e你成功加入了 &6{owner}&e 的隊伍.'
+party-joined-other: '&6{player}&e 加入了你的隊伍!'
+transfer-party-ownership: '&e你轉讓了隊伍所有權.'
+kick-from-party: '&e你成功將 &6{player}&e 踢出了隊伍.'
+party-invite-cooldown: '&c請等待 {cooldown} 後再邀請 {player}.'
+high-level-difference: '&c你不能邀糗 {player}, 因為等級差别太大了 ({diff}).'
+#Guilds
+guild-chat: '&a[{tag}] {player}: {message}'
+sent-guild-invite: '&e你向 &6{player}&e 發送了入會邀请.'
+already-in-guild: '&c{player} 已經是你的公會成員了.'
+guild-invite:
+  - '{"text":""}'
+  - '{"text":"&6{player} &e邀請你加入他们的公會!"}'
+  - '[{"text":"        "},{"text":"&8[&a&l同意&8]","clickEvent":{"action":"run_command","value":"/guild accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&e點擊同意!"}},{"text":"&r             "},{"text":"&8[&c&l拒絕&8]","clickEvent":{"action":"run_command","value":"/guild deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e點擊拒絕."}}]'
+  - '{"text":""}'
+#guild-is-full: '&cSorry, your guild is full.' -Unused right now
+guild-joined: '&e你成功加入了 &6{owner}&e 的公會.'
+guild-joined-other: '&6{player}&e 加入了你的公會!'
+transfer-guild-ownership: '&e你轉讓了公會所有權.'
+kick-from-guild: '&e你成功將 &6{player}&e 踢出了公會.'
+guild-invite-cooldown: '&c請等待 {cooldown} 後再邀請 {player}.'
+guild-creation:
+  failed: "&c無法創建公會: {reason}"
+  reasons:
+    invalid-characters: "&e無效字符!"
+    invalid-length: "&e長度必須在 {min} 到 {max} 之間!"
+    already-exists: "&e該公會已存在!"
+#Quests
+already-on-quest: '&c你已經有正在進行的任務了.'
+cancel-quest: '&e你成功取消了正在進行的任務.'
+quest-level-restriction: '&c你需要成為 {level} {count}.'
+cant-redo-quest: '&c你不能開始這個任務兩次.'
+quest-cooldown: '&c你需要等待 {delay}.'
+start-quest: '&e你成功開始了 &6{quest}&e.'
+#Attributes
+no-attribute-points-spent: '&c你還沒有使用過屬性點數.'
+not-attribute-reallocation-point: '&c你沒有 1 點重新分配點數.'
+not-attribute-point: '&c你沒有属性點數.'
+not-attribute-point-shift: '&c你必須有 &4{shift_points} &c屬性點數.'
+attribute-points-reallocated: '&e你成功重置了你的屬性. 你現在擁有 &6{points} &e屬性點樹.'
+attribute-max-points-hit: '&c你不能繼續升級這個屬性了.'
+attribute-level-up: '&e你成功升級了你的 &6{attribute}&e.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&c你需要1格職業點數來繼續.'
+no-permission-for-class:
+  - "&c你沒有權限來選擇此職業."
+#Skills
+no-class-skill: '&c你的職業沒有技能.'
+not-enough-skill-points: '&c你需要一個技能點數.'
+not-enough-skill-points-shift: '&c你需要 {shift_points} 技能點數.'
+upgrade-skill: '&e你的 &6{skill} &e升級到了等級 &6{level}&e!'
+skill-level-not-met: '&c你還不能使用這個技能.'
+no-skill-bound: '&c你沒有綁定到這個槽位的技能.'
+not-compatible-skill: '&c所選技能與此插槽不兼容.'
+cant-manually-bind: "&c你不能手動綁定 / 解綁技能到這個插槽."
+skill-max-level-hit: '&c你已經達到這個技能的最大等級.'
+no-skill-placeholder: '沒有綁定技能'
+not-skill-reallocation-point: '&c你沒有 1 點技能重新分配點數.'
+no-skill-points-spent: '&c你還沒有使用過技能點數.'
+skill-points-reallocated: '&e你成功重置了你的技能. 你現在擁有 &6{points} &e技能點數.'
+max-points-reached: '&c你達到了可以使用點數的最大數量. 你需要重新分配你的點數.'
+#Skill Trees
+no-skill-tree-points-spent: '&c你還沒有使用任何技能樹點數.'
+locked-node: '&c技能已被鎖定!'
+upgrade-skill-node: '&e你的技能節點&6{skill-node} &e升級到了等級 &6{level}&e!'
+skill-node-max-level-hit: '&c你已經達到了這個技能節點的最大等級.'
+missing-skill-node-permission: '&c你沒有權限選擇此職業'
+not-enough-skill-tree-points: '&c你需要 {point} 技能樹點.'
+reallocated-points: '&e你成功重置了你的技能樹 {skill-tree}. &e你現在擁有 &6{points} &e技能樹點數.'
+not-skill-tree-reallocation-point: '&c你沒有 1 點技能樹重分配點數.'
+no-skill-tree: '&c你的職業沒有技能樹.'
