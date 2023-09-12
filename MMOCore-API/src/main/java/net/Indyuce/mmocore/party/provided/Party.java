@@ -1,7 +1,6 @@
 package net.Indyuce.mmocore.party.provided;
 
 import net.Indyuce.mmocore.MMOCore;
-import net.Indyuce.mmocore.gui.api.PluginInventory;
 import net.Indyuce.mmocore.gui.social.party.EditablePartyView;
 import net.Indyuce.mmocore.manager.InventoryManager;
 import net.Indyuce.mmocore.api.ConfigMessage;

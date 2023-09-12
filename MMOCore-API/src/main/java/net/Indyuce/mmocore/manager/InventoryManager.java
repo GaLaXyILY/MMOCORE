@@ -1,10 +1,10 @@
 package net.Indyuce.mmocore.manager;
 
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigFile;
 import net.Indyuce.mmocore.gui.*;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
 import net.Indyuce.mmocore.gui.skilltree.SkillTreeViewer;
 import net.Indyuce.mmocore.gui.social.friend.EditableFriendList;
 import net.Indyuce.mmocore.gui.social.friend.EditableFriendRemoval;
@@ -12,7 +12,6 @@ import net.Indyuce.mmocore.gui.social.guild.EditableGuildCreation;
 import net.Indyuce.mmocore.gui.social.guild.EditableGuildView;
 import net.Indyuce.mmocore.gui.social.party.EditablePartyCreation;
 import net.Indyuce.mmocore.gui.social.party.EditablePartyView;
-import org.bukkit.Bukkit;
 
 import java.util.*;
 import java.util.function.BiFunction;

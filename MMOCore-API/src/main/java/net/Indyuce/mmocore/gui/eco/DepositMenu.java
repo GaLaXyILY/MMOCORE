@@ -2,16 +2,16 @@ package net.Indyuce.mmocore.gui.eco;
 
 import io.lumine.mythic.lib.api.item.NBTItem;
 import io.lumine.mythic.lib.api.util.SmartGive;
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
 import net.Indyuce.mmocore.MMOCore;
+import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
 import net.Indyuce.mmocore.util.item.SimpleItemBuilder;
-import net.Indyuce.mmocore.gui.api.PluginInventory;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +30,7 @@ public class DepositMenu extends PluginInventory {
     private BukkitRunnable updateRunnable;
 
     public DepositMenu(Player player) {
-        super(player);
+        super(PlayerData.get(player));
     }
 
     @Override
@@ -41,9 +41,9 @@ public class DepositMenu extends PluginInventory {
     }
 
     @Override
-    public void whenClicked(InventoryClickContext event) {
+    public void whenClicked(InventoryClickEvent event) {
 
-        if (event.getClickedItem().isSimilar(depositItem)) {
+        if (event.getCurrentItem().isSimilar(depositItem)) {
             event.setCancelled(true);
 
             updateDeposit(event.getInventory());
@@ -61,7 +61,7 @@ public class DepositMenu extends PluginInventory {
             return;
         }
 
-        int worth = NBTItem.get(event.getClickedItem()).getInteger("RpgWorth");
+        int worth = NBTItem.get(event.getCurrentItem()).getInteger("RpgWorth");
         if (worth < 1)
             event.setCancelled(true);
         else

@@ -10,7 +10,6 @@ import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.SoundObject;
 import net.Indyuce.mmocore.api.event.PlayerKeyPressEvent;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
 import net.Indyuce.mmocore.skill.cast.*;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.ConfigurationSection;

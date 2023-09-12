@@ -3,17 +3,16 @@ package net.Indyuce.mmocore.gui;
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.api.item.ItemTag;
 import io.lumine.mythic.lib.api.item.NBTItem;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.SoundEvent;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.skill.binding.SkillSlot;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skill.RegisteredSkill;
 import org.apache.commons.lang.Validate;
@@ -22,6 +21,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -34,13 +34,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public class SkillList extends EditableInventory {
+public class SkillList extends EditableInventory<PlayerData> {
     public SkillList() {
         super("skill-list");
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
 
         if (function.equals("skill"))
             return new SkillItem(config);
@@ -53,10 +53,10 @@ public class SkillList extends EditableInventory {
 
         if (function.equals("reallocation")) {
 
-            return new InventoryItem(config) {
+            return new InventoryItem<SkillViewerInventory>(config) {
 
                 @Override
-                public Placeholders getPlaceholders(GeneratedInventory inv, int n) {
+                public Placeholders getPlaceholders(SkillViewerInventory inv, int n) {
                     Placeholders holders = new Placeholders();
                     holders.register("skill_points", inv.getPlayerData().getSkillPoints());
                     holders.register("points", inv.getPlayerData().getSkillReallocationPoints());
@@ -70,19 +70,19 @@ public class SkillList extends EditableInventory {
             return new SlotItem(config);
 
         if (function.equals("previous"))
-            return new SimplePlaceholderItem<SkillViewerInventory>(config) {
+            return new SimpleItem<SkillViewerInventory>(config) {
 
                 @Override
-                public boolean canDisplay(SkillViewerInventory inv) {
+                public boolean isDisplayed(SkillViewerInventory inv) {
                     return inv.page > 0;
                 }
             };
 
         if (function.equals("next")) {
-            return new SimplePlaceholderItem<SkillViewerInventory>(config) {
+            return new SimpleItem<SkillViewerInventory>(config) {
 
                 @Override
-                public boolean canDisplay(SkillViewerInventory inv) {
+                public boolean isDisplayed(SkillViewerInventory inv) {
                     final int perPage = inv.skillSlots.size();
                     return inv.page < (inv.skills.size() - 1) / perPage;
                 }
@@ -91,21 +91,22 @@ public class SkillList extends EditableInventory {
         if (function.equals("selected"))
             return new SelectedItem(config);
 
-        return new SimplePlaceholderItem(config);
+        return new SimpleItem(config);
     }
 
-    public GeneratedInventory newInventory(PlayerData data) {
-        return new SkillViewerInventory(data, this);
+    @Override
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory previousInventory) {
+        return new SkillViewerInventory(playerData, this);
     }
 
     public class SelectedItem extends InventoryItem<SkillViewerInventory> {
         public SelectedItem(ConfigurationSection config) {
             //We must use this constructor to show that there are not specified material
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
         }
 
         @Override
-        public ItemStack display(SkillViewerInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillViewerInventory inv, int n) {
             if (inv.selected == null)
                 return new ItemStack(Material.AIR);
             Placeholders holders = getPlaceholders(inv, n);
@@ -159,7 +160,7 @@ public class SkillList extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(SkillViewerInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillViewerInventory inv, int n) {
 
             ClassSkill skill = inv.selected;
             int skillLevel = inv.getPlayerData().getSkillLevel(skill.getSkill()) + n - offset;
@@ -211,7 +212,7 @@ public class SkillList extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(SkillViewerInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillViewerInventory inv, int n) {
             final @NotNull SkillSlot skillSlot = inv.getPlayerData().getProfess().getSkillSlot(n + 1);
             if (!inv.getPlayerData().hasUnlocked(skillSlot))
                 return new ItemStack(Material.AIR);
@@ -219,7 +220,7 @@ public class SkillList extends EditableInventory {
             final @Nullable ClassSkill boundSkill = inv.getPlayerData().getBoundSkill(n + 1);
             ItemStack item;
             if (boundSkill == null)
-                item = super.display(inv, n);
+                item = super.getDisplayedItem(inv, n);
             else if (filledItem == null)
                 item = boundSkill.getSkill().getIcon();
             else {
@@ -280,7 +281,7 @@ public class SkillList extends EditableInventory {
 
     public class SkillItem extends InventoryItem<SkillViewerInventory> {
         public SkillItem(ConfigurationSection config) {
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
         }
 
         @Override
@@ -289,7 +290,7 @@ public class SkillList extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(SkillViewerInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillViewerInventory inv, int n) {
 
             // Calculate placeholders
             int index = n + inv.skillSlots.size() * inv.page;
@@ -366,7 +367,7 @@ public class SkillList extends EditableInventory {
         }
     }
 
-    public class SkillViewerInventory extends GeneratedInventory {
+    public class SkillViewerInventory extends GeneratedInventory<PlayerData> {
 
         // Cached information
         private final List<ClassSkill> skills;
@@ -392,9 +393,10 @@ public class SkillList extends EditableInventory {
         }
 
         @Override
-        public String calculateName() {
-            return getName().replace("{skill}", selected.getSkill().getName());
+        public String applyNamePlaceholders(String s) {
+            return s.replace("{skill}", selected.getSkill().getName());
         }
+
 
         @Override
         public void open() {
@@ -402,10 +404,10 @@ public class SkillList extends EditableInventory {
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
 
             if (item.getFunction().equals("skill")) {
-                int index = skillSlots.size() * page + skillSlots.indexOf(context.getSlot());
+                int index = skillSlots.size() * page + skillSlots.indexOf(event.getSlot());
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 2);
                 selected = skills.get(index);
                 open();
@@ -453,17 +455,17 @@ public class SkillList extends EditableInventory {
 
             // Binding or unbinding skills.
             if (item.getFunction().equals("slot")) {
-                int index = slotSlots.indexOf(context.getSlot()) + 1;
+                int index = slotSlots.indexOf(event.getSlot()) + 1;
                 SkillSlot skillSlot = playerData.getProfess().getSkillSlot(index);
                 //Select if the player is doing Shift Left Click
-                if (context.getClickType() == ClickType.SHIFT_LEFT) {
+                if (event.getClick() == ClickType.SHIFT_LEFT) {
                     if (playerData.hasSkillBound(index))
                         selected = playerData.getBoundSkill(index);
                     return;
                 }
 
                 // unbind if there is a current spell.
-                if (context.getClickType() == ClickType.RIGHT) {
+                if (event.getClick() == ClickType.RIGHT) {
                     if (!playerData.hasSkillBound(index)) {
                         MMOCore.plugin.configManager.getSimpleMessage("no-skill-bound").send(player);
                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 2);
@@ -526,7 +528,7 @@ public class SkillList extends EditableInventory {
                     return;
                 }
 
-                if (context.getClickType().isShiftClick()) {
+                if (event.getClick().isShiftClick()) {
                     if (playerData.getSkillPoints() < shiftCost) {
                         MMOCore.plugin.configManager.getSimpleMessage("not-enough-skill-points-shift", "shift_points", "" + shiftCost).send(player);
                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 2);

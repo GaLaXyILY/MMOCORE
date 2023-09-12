@@ -49,7 +49,7 @@ public abstract class SkillCastingInstance extends BukkitRunnable implements Lis
             for (int k = 0; k < 2; k++) {
                 double a = (double) j++ / 5;
                 caster.getProfess().getCastParticle()
-                        .display(caster.getPlayer().getLocation().add(Math.cos(a), 1 + Math.sin(a / 3) / 1.3, Math.sin(a)));
+                        .getDisplayedItem(caster.getPlayer().getLocation().add(Math.cos(a), 1 + Math.sin(a / 3) / 1.3, Math.sin(a)));
             }
 
         // Apply casting mode-specific effects

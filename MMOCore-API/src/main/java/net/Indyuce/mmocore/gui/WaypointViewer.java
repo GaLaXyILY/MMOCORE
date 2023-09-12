@@ -1,20 +1,20 @@
 package net.Indyuce.mmocore.gui;
 
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerActivity;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.waypoint.Waypoint;
 import net.Indyuce.mmocore.waypoint.WaypointPath;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -26,36 +26,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WaypointViewer extends EditableInventory {
+public class WaypointViewer extends EditableInventory<PlayerData> {
     public WaypointViewer() {
         super("waypoints");
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
 
         if (function.equals("waypoint"))
             return new WaypointItem(config);
 
         if (function.equals("previous"))
-            return new SimplePlaceholderItem<WaypointViewerInventory>(config) {
+            return new SimpleItem<WaypointViewerInventory>(config) {
 
                 @Override
-                public boolean canDisplay(WaypointViewerInventory inv) {
+                public boolean isDisplayed(WaypointViewerInventory inv) {
                     return inv.page > 0;
                 }
             };
 
         if (function.equals("next"))
-            return new SimplePlaceholderItem<WaypointViewerInventory>(config) {
+            return new SimpleItem<WaypointViewerInventory>(config) {
 
                 @Override
-                public boolean canDisplay(WaypointViewerInventory inv) {
+                public boolean isDisplayed(WaypointViewerInventory inv) {
                     return inv.getEditable().getByFunction("waypoint").getSlots().size() * (inv.page + 1) < inv.waypoints.size();
                 }
             };
 
-        return new SimplePlaceholderItem(config);
+        return new SimpleItem(config);
     }
 
     public GeneratedInventory newInventory(PlayerData data) {
@@ -66,8 +66,8 @@ public class WaypointViewer extends EditableInventory {
         return new WaypointViewerInventory(data, this, waypoint);
     }
 
-    public class WaypointItem extends SimplePlaceholderItem<WaypointViewerInventory> {
-        private final SimplePlaceholderItem noWaypoint, locked;
+    public class WaypointItem extends SimpleItem<WaypointViewerInventory> {
+        private final SimpleItem noWaypoint, locked;
         private final WaypointItemHandler availWaypoint, noStellium, notLinked, notDynamic, currentWayPoint;
 
         public WaypointItem(ConfigurationSection config) {
@@ -81,8 +81,8 @@ public class WaypointViewer extends EditableInventory {
             Validate.notNull(config.getConfigurationSection("not-enough-stellium"), "Could not load 'not-enough-stellium' config");
             Validate.notNull(config.getConfigurationSection("display"), "Could not load 'display' config");
 
-            noWaypoint = new SimplePlaceholderItem(config.getConfigurationSection("no-waypoint"));
-            locked = new SimplePlaceholderItem(config.getConfigurationSection("locked"));
+            noWaypoint = new SimpleItem(config.getConfigurationSection("no-waypoint"));
+            locked = new SimpleItem(config.getConfigurationSection("locked"));
             notLinked = new WaypointItemHandler(config.getConfigurationSection("not-a-destination"), true);
             notDynamic = new WaypointItemHandler(config.getConfigurationSection("not-dynamic"), true);
             currentWayPoint = new WaypointItemHandler(config.getConfigurationSection("current-waypoint"), true);
@@ -96,33 +96,33 @@ public class WaypointViewer extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(WaypointViewerInventory inv, int n) {
+        public ItemStack getDisplayedItem(WaypointViewerInventory inv, int n) {
 
             int index = inv.page * inv.getEditable().getByFunction("waypoint").getSlots().size() + n;
             if (index >= inv.waypoints.size())
-                return noWaypoint.display(inv, n);
+                return noWaypoint.getDisplayedItem(inv, n);
 
             // Locked waypoint?
             Waypoint waypoint = inv.waypoints.get(index);
             if (inv.current != null && inv.current.equals(waypoint))
-                return currentWayPoint.display(inv, n);
+                return currentWayPoint.getDisplayedItem(inv, n);
 
             if (!inv.getPlayerData().hasWaypoint(waypoint))
-                return locked.display(inv, n);
+                return locked.getDisplayedItem(inv, n);
 
             // Waypoints are not linked
             if (inv.current != null && !inv.paths.containsKey(waypoint))
-                return notLinked.display(inv, n);
+                return notLinked.getDisplayedItem(inv, n);
 
             // Not dynamic waypoint
             if (inv.current == null && !inv.paths.containsKey(waypoint))
-                return notDynamic.display(inv, n);
+                return notDynamic.getDisplayedItem(inv, n);
 
             //Normal cost
             if (inv.paths.get(waypoint).getCost() > inv.getPlayerData().getStellium())
-                return noStellium.display(inv, n);
+                return noStellium.getDisplayedItem(inv, n);
 
-            return availWaypoint.display(inv, n);
+            return availWaypoint.getDisplayedItem(inv, n);
         }
     }
 
@@ -135,8 +135,8 @@ public class WaypointViewer extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(WaypointViewerInventory inv, int n) {
-            ItemStack disp = super.display(inv, n);
+        public ItemStack getDisplayedItem(WaypointViewerInventory inv, int n) {
+            ItemStack disp = super.getDisplayedItem(inv, n);
 
             // If a player can teleport to another waypoint given his location
             Waypoint waypoint = inv.waypoints.get(inv.page * inv.getEditable().getByFunction("waypoint").getSlots().size() + n);
@@ -173,7 +173,7 @@ public class WaypointViewer extends EditableInventory {
         }
     }
 
-    public class WaypointViewerInventory extends GeneratedInventory {
+    public class WaypointViewerInventory extends GeneratedInventory<PlayerData> {
         private final List<Waypoint> waypoints = new ArrayList<>(MMOCore.plugin.waypointManager.getAll());
         @Nullable
         private final Waypoint current;
@@ -220,7 +220,7 @@ public class WaypointViewer extends EditableInventory {
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.getFunction().equals("next")) {
                 page++;
                 open();
@@ -234,7 +234,7 @@ public class WaypointViewer extends EditableInventory {
             }
 
             if (item.getFunction().equals("waypoint")) {
-                PersistentDataContainer container = context.getClickedItem().getItemMeta().getPersistentDataContainer();
+                PersistentDataContainer container = event.getCurrentItem().getItemMeta().getPersistentDataContainer();
                 String tag = container.has(new NamespacedKey(MMOCore.plugin, "waypointId"), PersistentDataType.STRING) ?
                         container.get(new NamespacedKey(MMOCore.plugin, "waypointId"), PersistentDataType.STRING) : "";
 

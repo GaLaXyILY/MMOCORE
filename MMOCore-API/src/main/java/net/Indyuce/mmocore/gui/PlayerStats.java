@@ -3,27 +3,26 @@ package net.Indyuce.mmocore.gui;
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.stat.modifier.StatModifier;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import io.lumine.mythic.lib.manager.StatManager;
 import io.lumine.mythic.lib.version.VersionMaterial;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
+import net.Indyuce.mmocore.api.player.attribute.PlayerAttribute;
 import net.Indyuce.mmocore.api.util.math.format.DelayFormat;
 import net.Indyuce.mmocore.experience.Booster;
 import net.Indyuce.mmocore.experience.Profession;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.party.AbstractParty;
 import net.Indyuce.mmocore.player.stats.StatInfo;
-import net.Indyuce.mmocore.api.player.attribute.PlayerAttribute;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -34,14 +33,15 @@ public class PlayerStats extends EditableInventory {
         super("player-stats");
     }
 
+
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
+    public InventoryItem loadItemItem(String function, ConfigurationSection config) {
 
         if (function.equals("boost"))
             return new BoostItem(config);
 
         if (function.equals("boost-next"))
-            return new SimplePlaceholderItem<PlayerStatsInventory>(config) {
+            return new SimpleItem<PlayerStatsInventory>(config) {
 
                 @Override
                 public boolean hasDifferentDisplay() {
@@ -49,17 +49,17 @@ public class PlayerStats extends EditableInventory {
                 }
 
                 @Override
-                public boolean canDisplay(PlayerStatsInventory inv) {
+                public boolean isDisplayed(PlayerStatsInventory inv) {
                     InventoryItem boost = inv.getByFunction("boost");
                     return boost != null && inv.boostOffset + boost.getSlots().size() < MMOCore.plugin.boosterManager.getActive().size();
                 }
             };
 
         if (function.equals("boost-previous"))
-            return new SimplePlaceholderItem<PlayerStatsInventory>(config) {
+            return new SimpleItem<PlayerStatsInventory>(config) {
 
                 @Override
-                public boolean canDisplay(PlayerStatsInventory inv) {
+                public boolean isDisplayed(PlayerStatsInventory inv) {
                     return inv.boostOffset > 0;
                 }
             };
@@ -158,7 +158,7 @@ public class PlayerStats extends EditableInventory {
                 }
             };
 
-        return new SimplePlaceholderItem(config);
+        return new SimpleItem(config);
     }
 
     public PlayerStatsInventory newInventory(PlayerData invTarget, PlayerData opening) {
@@ -169,7 +169,7 @@ public class PlayerStats extends EditableInventory {
         return new PlayerStatsInventory(player, player, this);
     }
 
-    public class PlayerStatsInventory extends GeneratedInventory {
+    public class PlayerStatsInventory extends GeneratedInventory<PlayerData> {
         private final PlayerData target;
 
         private int boostOffset;
@@ -191,7 +191,7 @@ public class PlayerStats extends EditableInventory {
         }
 
         @Override
-        public void whenClicked(InventoryClickContext event, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.hasFunction())
                 if (item.getFunction().equals("boost-next")) {
                     boostOffset++;
@@ -227,7 +227,7 @@ public class PlayerStats extends EditableInventory {
         }
 
         @Override
-        public boolean canDisplay(PlayerStatsInventory inv) {
+        public boolean isDisplayed(PlayerStatsInventory inv) {
             AbstractParty party = inv.target.getParty();
             return party != null && party.getOnlineMembers().size() > 1;
         }
@@ -239,8 +239,8 @@ public class PlayerStats extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(PlayerStatsInventory inv, int n) {
-            ItemStack disp = super.display(inv, n);
+        public ItemStack getDisplayedItem(PlayerStatsInventory inv, int n) {
+            ItemStack disp = super.getDisplayedItem(inv, n);
             if (disp.getType() == VersionMaterial.PLAYER_HEAD.toMaterial()) {
                 SkullMeta meta = (SkullMeta) disp.getItemMeta();
                 inv.dynamicallyUpdateItem(this, n, disp, current -> {
@@ -280,7 +280,7 @@ public class PlayerStats extends EditableInventory {
         }
     }
 
-    public class BoostItem extends SimplePlaceholderItem<PlayerStatsInventory> {
+    public class BoostItem extends SimpleItem<PlayerStatsInventory> {
         private final InventoryItem noBoost, mainLevel, profession;
 
         public BoostItem(ConfigurationSection config) {
@@ -288,7 +288,7 @@ public class PlayerStats extends EditableInventory {
 
             ConfigurationSection noBoost = config.getConfigurationSection("no-boost");
             Validate.notNull(noBoost, "Could not load 'no-boost' config");
-            this.noBoost = new SimplePlaceholderItem(noBoost);
+            this.noBoost = new SimpleItem(noBoost);
 
             ConfigurationSection mainLevel = config.getConfigurationSection("main-level");
             Validate.notNull(mainLevel, "Could not load 'main-level' config");
@@ -346,13 +346,13 @@ public class PlayerStats extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(PlayerStatsInventory inv, int n) {
+        public ItemStack getDisplayedItem(PlayerStatsInventory inv, int n) {
             int offset = inv.boostOffset;
             if (n + offset >= MMOCore.plugin.boosterManager.getActive().size())
-                return noBoost.display(inv, n);
+                return noBoost.getDisplayedItem(inv, n);
 
             Booster boost = MMOCore.plugin.boosterManager.get(inv.boostOffset + n);
-            return amount(boost.hasProfession() ? profession.display(inv, n) : mainLevel.display(inv, n), n + offset + 1);
+            return amount(boost.hasProfession() ? profession.getDisplayedItem(inv, n) : mainLevel.getDisplayedItem(inv, n), n + offset + 1);
         }
     }
 }

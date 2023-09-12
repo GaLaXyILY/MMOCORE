@@ -2,6 +2,10 @@ package net.Indyuce.mmocore.gui;
 
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.SoundEvent;
@@ -9,17 +13,13 @@ import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.player.profess.ClassOption;
 import net.Indyuce.mmocore.api.player.profess.PlayerClass;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.manager.InventoryManager;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -28,19 +28,17 @@ import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class ClassSelect extends EditableInventory {
+public class ClassSelect extends EditableInventory<PlayerData> {
     public ClassSelect() {
         super("class-select");
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
-        return function.startsWith("class") ? new ClassItem(config) : new SimplePlaceholderItem(config);
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
+        return function.startsWith("class") ? new ClassItem(config) : new SimpleItem(config);
     }
 
     public GeneratedInventory newInventory(PlayerData data) {
@@ -51,7 +49,7 @@ public class ClassSelect extends EditableInventory {
         return new ProfessSelectionInventory(data, this, profileRunnable);
     }
 
-    public class ClassItem extends SimplePlaceholderItem<ProfessSelectionInventory> {
+    public class ClassItem extends SimpleItem<ProfessSelectionInventory> {
         private final String name;
         private final List<String> lore;
         private final PlayerClass playerClass;
@@ -71,8 +69,8 @@ public class ClassSelect extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(ProfessSelectionInventory inv, int n) {
-            ItemStack item = n == 0 ? playerClass.getIcon() : super.display(inv, n);
+        public ItemStack getDisplayedItem(ProfessSelectionInventory inv, int n) {
+            ItemStack item = n == 0 ? playerClass.getIcon() : super.getDisplayedItem(inv, n);
             ItemMeta meta = item.getItemMeta();
             if (hideFlags())
                 meta.addItemFlags(ItemFlag.values());
@@ -100,7 +98,7 @@ public class ClassSelect extends EditableInventory {
         }
     }
 
-    public class ProfessSelectionInventory extends GeneratedInventory {
+    public class ProfessSelectionInventory extends GeneratedInventory<PlayerData> {
 
         @Nullable
         private final Runnable profileRunnable;
@@ -108,18 +106,18 @@ public class ClassSelect extends EditableInventory {
         private boolean canClose;
 
         public ProfessSelectionInventory(PlayerData playerData, EditableInventory editable, @Nullable Runnable profileRunnable) {
-            super(playerData, editable);
+            super(playerData, editable, null);
 
             this.profileRunnable = profileRunnable;
         }
 
         @Override
-        public String calculateName() {
-            return getName();
+        public String applyNamePlaceholders(String s) {
+            return s;
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item instanceof ClassItem) {
                 PlayerClass profess = ((ClassItem) item).playerClass;
 
@@ -152,6 +150,8 @@ public class ClassSelect extends EditableInventory {
             canClose = false;
             super.open();
         }
+
+
 
         @Override
         public void whenClosed(InventoryCloseEvent event) {

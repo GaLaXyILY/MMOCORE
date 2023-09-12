@@ -2,6 +2,11 @@ package net.Indyuce.mmocore.gui.skilltree;
 
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 
 import java.util.logging.Level;
@@ -9,12 +14,6 @@ import java.util.logging.Level;
 import net.Indyuce.mmocore.api.SoundEvent;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.gui.skilltree.display.*;
 import net.Indyuce.mmocore.skilltree.*;
 import net.Indyuce.mmocore.skilltree.tree.SkillTree;
@@ -25,6 +24,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class SkillTreeViewer extends EditableInventory {
+public class SkillTreeViewer extends EditableInventory<PlayerData> {
     protected final Map<DisplayInfo, Icon> icons = new HashMap<>();
     protected final Map<SkillTreeStatus, String> statusNames = new HashMap<>();
 
@@ -85,18 +85,18 @@ public class SkillTreeViewer extends EditableInventory {
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
         if (function.equals("skill-tree")) {
             return new SkillTreeItem(config);
         }
         if (function.equals("up"))
-            return new SimplePlaceholderItem(config);
+            return new SimpleItem(config);
         if (function.equals("left"))
-            return new SimplePlaceholderItem(config);
+            return new SimpleItem(config);
         if (function.equals("down"))
-            return new SimplePlaceholderItem(config);
+            return new SimpleItem(config);
         if (function.equals("right"))
-            return new SimplePlaceholderItem(config);
+            return new SimpleItem(config);
 
         if (function.equals("reallocation"))
             return new InventoryItem<SkillTreeInventory>(config) {
@@ -127,7 +127,7 @@ public class SkillTreeViewer extends EditableInventory {
     }
 
 
-    public SkillTreeInventory newInventory(PlayerData playerData) {
+    public SkillTreeInventory generate(PlayerData playerData) {
         return new SkillTreeInventory(playerData, this, defaultSkillTree);
     }
 
@@ -147,14 +147,14 @@ public class SkillTreeViewer extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(SkillTreeInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillTreeInventory inv, int n) {
             int index = inv.getEditable().getByFunction("skill-tree").getSlots().size() * inv.treeListPage + n;
             if (inv.skillTrees.size() <= index) {
                 return new ItemStack(Material.AIR);
             }
             SkillTree skillTree = inv.skillTrees.get(index);
             //We display with the material corresponding to the skillTree
-            ItemStack item = super.display(inv, n, skillTree.getItem());
+            ItemStack item = super.getDisplayedItem(inv, n, skillTree.getItem());
 
             ItemMeta meta = item.getItemMeta();
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -192,26 +192,26 @@ public class SkillTreeViewer extends EditableInventory {
         }
     }
 
-    public class NextTreeListPageItem extends SimplePlaceholderItem<SkillTreeInventory> {
+    public class NextTreeListPageItem extends SimpleItem<SkillTreeInventory> {
 
         public NextTreeListPageItem(ConfigurationSection config) {
             super(config);
         }
 
         @Override
-        public boolean canDisplay(SkillTreeInventory inv) {
+        public boolean isDisplayed(SkillTreeInventory inv) {
             return inv.getTreeListPage() < inv.getMaxTreeListPage();
         }
     }
 
-    public class PreviousTreeListPageItem extends SimplePlaceholderItem<SkillTreeInventory> {
+    public class PreviousTreeListPageItem extends SimpleItem<SkillTreeInventory> {
 
         public PreviousTreeListPageItem(ConfigurationSection config) {
             super(config);
         }
 
         @Override
-        public boolean canDisplay(SkillTreeInventory inv) {
+        public boolean isDisplayed(SkillTreeInventory inv) {
             return inv.getTreeListPage() > 0;
         }
     }
@@ -240,11 +240,11 @@ public class SkillTreeViewer extends EditableInventory {
          * the yml of the skill tree.
          */
         @Override
-        public ItemStack display(SkillTreeInventory inv, int n) {
+        public ItemStack getDisplayedItem(SkillTreeInventory inv, int n) {
             IntegerCoordinates coordinates = inv.getCoordinates(n);
             if (inv.getSkillTree().isPathOrNode(coordinates)) {
                 Icon icon = inv.getIcon(coordinates);
-                ItemStack item = super.display(inv, n, icon.getMaterial(), icon.getCustomModelData());
+                ItemStack item = super.getDisplayedItem(inv, n, icon.getMaterial(), icon.getCustomModelData());
                 ItemMeta meta = item.getItemMeta();
                 Placeholders holders = getPlaceholders(inv, n);
                 if (inv.getSkillTree().isNode(coordinates)) {
@@ -324,7 +324,7 @@ public class SkillTreeViewer extends EditableInventory {
     }
 
 
-    public class SkillTreeInventory extends GeneratedInventory {
+    public class SkillTreeInventory extends GeneratedInventory<PlayerData> {
         private int x, y;
         //width and height correspond to the the size of the 'board' representing the skill tree
         private int minSlot, maxSlot;
@@ -435,8 +435,7 @@ public class SkillTreeViewer extends EditableInventory {
         }
 
         @Override
-        public void whenClicked(InventoryClickContext event, InventoryItem item) {
-
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
 
             if (item.getFunction().equals("next-tree-list-page")) {
                 treeListPage++;
@@ -493,7 +492,7 @@ public class SkillTreeViewer extends EditableInventory {
             }
 
             if (item.getFunction().equals("skill-tree")) {
-                String id = event.getClickedItem().getItemMeta().getPersistentDataContainer().get(
+                String id = event.getCurrentItem().getItemMeta().getPersistentDataContainer().get(
                         new NamespacedKey(MMOCore.plugin, "skill-tree-id"), PersistentDataType.STRING);
                 MMOCore.plugin.soundManager.getSound(SoundEvent.CHANGE_SKILL_TREE).playTo(player);
                 skillTree = MMOCore.plugin.skillTreeManager.get(id);
@@ -502,8 +501,8 @@ public class SkillTreeViewer extends EditableInventory {
             }
 
             if (item.getFunction().equals("skill-tree-node")) {
-                if (event.getClickType() == ClickType.LEFT) {
-                    PersistentDataContainer container = event.getClickedItem().getItemMeta().getPersistentDataContainer();
+                if (event.getClick() == ClickType.LEFT) {
+                    PersistentDataContainer container = event.getCurrentItem().getItemMeta().getPersistentDataContainer();
                     int x = container.get(new NamespacedKey(MMOCore.plugin, "coordinates.x"), PersistentDataType.INTEGER);
                     int y = container.get(new NamespacedKey(MMOCore.plugin, "coordinates.y"), PersistentDataType.INTEGER);
                     if (!skillTree.isNode(new IntegerCoordinates(x, y))) {

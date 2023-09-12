@@ -3,8 +3,6 @@ package net.Indyuce.mmocore.gui.eco;
 import io.lumine.mythic.lib.api.item.ItemTag;
 import io.lumine.mythic.lib.api.item.NBTItem;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.PluginInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -33,32 +31,32 @@ public class GoldPouch extends PluginInventory {
     }
 
     @Override
-    public void whenClicked(InventoryClickContext context) {
+    public void whenClicked(InventoryClickEvent event) {
 
-        ItemStack item = context.getClickedItem();
+        ItemStack item = event.getCurrentItem();
         if (item == null || item.getType() == Material.AIR) {
-            context.setCancelled(true);
+            event.setCancelled(true);
             return;
         }
 
         NBTItem nbt = NBTItem.get(item);
         if (!nbt.hasTag("RpgWorth")) {
-            context.setCancelled(true);
+            event.setCancelled(true);
             return;
         }
 
         if (mob) {
-            context.setCancelled(true);
+            event.setCancelled(true);
 
             // in deposit menu
-            if (context.getSlot() < 18) {
+            if (event.getSlot() < 18) {
                 int empty = player.getInventory().firstEmpty();
                 if (empty < 0)
                     return;
 
                 player.playSound(player.getLocation(), Sound.ENTITY_SHULKER_TELEPORT, 1, 2);
-                player.getInventory().addItem(context.getClickedItem());
-                context.getInventory().setItem(context.getSlot(), null);
+                player.getInventory().addItem(event.getCurrentItem());
+                event.getInventory().setItem(event.getSlot(), null);
             }
 
             return;
@@ -71,7 +69,7 @@ public class GoldPouch extends PluginInventory {
          * contents
          */
         if (nbt.hasTag("RpgPouchInventory"))
-            context.setCancelled(true);
+            event.setCancelled(true);
     }
 
     @Override

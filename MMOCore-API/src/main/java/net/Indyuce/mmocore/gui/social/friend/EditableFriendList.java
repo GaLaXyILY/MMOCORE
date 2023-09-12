@@ -1,17 +1,16 @@
 package net.Indyuce.mmocore.gui.social.friend;
 
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerActivity;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
 import net.Indyuce.mmocore.api.util.input.ChatInput;
 import net.Indyuce.mmocore.api.util.input.PlayerInput.InputType;
 import net.Indyuce.mmocore.api.util.math.format.DelayFormat;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.manager.InventoryManager;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -21,15 +20,17 @@ import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class EditableFriendList extends EditableInventory {
+public class EditableFriendList extends EditableInventory<PlayerData> {
     private static final NamespacedKey UUID_NAMESPACEDKEY = new NamespacedKey(MMOCore.plugin, "Uuid");
 
     public EditableFriendList() {
@@ -37,37 +38,39 @@ public class EditableFriendList extends EditableInventory {
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
 
         if (function.equals("friend"))
             return new FriendItem(config);
 
         if (function.equals("previous"))
-            return new SimplePlaceholderItem<FriendListInventory>(config) {
+            return new SimpleItem<FriendListInventory>(config) {
 
                 @Override
-                public boolean canDisplay(FriendListInventory inv) {
+                public boolean isDisplayed(FriendListInventory inv) {
                     return inv.page > 0;
                 }
             };
 
         if (function.equals("next"))
-            return new SimplePlaceholderItem<FriendListInventory>(config) {
+            return new SimpleItem<FriendListInventory>(config) {
 
                 @Override
-                public boolean canDisplay(FriendListInventory inv) {
+                public boolean isDisplayed(FriendListInventory inv) {
                     return inv.getEditable().getByFunction("friend").getSlots().size() * inv.page < inv.getPlayerData().getFriends().size();
                 }
             };
 
-        return new SimplePlaceholderItem(config);
+        return new SimpleItem(config);
     }
 
-    public GeneratedInventory newInventory(PlayerData data) {
-        return new FriendListInventory(data, this);
+    @Override
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
+        return new FriendListInventory(playerData, this);
     }
 
-    public static class OfflineFriendItem extends InventoryItem {
+
+    public static class OfflineFriendItem extends InventoryItem<FriendListInventory> {
         public OfflineFriendItem(FriendItem parent, ConfigurationSection config) {
             super(parent, config);
         }
@@ -79,12 +82,12 @@ public class EditableFriendList extends EditableInventory {
 
         @NotNull
         @Override
-        public OfflinePlayer getEffectivePlayer(GeneratedInventory inv, int n) {
+        public OfflinePlayer getEffectivePlayer(FriendListInventory inv, int n) {
             return Bukkit.getOfflinePlayer(inv.getPlayerData().getFriends().get(n));
         }
 
         @Override
-        public Placeholders getPlaceholders(GeneratedInventory inv, int n) {
+        public Placeholders getPlaceholders(FriendListInventory inv, int n) {
             OfflinePlayer friend = getEffectivePlayer(inv, n);
 
             Placeholders holders = new Placeholders();
@@ -94,7 +97,7 @@ public class EditableFriendList extends EditableInventory {
         }
     }
 
-    public static class OnlineFriendItem extends SimplePlaceholderItem {
+    public static class OnlineFriendItem extends SimpleItem<FriendListInventory> {
         public OnlineFriendItem(FriendItem parent, ConfigurationSection config) {
             super(parent, config);
         }
@@ -106,13 +109,13 @@ public class EditableFriendList extends EditableInventory {
 
         @NotNull
         @Override
-        public OfflinePlayer getEffectivePlayer(GeneratedInventory inv, int n) {
+        public OfflinePlayer getEffectivePlayer(FriendListInventory inv, int n) {
             return Bukkit.getOfflinePlayer(inv.getPlayerData().getFriends().get(n));
         }
 
         @Deprecated
         @Override
-        public Placeholders getPlaceholders(GeneratedInventory inv, int n) {
+        public Placeholders getPlaceholders(FriendListInventory inv, int n) {
             final PlayerData friendData = PlayerData.get(getEffectivePlayer(inv, n));
 
             Placeholders holders = new Placeholders();
@@ -125,7 +128,7 @@ public class EditableFriendList extends EditableInventory {
         }
     }
 
-    public static class FriendItem extends SimplePlaceholderItem {
+    public static class FriendItem extends SimpleItem<FriendListInventory> {
         private final OnlineFriendItem online;
         private final OfflineFriendItem offline;
 
@@ -140,12 +143,12 @@ public class EditableFriendList extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(GeneratedInventory inv, int n) {
+        public ItemStack getDisplayedItem(FriendListInventory inv, int n) {
             if (inv.getPlayerData().getFriends().size() <= n)
-                return super.display(inv, n);
+                return super.getDisplayedItem(inv, n);
 
             final OfflinePlayer friend = Bukkit.getOfflinePlayer(inv.getPlayerData().getFriends().get(n));
-            ItemStack disp = (friend.isOnline() ? online : offline).display(inv, n);
+            ItemStack disp = (friend.isOnline() ? online : offline).getDisplayedItem(inv, n);
             ItemMeta meta = disp.getItemMeta();
             meta.getPersistentDataContainer().set(UUID_NAMESPACEDKEY, PersistentDataType.STRING, friend.getUniqueId().toString());
             if (meta instanceof SkullMeta)
@@ -164,12 +167,12 @@ public class EditableFriendList extends EditableInventory {
         }
 
         @Override
-        public boolean canDisplay(GeneratedInventory inv) {
+        public boolean isDisplayed(FriendListInventory inv) {
             return true;
         }
     }
 
-    public class FriendListInventory extends GeneratedInventory {
+    public class FriendListInventory extends GeneratedInventory<PlayerData> {
         private int page;
 
         public FriendListInventory(PlayerData playerData, EditableInventory editable) {
@@ -177,12 +180,12 @@ public class EditableFriendList extends EditableInventory {
         }
 
         @Override
-        public String calculateName() {
-            return getName();
+        public String applyNamePlaceholders(String s) {
+            return s;
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.getFunction().equals("previous")) {
                 page--;
                 open();
@@ -204,7 +207,7 @@ public class EditableFriendList extends EditableInventory {
                     return;
                 }
 
-                new ChatInput(player, InputType.FRIEND_REQUEST, context.getInventoryHolder(), input -> {
+                new ChatInput(player, InputType.FRIEND_REQUEST, this, input -> {
                     Player target = Bukkit.getPlayer(input);
                     if (target == null) {
                         MMOCore.plugin.configManager.getSimpleMessage("not-online-player", "player", input).send(player);
@@ -234,8 +237,8 @@ public class EditableFriendList extends EditableInventory {
                 });
             }
 
-            if (item.getFunction().equals("friend") && context.getClickType() == ClickType.RIGHT) {
-                String tag = context.getClickedItem().getItemMeta().getPersistentDataContainer().get(UUID_NAMESPACEDKEY, PersistentDataType.STRING);
+            if (item.getFunction().equals("friend") && event.getClick() == ClickType.RIGHT) {
+                String tag = event.getCurrentItem().getItemMeta().getPersistentDataContainer().get(UUID_NAMESPACEDKEY, PersistentDataType.STRING);
                 if (tag == null || tag.isEmpty())
                     return;
 

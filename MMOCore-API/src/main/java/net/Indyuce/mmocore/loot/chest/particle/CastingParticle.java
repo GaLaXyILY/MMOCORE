@@ -41,7 +41,7 @@ public class CastingParticle {
         display = (loc) -> loc.getWorld().spawnParticle(particle, loc, 0);
     }
 
-    public void display(Location loc) {
+    public void getDisplayedItem(Location loc) {
         display.accept(loc);
     }
 }

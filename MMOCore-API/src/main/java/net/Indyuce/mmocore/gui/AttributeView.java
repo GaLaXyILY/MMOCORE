@@ -3,12 +3,6 @@ package net.Indyuce.mmocore.gui;
 import io.lumine.mythic.lib.manager.StatManager;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.api.event.PlayerAttributeUseEvent;
 import net.Indyuce.mmocore.api.player.attribute.PlayerAttribute;
 import net.Indyuce.mmocore.api.player.attribute.PlayerAttributes;
@@ -22,7 +16,7 @@ public class AttributeView extends EditableInventory {
 	}
 
 	@Override
-	public InventoryItem load(String function, ConfigurationSection config) {
+	public InventoryItem loadItem(String function, ConfigurationSection config) {
 		if (function.equalsIgnoreCase("reallocation"))
 			return new InventoryItem(config) {
 
@@ -36,7 +30,7 @@ public class AttributeView extends EditableInventory {
 				}
 			};
 
-		return function.startsWith("attribute_") ? new AttributeItem(function, config) : new SimplePlaceholderItem(config);
+		return function.startsWith("attribute_") ? new AttributeItem(function, config) : new SimpleItem(config);
 	}
 
 	public GeneratedInventory newInventory(PlayerData data) {
@@ -90,7 +84,7 @@ public class AttributeView extends EditableInventory {
 		}
 
 		@Override
-		public void whenClicked(InventoryClickContext context, InventoryItem item) {
+		public void whenClicked(InventoryClickEvent event, InventoryItem item) {
 
 			if (item.getFunction().equalsIgnoreCase("reallocation")) {
 				int spent = playerData.getAttributes().countPoints();
@@ -131,7 +125,7 @@ public class AttributeView extends EditableInventory {
 				}
 
 				// Amount of points spent
-				final boolean shiftClick = context.getClickType().isShiftClick();
+				final boolean shiftClick = event.getClick().isShiftClick();
 				int pointsSpent = shiftClick ? ((AttributeItem) item).shiftCost : 1;
 				if (attribute.hasMax())
 					pointsSpent = Math.min(pointsSpent, attribute.getMax() - ins.getBase());

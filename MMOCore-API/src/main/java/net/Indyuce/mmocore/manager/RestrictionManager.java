@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class RestrictionManager implements MMOCoreManager {
 
     /**
-     * Using {@link ItemType#display()} instead of an ItemType as
+     * Using {@link ItemType#getDisplayedItem()} instead of an ItemType as
      * map key to utilize the HashMap O(1) time complexity of the
      * get function instead of iterating through the key set.
      */
@@ -51,12 +51,12 @@ public class RestrictionManager implements MMOCoreManager {
             try {
                 perms.postLoad();
             } catch (IllegalArgumentException exception) {
-                MMOCore.log(Level.WARNING, "Could not post-load perm set '" + perms.getTool().display() + "': " + exception.getMessage());
+                MMOCore.log(Level.WARNING, "Could not post-load perm set '" + perms.getTool().getDisplayedItem() + "': " + exception.getMessage());
             }
     }
 
     public void register(ToolPermissions perms) {
-        map.put(perms.getTool().display(), perms);
+        map.put(perms.getTool().getDisplayedItem(), perms);
 
         if (perms.isDefault()) {
             Validate.isTrue(defaultPermissions == null, "There is already a default tool permission set");
@@ -74,7 +74,7 @@ public class RestrictionManager implements MMOCoreManager {
      */
     @Nullable
     public ToolPermissions getPermissions(ItemStack item) {
-        String mapKey = ItemType.fromItemStack(item).display();
+        String mapKey = ItemType.fromItemStack(item).getDisplayedItem();
         ToolPermissions found = map.get(mapKey);
         return found == null ? defaultPermissions : found;
     }

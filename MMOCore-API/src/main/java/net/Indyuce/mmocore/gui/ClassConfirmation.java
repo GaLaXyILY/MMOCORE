@@ -1,31 +1,31 @@
 package net.Indyuce.mmocore.gui;
 
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.Placeholders;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.SoundEvent;
 import net.Indyuce.mmocore.api.event.PlayerChangeClassEvent;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.player.profess.PlayerClass;
 import net.Indyuce.mmocore.api.player.profess.SavedClassInformation;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.PluginInventory;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.Placeholders;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.player.ClassDataContainer;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 
-public class ClassConfirmation extends EditableInventory {
+public class ClassConfirmation extends EditableInventory<PlayerData> {
     private final PlayerClass playerClass;
 
     public ClassConfirmation(PlayerClass playerClass, boolean isDefault) {
@@ -35,8 +35,13 @@ public class ClassConfirmation extends EditableInventory {
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
-        return function.equalsIgnoreCase("yes") ? new YesItem(config) : new SimplePlaceholderItem(config);
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
+        return null;
+    }
+
+    @Override
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
+        return function.equalsIgnoreCase("yes") ? new YesItem(config) : new SimpleItem(config);
     }
 
     public GeneratedInventory newInventory(PlayerData data, PluginInventory last, boolean setClass) {
@@ -80,7 +85,7 @@ public class ClassConfirmation extends EditableInventory {
         }
     }
 
-    public class YesItem extends SimplePlaceholderItem<ClassConfirmationInventory> {
+    public class YesItem extends SimpleItem<ClassConfirmationInventory> {
         private final InventoryItem unlocked, locked;
 
         public YesItem(ConfigurationSection config) {
@@ -102,12 +107,12 @@ public class ClassConfirmation extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(ClassConfirmationInventory inv, int n) {
-            return inv.getPlayerData().hasSavedClass(inv.profess) ? unlocked.display(inv, n) : locked.display(inv, n);
+        public ItemStack getDisplayedItem(ClassConfirmationInventory inv, int n) {
+            return inv.getPlayerData().hasSavedClass(inv.profess) ? unlocked.getDisplayedItem(inv, n) : locked.getDisplayedItem(inv, n);
         }
     }
 
-    public class ClassConfirmationInventory extends GeneratedInventory {
+    public class ClassConfirmationInventory extends GeneratedInventory<PlayerData> {
         private final PlayerClass profess;
         private final PluginInventory last;
         private final boolean subclass;
@@ -127,7 +132,7 @@ public class ClassConfirmation extends EditableInventory {
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.getFunction().equals("back")) {
                 canClose = true;
                 last.open();

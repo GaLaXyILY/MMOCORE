@@ -24,6 +24,7 @@ import net.Indyuce.mmocore.comp.region.WorldGuardRegionHandler;
 import net.Indyuce.mmocore.comp.region.pvpmode.PvPModeListener;
 import net.Indyuce.mmocore.comp.vault.VaultEconomy;
 import net.Indyuce.mmocore.comp.vault.VaultMMOLoader;
+import net.Indyuce.mmocore.gui.api.packets.InventoryPacketListener;
 import net.Indyuce.mmocore.guild.GuildModule;
 import net.Indyuce.mmocore.guild.GuildModuleType;
 import net.Indyuce.mmocore.guild.GuildRelationHandler;
@@ -262,6 +263,9 @@ public class MMOCore extends JavaPlugin {
 
         // load guild data after loading player data
         dataProvider.getGuildManager().load();
+
+        //TODO: Remove
+        new InventoryPacketListener();
 
         // Toggleable Commands
         ToggleableCommand.register();

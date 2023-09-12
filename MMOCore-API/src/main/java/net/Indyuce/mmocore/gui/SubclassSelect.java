@@ -2,49 +2,50 @@ package net.Indyuce.mmocore.gui;
 
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
+import io.lumine.mythic.lib.data.SynchronizedDataHolder;
+import io.lumine.mythic.lib.gui.framework.EditableInventory;
+import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
+import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
+import io.lumine.mythic.lib.gui.framework.item.SimpleItem;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.player.profess.ClassOption;
-import net.Indyuce.mmocore.gui.api.EditableInventory;
-import net.Indyuce.mmocore.gui.api.GeneratedInventory;
-import net.Indyuce.mmocore.gui.api.InventoryClickContext;
-import net.Indyuce.mmocore.gui.api.item.InventoryItem;
-import net.Indyuce.mmocore.gui.api.item.SimplePlaceholderItem;
 import net.Indyuce.mmocore.manager.InventoryManager;
 import net.Indyuce.mmocore.api.player.profess.PlayerClass;
 import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.SoundEvent;
-import net.Indyuce.mmocore.api.player.profess.Subclass;
 import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class SubclassSelect extends EditableInventory {
+public class SubclassSelect extends EditableInventory<PlayerData> {
     public SubclassSelect() {
         super("subclass-select");
     }
 
     @Override
-    public InventoryItem load(String function, ConfigurationSection config) {
-        return function.startsWith("sub-class") ? new ClassItem(config) : new SimplePlaceholderItem(config);
+    public InventoryItem loadItemItem(String function, ConfigurationSection config) {
+        return function.startsWith("sub-class") ? new ClassItem(config) : new SimpleItem(config);
     }
 
-    public GeneratedInventory newInventory(PlayerData data) {
-        return new SubclassSelectionInventory(data, this);
+
+    @Override
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
+        return new SubclassSelectionInventory(playerData, this);
     }
 
-    public class ClassItem extends SimplePlaceholderItem<SubclassSelectionInventory> {
+    public class ClassItem extends SimpleItem<SubclassSelectionInventory> {
         private final String name;
         private final List<String> lore;
         private final PlayerClass playerClass;
@@ -63,8 +64,8 @@ public class SubclassSelect extends EditableInventory {
         }
 
         @Override
-        public ItemStack display(SubclassSelectionInventory inv, int n) {
-            ItemStack item = n == 0 ? playerClass.getIcon() : super.display(inv, n);
+        public ItemStack getDisplayedItem(SubclassSelectionInventory inv, int n) {
+            ItemStack item = n == 0 ? playerClass.getIcon() : super.getDisplayedItem(inv, n);
             ItemMeta meta = item.getItemMeta();
             if (hideFlags())
                 meta.addItemFlags(ItemFlag.values());
@@ -92,7 +93,7 @@ public class SubclassSelect extends EditableInventory {
         }
 
         @Override
-        public boolean canDisplay(SubclassSelectionInventory inv) {
+        public boolean isDisplayed(SubclassSelectionInventory inv) {
             return inv.getPlayerData()
                     .getProfess()
                     .getSubclasses()
@@ -102,18 +103,18 @@ public class SubclassSelect extends EditableInventory {
         }
     }
 
-    public class SubclassSelectionInventory extends GeneratedInventory {
+    public class SubclassSelectionInventory extends GeneratedInventory<PlayerData> {
         public SubclassSelectionInventory(PlayerData playerData, EditableInventory editable) {
             super(playerData, editable);
         }
 
         @Override
-        public String calculateName() {
-            return getName();
+        public String applyNamePlaceholders(String s) {
+            return MythicLib.plugin.getPlaceholderParser().parse(player, s);
         }
 
         @Override
-        public void whenClicked(InventoryClickContext context, InventoryItem item) {
+        public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.getFunction().equals("back"))
                 InventoryManager.CLASS_SELECT.newInventory(playerData).open();
 

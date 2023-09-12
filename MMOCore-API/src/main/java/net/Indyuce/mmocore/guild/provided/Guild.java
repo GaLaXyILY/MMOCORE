@@ -1,11 +1,9 @@
 package net.Indyuce.mmocore.guild.provided;
 
-import io.lumine.mythic.lib.comp.interaction.relation.Relationship;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.player.social.Request;
-import net.Indyuce.mmocore.gui.api.PluginInventory;
 import net.Indyuce.mmocore.gui.social.guild.EditableGuildView;
 import net.Indyuce.mmocore.guild.AbstractGuild;
 import net.Indyuce.mmocore.manager.InventoryManager;
