@@ -41,12 +41,12 @@ public class ClassSelect extends EditableInventory<PlayerData> {
         return function.startsWith("class") ? new ClassItem(config) : new SimpleItem(config);
     }
 
-    public GeneratedInventory newInventory(PlayerData data) {
-        return newInventory(data, null);
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
+        return generate(playerData, null, null);
     }
 
-    public GeneratedInventory newInventory(PlayerData data, @Nullable Runnable profileRunnable) {
-        return new ProfessSelectionInventory(data, this, profileRunnable);
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory, @Nullable Runnable profileRunnable) {
+        return new ProfessSelectionInventory(playerData, this, profileRunnable);
     }
 
     public class ClassItem extends SimpleItem<ProfessSelectionInventory> {
@@ -55,7 +55,7 @@ public class ClassSelect extends EditableInventory<PlayerData> {
         private final PlayerClass playerClass;
 
         public ClassItem(ConfigurationSection config) {
-            super(config.contains("item") ? Material.valueOf(UtilityMethods.enumName(config.getString("item"))) : Material.BARRIER, config);
+            super(config, config.contains("item") ? Material.valueOf(UtilityMethods.enumName(config.getString("item"))) : Material.BARRIER);
 
             Validate.isTrue(config.getString("function").length() > 6, "Couldn't find the class associated to: " + config.getString("function"));
             String classId = UtilityMethods.enumName(config.getString("function").substring(6));
@@ -150,7 +150,6 @@ public class ClassSelect extends EditableInventory<PlayerData> {
             canClose = false;
             super.open();
         }
-
 
 
         @Override

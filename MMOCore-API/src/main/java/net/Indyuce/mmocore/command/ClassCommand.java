@@ -34,7 +34,7 @@ public class ClassCommand extends RegisteredCommand {
 		if (data.getProfess().getSubclasses().stream().anyMatch(sub -> sub.getLevel() <= data.getLevel()))
 			InventoryManager.SUBCLASS_SELECT.newInventory(data).open();
 		else
-			InventoryManager.CLASS_SELECT.newInventory(data).open();
+			InventoryManager.CLASS_SELECT.generate(data).open();
 		return true;
 	}
 }

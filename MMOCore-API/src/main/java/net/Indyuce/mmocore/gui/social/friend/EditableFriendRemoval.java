@@ -11,6 +11,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.jetbrains.annotations.Nullable;
 
 public class EditableFriendRemoval extends EditableInventory<PlayerData> {
     public EditableFriendRemoval() {
@@ -31,7 +32,17 @@ public class EditableFriendRemoval extends EditableInventory<PlayerData> {
         };
     }
 
-    public GeneratedInventory newInventory(PlayerData data, OfflinePlayer friend, GeneratedInventory last) {
+    /**
+     * Do not use this method but rather use {@link #generate(PlayerData, OfflinePlayer, GeneratedInventory)}
+     */
+    @Deprecated
+    @Override
+    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
+        throw new RuntimeException("Unsupported method");
+    }
+
+
+    public GeneratedInventory generate(PlayerData data, OfflinePlayer friend, GeneratedInventory last) {
         return new ClassConfirmationInventory(data, this, friend, last);
     }
 
@@ -65,9 +76,5 @@ public class EditableFriendRemoval extends EditableInventory<PlayerData> {
                 last.open();
         }
 
-        @Override
-        public String calculateName() {
-            return getName();
-        }
     }
 }

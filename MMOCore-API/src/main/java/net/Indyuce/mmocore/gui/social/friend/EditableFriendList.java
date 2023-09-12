@@ -242,7 +242,7 @@ public class EditableFriendList extends EditableInventory<PlayerData> {
                 if (tag == null || tag.isEmpty())
                     return;
 
-                InventoryManager.FRIEND_REMOVAL.newInventory(playerData, Bukkit.getOfflinePlayer(UUID.fromString(tag)), this).open();
+                InventoryManager.FRIEND_REMOVAL.generate(playerData, Bukkit.getOfflinePlayer(UUID.fromString(tag)), this).open();
             }
         }
     }

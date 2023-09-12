@@ -21,7 +21,7 @@ public class WaypointsCommand extends RegisteredCommand {
 			PlayerData data = PlayerData.get((Player) sender);
 			MMOCommandEvent event = new MMOCommandEvent(data, "waypoints");
 			Bukkit.getServer().getPluginManager().callEvent(event);
-			if(!event.isCancelled()) InventoryManager.WAYPOINTS.newInventory(data).open();
+			if(!event.isCancelled()) InventoryManager.WAYPOINTS.generate(data).open();
 		}
 		return true;
 	}

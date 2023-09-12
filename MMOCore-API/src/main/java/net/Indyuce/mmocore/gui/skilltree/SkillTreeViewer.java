@@ -57,8 +57,12 @@ public class SkillTreeViewer extends EditableInventory<PlayerData> {
         this.defaultSkillTree = initialSkillTree;
     }
 
+    public SkillTreeInventory generate(PlayerData playerData, @Nullable GeneratedInventory previousInventory) {
+        return new SkillTreeInventory(playerData, this, defaultSkillTree);
+    }
+
     @Override
-    public void reload(FileConfiguration config) {
+    public void reload(ConfigurationSection config) {
         super.reload(config);
         if (config.contains("status-names"))
             for (SkillTreeStatus skillTreeStatus : SkillTreeStatus.values())
@@ -127,16 +131,11 @@ public class SkillTreeViewer extends EditableInventory<PlayerData> {
     }
 
 
-    public SkillTreeInventory generate(PlayerData playerData) {
-        return new SkillTreeInventory(playerData, this, defaultSkillTree);
-    }
-
-
     public class SkillTreeItem extends InventoryItem<SkillTreeInventory> {
 
         public SkillTreeItem(ConfigurationSection config) {
             //We must use this constructor to show that there are not specified material
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
 
         }
 
@@ -223,7 +222,7 @@ public class SkillTreeViewer extends EditableInventory<PlayerData> {
 
 
         public SkillTreeNodeItem(ConfigurationSection config) {
-            super(Material.AIR, config);
+            super(config, Material.AIR);
             if (config.isList("path-lore"))
                 pathLore.addAll(config.getStringList("path-lore"));
         }
@@ -409,9 +408,10 @@ public class SkillTreeViewer extends EditableInventory<PlayerData> {
         }
 
         @Override
-        public String calculateName() {
-            return getEditable().getName().replace("{skill-tree-name}", skillTree.getName()).replace("{skill-tree-id}", skillTree.getId());
+        public String applyNamePlaceholders(String s) {
+            return s.replace("{skill-tree-name}", skillTree.getName()).replace("{skill-tree-id}", skillTree.getId());
         }
+
 
         public IntegerCoordinates getCoordinates(int n) {
             int slot = slots.get(n);

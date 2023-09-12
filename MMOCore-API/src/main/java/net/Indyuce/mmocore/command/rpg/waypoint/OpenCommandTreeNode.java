@@ -28,7 +28,7 @@ public class OpenCommandTreeNode extends CommandTreeNode {
 			return CommandResult.FAILURE;
 		}
 
-		InventoryManager.WAYPOINTS.newInventory(PlayerData.get(player)).open();
+		InventoryManager.WAYPOINTS.generate(PlayerData.get(player)).open();
 		return CommandResult.SUCCESS;
 	}
 }

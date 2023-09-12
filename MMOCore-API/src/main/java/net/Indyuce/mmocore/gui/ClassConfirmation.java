@@ -89,7 +89,7 @@ public class ClassConfirmation extends EditableInventory<PlayerData> {
         private final InventoryItem unlocked, locked;
 
         public YesItem(ConfigurationSection config) {
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
 
             Validate.isTrue(config.contains("unlocked"), "Could not load 'unlocked' config");
             Validate.isTrue(config.contains("locked"), "Could not load 'locked' config");
@@ -170,8 +170,9 @@ public class ClassConfirmation extends EditableInventory<PlayerData> {
         }
 
         @Override
-        public String calculateName() {
-            return getName().replace("{class}", profess.getName());
+        public String applyNamePlaceholders(String s) {
+            return s.replace("{class}", profess.getName());
         }
+
     }
 }

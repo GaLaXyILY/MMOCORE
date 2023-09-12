@@ -87,8 +87,7 @@ public class EditablePartyView extends EditableInventory<PlayerData> {
             if (meta instanceof SkullMeta)
                 inv.dynamicallyUpdateItem(this, n, disp, current -> {
                     ((SkullMeta) meta).setOwningPlayer(member);
-                    current.47
-                setItemMeta(meta);
+                    current.setItemMeta(meta);
                 });
 
             disp.setItemMeta(meta);
@@ -101,7 +100,7 @@ public class EditablePartyView extends EditableInventory<PlayerData> {
         private final MemberDisplayItem member;
 
         public MemberItem(ConfigurationSection config) {
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
 
             Validate.notNull(config.contains("empty"), "Could not load empty config");
             Validate.notNull(config.contains("member"), "Could not load member config");

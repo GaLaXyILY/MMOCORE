@@ -17,6 +17,6 @@ public class PlayerProfileCheck implements Listener {
         if (event.getRightClicked().getType() != EntityType.PLAYER || !event.getPlayer().isSneaking() || !MythicLib.plugin.getEntities().canTarget(event.getPlayer(), event.getRightClicked(), InteractionType.SUPPORT_ACTION))
             return;
 
-        InventoryManager.PLAYER_STATS.newInventory(PlayerData.get((Player) event.getRightClicked()), PlayerData.get(event.getPlayer())).open();
+        InventoryManager.PLAYER_STATS.generate(PlayerData.get((Player) event.getRightClicked()), PlayerData.get(event.getPlayer())).open();
     }
 }

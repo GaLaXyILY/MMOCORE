@@ -1,6 +1,7 @@
 package net.Indyuce.mmocore.gui.api.packets;
 
 
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
 import net.Indyuce.mmocore.MMOCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

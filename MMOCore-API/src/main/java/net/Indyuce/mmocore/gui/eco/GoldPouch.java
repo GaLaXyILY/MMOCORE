@@ -2,22 +2,25 @@ package net.Indyuce.mmocore.gui.eco;
 
 import io.lumine.mythic.lib.api.item.ItemTag;
 import io.lumine.mythic.lib.api.item.NBTItem;
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
+import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class GoldPouch extends PluginInventory {
+public class GoldPouch extends PluginInventory<PlayerData> {
     private final boolean mob;
     private final NBTItem nbt;
 
     public GoldPouch(Player player, NBTItem nbt) {
-        super(player);
+        super(PlayerData.get(player));
 
         this.nbt = nbt;
         this.mob = nbt.getBoolean("RpgPouchMob");

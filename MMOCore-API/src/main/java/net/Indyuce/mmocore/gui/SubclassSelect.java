@@ -2,7 +2,6 @@ package net.Indyuce.mmocore.gui;
 
 import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
-import io.lumine.mythic.lib.data.SynchronizedDataHolder;
 import io.lumine.mythic.lib.gui.framework.EditableInventory;
 import io.lumine.mythic.lib.gui.framework.GeneratedInventory;
 import io.lumine.mythic.lib.gui.framework.item.InventoryItem;
@@ -35,7 +34,7 @@ public class SubclassSelect extends EditableInventory<PlayerData> {
     }
 
     @Override
-    public InventoryItem loadItemItem(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
         return function.startsWith("sub-class") ? new ClassItem(config) : new SimpleItem(config);
     }
 
@@ -51,7 +50,7 @@ public class SubclassSelect extends EditableInventory<PlayerData> {
         private final PlayerClass playerClass;
 
         public ClassItem(ConfigurationSection config) {
-            super(config.contains("item") ? Material.valueOf(UtilityMethods.enumName(config.getString("item"))) : Material.BARRIER, config);
+            super(config, config.contains("item") ? Material.valueOf(UtilityMethods.enumName(config.getString("item"))) : Material.BARRIER);
             Validate.isTrue(config.getString("function").length() > 10, "Couldn't find the class associated to: " + config.getString("function"));
             String classId = UtilityMethods.enumName(config.getString("function").substring(10));
             this.playerClass = Objects.requireNonNull(MMOCore.plugin.classManager.get(classId), classId + " does not correspond to any classId.");
@@ -116,7 +115,7 @@ public class SubclassSelect extends EditableInventory<PlayerData> {
         @Override
         public void whenClicked(InventoryClickEvent event, InventoryItem item) {
             if (item.getFunction().equals("back"))
-                InventoryManager.CLASS_SELECT.newInventory(playerData).open();
+                InventoryManager.CLASS_SELECT.generate(playerData,this).open();
 
             if (item.getFunction().startsWith("sub-class")) {
                 String classId = UtilityMethods.ymlName(item.getFunction().substring(10));

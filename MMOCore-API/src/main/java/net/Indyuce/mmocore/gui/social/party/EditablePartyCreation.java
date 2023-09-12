@@ -43,7 +43,7 @@ public class EditablePartyCreation extends EditableInventory<PlayerData> {
 
             if (item.getFunction().equals("create")) {
                 ((MMOCorePartyModule) MMOCore.plugin.partyModule).newRegisteredParty(playerData);
-                InventoryManager.PARTY_VIEW.newInventory(playerData).open();
+                InventoryManager.PARTY_VIEW.generate(playerData, this).open();
                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
             }
 

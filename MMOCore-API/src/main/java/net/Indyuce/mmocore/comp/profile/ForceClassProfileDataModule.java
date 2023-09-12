@@ -47,7 +47,7 @@ public class ForceClassProfileDataModule implements ProfileDataModule, Listener 
         }
 
         final PlayerData playerData = PlayerData.get(event.getPlayerData().getPlayer());
-        InventoryManager.CLASS_SELECT.newInventory(playerData, () -> event.validate(this)).open();
+        InventoryManager.CLASS_SELECT.generate(playerData, () -> event.validate(this)).open();
     }
 
     /**
@@ -62,7 +62,7 @@ public class ForceClassProfileDataModule implements ProfileDataModule, Listener 
             if (!event.hasProfileEvent()) {
                 Validate.isTrue(MythicLib.plugin.getProfileMode() == ProfileMode.PROXY, "Listened to a data load event with no profile event attached but proxy-based profiles are disabled");
                 if (playerData.getProfess().equals(MMOCore.plugin.classManager.getDefaultClass()))
-                    InventoryManager.CLASS_SELECT.newInventory(playerData, () -> {
+                    InventoryManager.CLASS_SELECT.generate(playerData, () -> {
                     }).open();
                 return;
             }
@@ -71,7 +71,7 @@ public class ForceClassProfileDataModule implements ProfileDataModule, Listener 
 
             // Validate if necessary
             if (playerData.getProfess().equals(MMOCore.plugin.classManager.getDefaultClass()))
-                InventoryManager.CLASS_SELECT.newInventory(playerData, () -> event1.validate(this)).open();
+                InventoryManager.CLASS_SELECT.generate(playerData, () -> event1.validate(this)).open();
             else event1.validate(this);
         }
     }

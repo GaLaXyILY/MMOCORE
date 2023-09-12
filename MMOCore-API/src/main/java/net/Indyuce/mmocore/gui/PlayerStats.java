@@ -20,22 +20,23 @@ import net.Indyuce.mmocore.party.AbstractParty;
 import net.Indyuce.mmocore.player.stats.StatInfo;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class PlayerStats extends EditableInventory {
+public class PlayerStats extends EditableInventory<PlayerData> {
     public PlayerStats() {
         super("player-stats");
     }
 
 
     @Override
-    public InventoryItem loadItemItem(String function, ConfigurationSection config) {
+    public InventoryItem loadItem(String function, ConfigurationSection config) {
 
         if (function.equals("boost"))
             return new BoostItem(config);
@@ -124,7 +125,7 @@ public class PlayerStats extends EditableInventory {
                         final net.Indyuce.mmocore.api.player.stats.PlayerStats stats = inv.target.getStats();
 
                         @Override
-                        public String apply(OfflinePlayer player, String str) {
+                        public String apply(Player player, String str) {
                             String explored = str;
                             // Internal placeholders
                             while (explored.contains("{") && explored.substring(explored.indexOf("{")).contains("}")) {
@@ -161,11 +162,12 @@ public class PlayerStats extends EditableInventory {
         return new SimpleItem(config);
     }
 
-    public PlayerStatsInventory newInventory(PlayerData invTarget, PlayerData opening) {
+    public PlayerStatsInventory generate(PlayerData invTarget, PlayerData opening, @Nullable GeneratedInventory previousInventory) {
         return new PlayerStatsInventory(invTarget, opening, this);
     }
 
-    public PlayerStatsInventory newInventory(PlayerData player) {
+    @Override
+    public PlayerStatsInventory generate(PlayerData player, @Nullable GeneratedInventory previousInventory) {
         return new PlayerStatsInventory(player, player, this);
     }
 
@@ -186,8 +188,8 @@ public class PlayerStats extends EditableInventory {
         }
 
         @Override
-        public String calculateName() {
-            return getName();
+        public String applyNamePlaceholders(String s) {
+            return s;
         }
 
         @Override

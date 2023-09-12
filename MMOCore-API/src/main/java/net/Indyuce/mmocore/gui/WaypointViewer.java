@@ -58,11 +58,12 @@ public class WaypointViewer extends EditableInventory<PlayerData> {
         return new SimpleItem(config);
     }
 
-    public GeneratedInventory newInventory(PlayerData data) {
-        return newInventory(data, null);
+    @Override
+    public GeneratedInventory generate(PlayerData data, @Nullable GeneratedInventory generatedInventory) {
+        return newInventory(data, null, null);
     }
 
-    public GeneratedInventory newInventory(PlayerData data, Waypoint waypoint) {
+    public GeneratedInventory newInventory(PlayerData data, Waypoint waypoint, @Nullable GeneratedInventory generatedInventory) {
         return new WaypointViewerInventory(data, this, waypoint);
     }
 
@@ -71,7 +72,7 @@ public class WaypointViewer extends EditableInventory<PlayerData> {
         private final WaypointItemHandler availWaypoint, noStellium, notLinked, notDynamic, currentWayPoint;
 
         public WaypointItem(ConfigurationSection config) {
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
 
             Validate.notNull(config.getConfigurationSection("no-waypoint"), "Could not load 'no-waypoint' config");
             Validate.notNull(config.getConfigurationSection("locked"), "Could not load 'locked' config");
@@ -211,9 +212,10 @@ public class WaypointViewer extends EditableInventory<PlayerData> {
         }
 
         @Override
-        public String calculateName() {
-            return getName();
+        public String applyNamePlaceholders(String s) {
+            return s;
         }
+
 
         public boolean isDynamicUse() {
             return current == null;
