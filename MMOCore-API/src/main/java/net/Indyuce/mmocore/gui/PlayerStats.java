@@ -20,6 +20,7 @@ import net.Indyuce.mmocore.party.AbstractParty;
 import net.Indyuce.mmocore.player.stats.StatInfo;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -125,7 +126,7 @@ public class PlayerStats extends EditableInventory<PlayerData> {
                         final net.Indyuce.mmocore.api.player.stats.PlayerStats stats = inv.target.getStats();
 
                         @Override
-                        public String apply(Player player, String str) {
+                        public String apply(OfflinePlayer player, String str) {
                             String explored = str;
                             // Internal placeholders
                             while (explored.contains("{") && explored.substring(explored.indexOf("{")).contains("}")) {

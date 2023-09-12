@@ -23,7 +23,7 @@ public class QuestsCommand extends RegisteredCommand {
 			PlayerData data = PlayerData.get((Player) sender);
 			MMOCommandEvent event = new MMOCommandEvent(data, "quests");
 			Bukkit.getServer().getPluginManager().callEvent(event);
-			if(!event.isCancelled()) InventoryManager.QUEST_LIST.newInventory(data).open();
+			if(!event.isCancelled()) InventoryManager.QUEST_LIST.generate(data,null).open();
 		}
 		return true;
 	}

@@ -29,7 +29,7 @@ public class AttributesCommand extends RegisteredCommand {
 		PlayerData data = PlayerData.get((Player) sender);
 		MMOCommandEvent event = new MMOCommandEvent(data, "attributes");
 		Bukkit.getServer().getPluginManager().callEvent(event);
-		if(!event.isCancelled()) InventoryManager.ATTRIBUTE_VIEW.newInventory(data).open();
+		if(!event.isCancelled()) InventoryManager.ATTRIBUTE_VIEW.generate(data,null).open();
 		return true;
 	}
 }

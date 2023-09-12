@@ -10,7 +10,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
-
+/*
 public class InventoryPacketListener {
 
 
@@ -100,10 +100,10 @@ public class InventoryPacketListener {
             return;
         } else {
             super.write(ctx,packetObj,promise);
-        }*/
+        }
 
 
     }
-}
+}*/
 
 

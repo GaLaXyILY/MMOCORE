@@ -28,7 +28,7 @@ public class PlayerStatsCommand extends RegisteredCommand {
         PlayerData data = PlayerData.get((Player) sender);
         MMOCommandEvent event = new MMOCommandEvent(data, "profile");
         Bukkit.getServer().getPluginManager().callEvent(event);
-        if (!event.isCancelled()) InventoryManager.PLAYER_STATS.generate(data).open();
+        if (!event.isCancelled()) InventoryManager.PLAYER_STATS.generate(data, null).open();
         return true;
     }
 }

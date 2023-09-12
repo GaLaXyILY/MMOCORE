@@ -11,18 +11,18 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 public class WaypointsCommand extends RegisteredCommand {
-	public WaypointsCommand(ConfigurationSection config) {
-		super(config, ToggleableCommand.WAYPOINTS);
-	}
+    public WaypointsCommand(ConfigurationSection config) {
+        super(config, ToggleableCommand.WAYPOINTS);
+    }
 
-	@Override
-	public boolean execute(CommandSender sender, String label, String[] args) {
-		if (sender instanceof Player && sender.hasPermission("mmocore.waypoints")) {
-			PlayerData data = PlayerData.get((Player) sender);
-			MMOCommandEvent event = new MMOCommandEvent(data, "waypoints");
-			Bukkit.getServer().getPluginManager().callEvent(event);
-			if(!event.isCancelled()) InventoryManager.WAYPOINTS.generate(data).open();
-		}
-		return true;
-	}
+    @Override
+    public boolean execute(CommandSender sender, String label, String[] args) {
+        if (sender instanceof Player && sender.hasPermission("mmocore.waypoints")) {
+            PlayerData data = PlayerData.get((Player) sender);
+            MMOCommandEvent event = new MMOCommandEvent(data, "waypoints");
+            Bukkit.getServer().getPluginManager().callEvent(event);
+            if (!event.isCancelled()) InventoryManager.WAYPOINTS.generate(data, null).open();
+        }
+        return true;
+    }
 }

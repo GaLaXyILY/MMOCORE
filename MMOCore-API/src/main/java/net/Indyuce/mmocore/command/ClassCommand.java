@@ -32,9 +32,9 @@ public class ClassCommand extends RegisteredCommand {
 		Bukkit.getServer().getPluginManager().callEvent(event);
 		if(event.isCancelled()) return true;
 		if (data.getProfess().getSubclasses().stream().anyMatch(sub -> sub.getLevel() <= data.getLevel()))
-			InventoryManager.SUBCLASS_SELECT.newInventory(data).open();
+			InventoryManager.SUBCLASS_SELECT.generate(data,null).open();
 		else
-			InventoryManager.CLASS_SELECT.generate(data).open();
+			InventoryManager.CLASS_SELECT.generate(data,null).open();
 		return true;
 	}
 }

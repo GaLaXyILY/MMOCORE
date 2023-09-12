@@ -71,8 +71,8 @@ public class EditableFriendList extends EditableInventory<PlayerData> {
 
 
     public static class OfflineFriendItem extends InventoryItem<FriendListInventory> {
-        public OfflineFriendItem(FriendItem parent, ConfigurationSection config) {
-            super(parent, config);
+        public OfflineFriendItem(ConfigurationSection config) {
+            super(config);
         }
 
         @Override
@@ -98,8 +98,8 @@ public class EditableFriendList extends EditableInventory<PlayerData> {
     }
 
     public static class OnlineFriendItem extends SimpleItem<FriendListInventory> {
-        public OnlineFriendItem(FriendItem parent, ConfigurationSection config) {
-            super(parent, config);
+        public OnlineFriendItem(ConfigurationSection config) {
+            super(config);
         }
 
         @Override
@@ -138,8 +138,8 @@ public class EditableFriendList extends EditableInventory<PlayerData> {
             Validate.notNull(config.contains("online"), "Could not load online config");
             Validate.notNull(config.contains("offline"), "Could not load offline config");
 
-            online = new OnlineFriendItem(this, config.getConfigurationSection("online"));
-            offline = new OfflineFriendItem(this, config.getConfigurationSection("offline"));
+            online = new OnlineFriendItem(config.getConfigurationSection("online"));
+            offline = new OfflineFriendItem(config.getConfigurationSection("offline"));
         }
 
         @Override

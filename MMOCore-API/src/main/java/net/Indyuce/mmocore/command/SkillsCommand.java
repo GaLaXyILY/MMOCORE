@@ -31,7 +31,7 @@ public class SkillsCommand extends RegisteredCommand {
 				return true;
 			}
 
-			InventoryManager.SKILL_LIST.newInventory(data).open();
+			InventoryManager.SKILL_LIST.generate(data,null).open();
 		}
 		return true;
 	}

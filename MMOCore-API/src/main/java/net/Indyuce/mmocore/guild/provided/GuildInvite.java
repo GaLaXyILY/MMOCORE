@@ -39,6 +39,6 @@ public class GuildInvite extends Request {
         );
 
         guild.addMember(getTarget().getUniqueId());
-        InventoryManager.GUILD_VIEW.newInventory(getTarget()).open();
+        InventoryManager.GUILD_VIEW.generate(getTarget(), null).open();
     }
 }

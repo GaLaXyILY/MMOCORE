@@ -42,7 +42,7 @@ public class WaypointsListener implements Listener {
 
         if (waypoint.hasOption(WaypointOption.ENABLE_MENU)) {
             player.setSneaking(false);
-            InventoryManager.WAYPOINTS.newInventory(data, waypoint).open();
+            InventoryManager.WAYPOINTS.generate(data, waypoint, null).open();
         }
     }
 

@@ -70,9 +70,9 @@ public class GuildCommand extends RegisteredCommand {
         }
 
         if (data.inGuild())
-            InventoryManager.GUILD_VIEW.newInventory(data).open();
+            InventoryManager.GUILD_VIEW.generate(data, null).open();
         else
-            InventoryManager.GUILD_CREATION.newInventory(data).open();
+            InventoryManager.GUILD_CREATION.generate(data, null).open();
         return true;
     }
 }

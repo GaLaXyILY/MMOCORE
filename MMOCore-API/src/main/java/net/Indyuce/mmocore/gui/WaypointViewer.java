@@ -60,11 +60,11 @@ public class WaypointViewer extends EditableInventory<PlayerData> {
 
     @Override
     public GeneratedInventory generate(PlayerData data, @Nullable GeneratedInventory generatedInventory) {
-        return newInventory(data, null, null);
+        return generate(data, null, null);
     }
 
-    public GeneratedInventory newInventory(PlayerData data, Waypoint waypoint, @Nullable GeneratedInventory generatedInventory) {
-        return new WaypointViewerInventory(data, this, waypoint);
+    public GeneratedInventory generate(PlayerData data, Waypoint waypoint, @Nullable GeneratedInventory prev) {
+        return new WaypointViewerInventory(data, this, waypoint, prev);
     }
 
     public class WaypointItem extends SimpleItem<WaypointViewerInventory> {
@@ -182,8 +182,8 @@ public class WaypointViewer extends EditableInventory<PlayerData> {
 
         private int page;
 
-        public WaypointViewerInventory(PlayerData playerData, EditableInventory editable, Waypoint current) {
-            super(playerData, editable);
+        public WaypointViewerInventory(PlayerData playerData, EditableInventory editable, Waypoint current, @Nullable GeneratedInventory prev) {
+            super(playerData, editable, prev);
 
             this.current = current;
             if (current != null)

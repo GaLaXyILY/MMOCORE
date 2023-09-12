@@ -74,9 +74,9 @@ public class PartyCommand extends RegisteredCommand {
         }
 
         if (data.getParty() != null)
-            InventoryManager.PARTY_VIEW.newInventory(data).open();
+            InventoryManager.PARTY_VIEW.generate(data,null).open();
         else
-            InventoryManager.PARTY_CREATION.newInventory(data).open();
+            InventoryManager.PARTY_CREATION.generate(data,null).open();
         return true;
     }
 }

@@ -95,7 +95,7 @@ public class EditableGuildView extends EditableInventory<PlayerData> {
         private final MemberDisplayItem member;
 
         public MemberItem(ConfigurationSection config) {
-            super(Material.BARRIER, config);
+            super(config, Material.BARRIER);
 
             Validate.notNull(config.contains("empty"), "Could not load empty config");
             Validate.notNull(config.contains("member"), "Could not load member config");

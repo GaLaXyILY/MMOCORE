@@ -68,7 +68,7 @@ public class FriendsCommand extends RegisteredCommand {
             return true;
         }
 
-        InventoryManager.FRIEND_LIST.newInventory(data).open();
+        InventoryManager.FRIEND_LIST.generate(data,null).open();
         return true;
     }
 }

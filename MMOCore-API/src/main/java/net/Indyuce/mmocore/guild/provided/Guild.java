@@ -1,5 +1,7 @@
 package net.Indyuce.mmocore.guild.provided;
 
+import io.lumine.mythic.lib.data.PlayerProvider;
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.player.PlayerData;
@@ -63,7 +65,7 @@ public class Guild implements AbstractGuild {
     public void removeMember(UUID uuid, boolean disband) {
         PlayerData data = PlayerData.get(uuid);
         if (data != null && data.isOnline() && data.getPlayer().getOpenInventory() != null && data.getPlayer().getOpenInventory().getTopInventory().getHolder() instanceof EditableGuildView.GuildViewInventory)
-            InventoryManager.GUILD_CREATION.newInventory(data).open();
+            InventoryManager.GUILD_CREATION.generate(data, null).open();
 
         if (!disband)
             members.remove(uuid);
@@ -103,7 +105,7 @@ public class Guild implements AbstractGuild {
         for (UUID uuid : members) {
             PlayerData member = PlayerData.get(uuid);
             if (member != null && member.isOnline() && member.getPlayer().getOpenInventory() != null && member.getPlayer().getOpenInventory().getTopInventory().getHolder() instanceof EditableGuildView.GuildViewInventory)
-                ((PluginInventory) member.getPlayer().getOpenInventory().getTopInventory().getHolder()).open();
+                ((PluginInventory<PlayerData>) member.getPlayer().getOpenInventory().getTopInventory().getHolder()).open();
         }
     }
 

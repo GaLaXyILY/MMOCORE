@@ -3,6 +3,7 @@ package net.Indyuce.mmocore.listener;
 
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.api.event.PlayerAttackEvent;
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.event.PlayerResourceUpdateEvent;
 import net.Indyuce.mmocore.api.player.PlayerData;
@@ -19,24 +20,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public class PlayerListener implements Listener {
-
-    /**
-     * Register custom inventory clicks
-     */
-    @EventHandler
-    public void registerInventoryClicks(InventoryClickEvent event) {
-        if (event.getInventory().getHolder() instanceof PluginInventory)
-            ((PluginInventory) event.getInventory().getHolder()).whenClicked(new InventoryClickEvent(event.getRawSlot(), event.getCurrentItem(), event.getClick(), event, event.getInventory(), (PluginInventory) event.getInventory().getHolder()));
-    }
-
-    /**
-     * Register custom inventory close effect
-     */
-    @EventHandler
-    public void registerInventoryCloses(InventoryCloseEvent event) {
-        if (event.getInventory().getHolder() instanceof PluginInventory)
-            ((PluginInventory) event.getInventory().getHolder()).whenClosed(event);
-    }
 
     /**
      * Updates the player's combat log data every time he hits an entity, or

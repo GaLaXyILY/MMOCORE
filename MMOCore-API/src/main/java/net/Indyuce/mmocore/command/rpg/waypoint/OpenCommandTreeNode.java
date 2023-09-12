@@ -11,24 +11,24 @@ import io.lumine.mythic.lib.command.api.CommandTreeNode;
 import io.lumine.mythic.lib.command.api.Parameter;
 
 public class OpenCommandTreeNode extends CommandTreeNode {
-	public OpenCommandTreeNode(CommandTreeNode parent) {
-		super(parent, "open");
+    public OpenCommandTreeNode(CommandTreeNode parent) {
+        super(parent, "open");
 
-		addParameter(Parameter.PLAYER);
-	}
+        addParameter(Parameter.PLAYER);
+    }
 
-	@Override
-	public CommandResult execute(CommandSender sender, String[] args) {
-		if (args.length < 3)
-			return CommandResult.THROW_USAGE;
+    @Override
+    public CommandResult execute(CommandSender sender, String[] args) {
+        if (args.length < 3)
+            return CommandResult.THROW_USAGE;
 
-		Player player = Bukkit.getPlayer(args[2]);
-		if (player == null) {
-			sender.sendMessage(ChatColor.RED + "Could not find player " + args[2]);
-			return CommandResult.FAILURE;
-		}
+        Player player = Bukkit.getPlayer(args[2]);
+        if (player == null) {
+            sender.sendMessage(ChatColor.RED + "Could not find player " + args[2]);
+            return CommandResult.FAILURE;
+        }
 
-		InventoryManager.WAYPOINTS.generate(PlayerData.get(player)).open();
-		return CommandResult.SUCCESS;
-	}
+        InventoryManager.WAYPOINTS.generate(PlayerData.get(player), null).open();
+        return CommandResult.SUCCESS;
+    }
 }

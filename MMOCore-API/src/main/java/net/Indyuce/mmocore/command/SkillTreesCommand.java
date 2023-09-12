@@ -42,7 +42,7 @@ public class SkillTreesCommand extends RegisteredCommand {
                 return false;
             }
             if (data.getProfess().getSkillTrees().size() != 0) {
-                InventoryManager.TREE_VIEW.generate(data).open();
+                InventoryManager.TREE_VIEW.generate(data, null).open();
                 return true;
             } else {
                 MMOCore.plugin.configManager.getSimpleMessage("no-skill-tree").send(player);
@@ -60,7 +60,7 @@ public class SkillTreesCommand extends RegisteredCommand {
                     .filter(skillTree -> UtilityMethods.ymlName(skillTree.getId()).equals(UtilityMethods.ymlName(args[0])))
                     .collect(Collectors.toList())
                     .size() != 0) {
-                InventoryManager.SPECIFIC_TREE_VIEW.get(UtilityMethods.ymlName(args[0])).generate(data).open();
+                InventoryManager.SPECIFIC_TREE_VIEW.get(UtilityMethods.ymlName(args[0])).generate(data, null).open();
                 return true;
             } else {
                 sender.sendMessage(ChatColor.RED + "Your class does not have a skill tree with id: " + args[0]);

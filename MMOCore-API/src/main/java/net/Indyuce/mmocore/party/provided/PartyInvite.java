@@ -38,6 +38,6 @@ public class PartyInvite extends Request {
         if (party.getOwner().isOnline())
             MMOCore.plugin.configManager.getSimpleMessage("party-joined", "owner", party.getOwner().getPlayer().getName()).send(getTarget().getPlayer());
         party.addMember(getTarget());
-        InventoryManager.PARTY_VIEW.newInventory(getTarget()).open();
+        InventoryManager.PARTY_VIEW.generate(getTarget(), null).open();
     }
 }

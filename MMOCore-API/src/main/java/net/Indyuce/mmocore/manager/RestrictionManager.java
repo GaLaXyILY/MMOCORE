@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class RestrictionManager implements MMOCoreManager {
 
     /**
-     * Using {@link ItemType#getDisplayedItem()} instead of an ItemType as
+     * Using {@link ItemType#display()} instead of an ItemType as
      * map key to utilize the HashMap O(1) time complexity of the
      * get function instead of iterating through the key set.
      */
@@ -51,12 +51,12 @@ public class RestrictionManager implements MMOCoreManager {
             try {
                 perms.postLoad();
             } catch (IllegalArgumentException exception) {
-                MMOCore.log(Level.WARNING, "Could not post-load perm set '" + perms.getTool().getDisplayedItem() + "': " + exception.getMessage());
+                MMOCore.log(Level.WARNING, "Could not post-load perm set '" + perms.getTool().display() + "': " + exception.getMessage());
             }
     }
 
     public void register(ToolPermissions perms) {
-        map.put(perms.getTool().getDisplayedItem(), perms);
+        map.put(perms.getTool().display(), perms);
 
         if (perms.isDefault()) {
             Validate.isTrue(defaultPermissions == null, "There is already a default tool permission set");
@@ -69,12 +69,12 @@ public class RestrictionManager implements MMOCoreManager {
      *
      * @param item The item used to break a block
      * @return A list of all the blocks an item is allowed to break.
-     *         If it was not registered earlier, it returns the default permission
-     *         set. If there is no default permission set, returns null
+     * If it was not registered earlier, it returns the default permission
+     * set. If there is no default permission set, returns null
      */
     @Nullable
     public ToolPermissions getPermissions(ItemStack item) {
-        String mapKey = ItemType.fromItemStack(item).getDisplayedItem();
+        String mapKey = ItemType.fromItemStack(item).display();
         ToolPermissions found = map.get(mapKey);
         return found == null ? defaultPermissions : found;
     }
@@ -137,7 +137,7 @@ public class RestrictionManager implements MMOCoreManager {
 
         /**
          * @return Either parent if provided or default tool permission set if this is
-         *         not the default set already, or null otherwise.
+         * not the default set already, or null otherwise.
          */
         public ToolPermissions getParent() {
             return parent != null ? parent : defaultSet ? null : defaultPermissions;

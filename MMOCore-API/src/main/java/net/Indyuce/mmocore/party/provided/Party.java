@@ -1,5 +1,6 @@
 package net.Indyuce.mmocore.party.provided;
 
+import io.lumine.mythic.lib.gui.framework.PluginInventory;
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.gui.social.party.EditablePartyView;
 import net.Indyuce.mmocore.manager.InventoryManager;
@@ -107,7 +108,7 @@ public class Party implements AbstractParty {
     public void removeMember(PlayerData data, boolean notify) {
         if (data.isOnline() && data.getPlayer().getOpenInventory() != null
                 && data.getPlayer().getOpenInventory().getTopInventory().getHolder() instanceof EditablePartyView.PartyViewInventory)
-            InventoryManager.PARTY_CREATION.newInventory(data).open();
+            InventoryManager.PARTY_CREATION.generate(data,null).open();
 
         members.remove(data);
 

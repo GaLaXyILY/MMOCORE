@@ -42,10 +42,10 @@ public class ClassSelect extends EditableInventory<PlayerData> {
     }
 
     public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory) {
-        return generate(playerData, null, null);
+        return generate(playerData, ()->{}, null);
     }
 
-    public GeneratedInventory generate(PlayerData playerData, @Nullable GeneratedInventory generatedInventory, @Nullable Runnable profileRunnable) {
+    public GeneratedInventory generate(PlayerData playerData, @Nullable Runnable profileRunnable, @Nullable GeneratedInventory generatedInventory) {
         return new ProfessSelectionInventory(playerData, this, profileRunnable);
     }
 
