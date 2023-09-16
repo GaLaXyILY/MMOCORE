@@ -763,7 +763,10 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
                     return;
                 }
 
-                MMOCore.plugin.configManager.getSimpleMessage("warping-comencing", "left", String.valueOf((warpTime - t) / 20)).send(getPlayer());
+                if (((warpTime - t) % 20) == 0 && ((warpTime-t) /20) != 0) {
+                    MMOCore.plugin.configManager.getSimpleMessage("warping-comencing", "left", String.valueOf((warpTime - t) / 20)).send(getPlayer());
+                }
+
                 if (hasPerm || t++ >= warpTime) {
                     getPlayer().teleport(target.getLocation());
                     getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1, false, false));
