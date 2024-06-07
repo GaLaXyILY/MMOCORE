@@ -40,6 +40,23 @@ default-playerdata:
   stellium: 0
   stamina: 0
 
+  # Skill -> level
+  skill:
+    # example-skill: 2
+  # Skill tree -> points
+  skill-tree-points:
+    # example-skill-tree: 0
+  # Skill tree node -> level
+  skill-tree-level:
+    # example-skill-tree: 0
+  # Attribute -> points
+  attribute:
+    # example-attribute: 3
+  unlocked-items:
+    # - example-item
+  # Slot -> skill
+  bound-skills:
+    # 6: example-skill
 
 # The list of all conditions which must be met for the
 # BLOCK REGEN and BLOCK RESTRICTIONS to apply. Set to

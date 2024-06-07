@@ -1,7 +1,9 @@
 package net.Indyuce.mmocore.player;
 
+import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.manager.data.PlayerDataManager;
+import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skilltree.SkillTreeNode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
@@ -11,8 +13,29 @@ import java.util.*;
 public class DefaultPlayerData implements ClassDataContainer {
     private final int level, classPoints, skillPoints, attributePoints, attrReallocPoints, skillReallocPoints, skillTreeReallocPoints;
     private final double health, mana, stamina, stellium;
+    private final Map<String, Integer> skillLevels, skillTreePoints, nodeLevels, attributeLevels;
+    private final Set<String> unlockedItems;
+    private final Map<Integer, String> boundSkills;
 
-    public static final DefaultPlayerData DEFAULT = new DefaultPlayerData(1, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0);
+    public static final DefaultPlayerData DEFAULT = new DefaultPlayerData(
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0,
+        0,
+        0,
+        new HashMap<>(),
+        new HashMap<>(),
+        new HashMap<>(),
+        new HashMap<>(),
+        new HashSet<>(),
+        new HashMap<>()
+    );
 
     public DefaultPlayerData(ConfigurationSection config) {
         level = config.getInt("level", 1);
@@ -26,9 +49,26 @@ public class DefaultPlayerData implements ClassDataContainer {
         mana = config.getDouble("mana", 20);
         stamina = config.getDouble("stamina", 20);
         stellium = config.getDouble("stellium", 20);
+
+        skillLevels = config.isConfigurationSection("skill") ? (Map) config.getConfigurationSection("skill").getValues(false) : new HashMap<>();
+        skillTreePoints = config.isConfigurationSection("skill-tree-points") ? (Map) config.getConfigurationSection("skill-tree-points").getValues(false) : new HashMap<>();
+        nodeLevels = config.isConfigurationSection("skill-tree-level") ? (Map) config.getConfigurationSection("skill-tree-level").getValues(false) : new HashMap<>();
+        attributeLevels = config.isConfigurationSection("attribute") ? (Map) config.getConfigurationSection("attribute").getValues(false) : new HashMap<>();
+        unlockedItems = new HashSet<>(config.getStringList("unlocked-items"));
+        boundSkills = new HashMap<>();
+        if (config.isConfigurationSection("bound-skills")) {
+            for (String key : config.getConfigurationSection("bound-skills").getKeys(false)) {
+                boundSkills.put(Integer.parseInt(key), config.getString("bound-skills." + key));
+            }
+        }
     }
 
-    public DefaultPlayerData(int level, int classPoints, int skillPoints, int attributePoints, int attrReallocPoints, int skillReallocPoints, int skillTreeReallocPoints, double health, double mana, double stamina, double stellium) {
+    public DefaultPlayerData(int level, int classPoints, int skillPoints, int attributePoints,
+                             int attrReallocPoints, int skillReallocPoints, int skillTreeReallocPoints,
+                             double health, double mana, double stamina, double stellium,
+                             Map<String, Integer> skillLevels, Map<String, Integer> skillTreePoints,
+                             Map<String, Integer> nodeLevels, Map<String, Integer> attributeLevels,
+                             Set<String> unlockedItems, Map<Integer, String> boundSkills) {
         this.level = level;
         this.classPoints = classPoints;
         this.skillPoints = skillPoints;
@@ -40,6 +80,13 @@ public class DefaultPlayerData implements ClassDataContainer {
         this.mana = mana;
         this.stamina = stamina;
         this.stellium = stellium;
+
+        this.skillLevels = skillLevels;
+        this.skillTreePoints = skillTreePoints;
+        this.nodeLevels = nodeLevels;
+        this.attributeLevels = attributeLevels;
+        this.unlockedItems = unlockedItems;
+        this.boundSkills = boundSkills;
     }
 
     public int getLevel() {
@@ -102,17 +149,17 @@ public class DefaultPlayerData implements ClassDataContainer {
 
     @Override
     public Map<String, Integer> mapSkillLevels() {
-        return new HashMap<>();
+        return this.skillLevels;
     }
 
     @Override
     public Map<String, Integer> mapSkillTreePoints() {
-        return new HashMap<>();
+        return this.skillTreePoints;
     }
 
     @Override
     public Map<String, Integer> getNodeLevels() {
-        return new HashMap<>();
+        return this.nodeLevels;
     }
 
     @Override
@@ -122,17 +169,17 @@ public class DefaultPlayerData implements ClassDataContainer {
 
     @Override
     public Set<String> getUnlockedItems() {
-        return new HashSet<>();
+        return this.unlockedItems;
     }
 
     @Override
     public Map<String, Integer> mapAttributeLevels() {
-        return new HashMap<>();
+        return this.attributeLevels;
     }
 
     @Override
     public Map<Integer, String> mapBoundSkills() {
-        return new HashMap<>();
+        return this.boundSkills;
     }
 
     public void apply(PlayerData player) {
@@ -149,5 +196,12 @@ public class DefaultPlayerData implements ClassDataContainer {
         player.setMana(mana);
         player.setStamina(stamina);
         player.setStellium(stellium);
+
+        skillLevels.forEach(player::setSkillLevel);
+        skillTreePoints.forEach(player::setSkillTreePoints);
+        nodeLevels.forEach((nodeId, level) -> player.setNodeLevel(MMOCore.plugin.skillTreeManager.getNode(nodeId), level));
+        attributeLevels.forEach((attribute, level) -> player.getAttributes().getInstance(attribute).setBase(level));
+        player.setUnlockedItems(unlockedItems);
+        boundSkills.forEach((slot, skill) -> player.bindSkill(slot, player.getProfess().getSkill(skill)));
     }
 }
