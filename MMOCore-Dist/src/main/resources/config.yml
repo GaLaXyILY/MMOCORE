@@ -48,7 +48,7 @@ default-playerdata:
     # example-skill-tree: 0
   # Skill tree node -> level
   skill-tree-level:
-    # example-skill-tree: 0
+    # example-skill-tree-node: 0
   # Attribute -> points
   attribute:
     # example-attribute: 3
