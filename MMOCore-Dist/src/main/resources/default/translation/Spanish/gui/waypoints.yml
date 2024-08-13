@@ -1,6 +1,6 @@
 #GUI display name
-name: Viajes
-name-on-waypoint: 'Viaje: {waypoint}'
+name: Puntos de referencia
+name-on-waypoint: 'Puntos de referencia: {waypoint}'
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 45
@@ -48,37 +48,37 @@ items:
       not-ready: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as the two waypoints are not linked.'
+        - '&7No puedes teletransportarte, ya que los dos puntos de referencia no están vinculados.'
     #When you cannot teleport to a non dynamic waypoint
     not-dynamic:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you are not standing on a waypoint.'
+        - '&7No puedes teletransportarte porque no estás parado en un punto de referencia.'
     current-waypoint:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7The waypoint you are standing at.'
+        - '&7El punto de referencia en el que te encuentras.'
     #When you don't have enough stellium
     not-enough-stellium:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you do not have enough Stellium.'
-        - '&7Teleporting costs &b{normal_cost}&7/&b{dynamic_cost} &7Stellium.'
+        - '&7No puedes teletransportarte, no tienes suficiente Stellium.'
+        - '&7Costo del teletransporte &b{normal_cost}&7/&b{dynamic_cost} &7Stellium.'
     #Displayed when the waypoint is unlocked and usable
     display:
       name: '&a{name}'
       item: ENDER_EYE
       lore:
         - '{lore}'
-        - '&7You can teleport to this waypoint.'
-        - '&7Intermediary waypoints: {intermediary_waypoints}'
-        - '&7Click to teleport for &b{current_cost} &7Stellium.'
+        - '&7No puedes teletransportarte a este punto de referencia.'
+        - '&7Puntos de referencia intermediarios: {intermediary_waypoints}'
+        - '&7Haz clic para teletransportarte por &b{current_cost} &7Stellium.'
   next:
     slots:
       - 26
