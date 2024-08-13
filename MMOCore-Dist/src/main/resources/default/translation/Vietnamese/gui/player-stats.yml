@@ -65,9 +65,9 @@ items:
       - '&7Tỷ lệ đánh cá chí mạng: &c{critical_fishing_chance}%'
       - '&7Tỉ lệ chí mạng thất bại: &c{critical_fishing_failure_chance}%'
       - ''
-      - '&7Sức mạnh câu cá: &c{fishing_strength}%'
-      - '&7Tỷ lệ đánh cá chí mạng: &c{critical_fishing_chance}%'
-      - '&7Tỉ lệ chí mạng thất bại: &c{critical_fishing_failure_chance}%'
+      - '&7Fishing Strength: &c%mmocore_stat_fishing_strength%%'
+      - '&7Crit Fishing Rate: &c%mmocore_stat_critical_fishing_chance%%'
+      - '&7Crit Failure Rate: &c%mmocore_stat_critical_fishing_failure_chance%%'
   alchemy-profession:
     slots:
       - 20
@@ -183,7 +183,7 @@ items:
       - '&7&orất khuyến khích bạn!'
       - ''
       - '&7Tổ đội công thêm ({count}):'
-      - '&8+{buff_additional_experience} Kinh nghiệm kiếm được!'
+      - '&8+{buff_additional_experience}% Experience Earned!'
       - '&8+{buff_health_regeneration} Khả năng hồi phục'
   stats:
     slots:
