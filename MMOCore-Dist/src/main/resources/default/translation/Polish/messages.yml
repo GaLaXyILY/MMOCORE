@@ -120,11 +120,11 @@ friend-request:
   - '{"text":""}'
 #Parties
 party-chat: '&5[Party] {player}: {message}'
-sent-party-invite: '&eYou sent a party invite to &6{player}&e.'
-already-in-party: '&c{player} is already in your party.'
+sent-party-invite: 'Wysłałeś zaproszenie do drużyny dla gracza {player}.'
+already-in-party: 'Gracz o nazwie &c{player} jest już w twojej drużynie.'
 party-invite:
   - '{"text":""}'
-  - '{"text":"&6{player} &ehas invited you to their party!"}'
+  - '{"text":"&eGracz &6{player} &ezaprosił cię do swojej drużyny!"}'
   - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/party accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/party deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
   - '{"text":""}'
 party-is-full: '&cSorry, your party is full.'
