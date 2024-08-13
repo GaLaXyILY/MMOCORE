@@ -1,5 +1,5 @@
 #GUI display name
-name: Il tuo personaggio
+name: Il Tuo Personaggio
 #Number of slots in your inventory. Must be
 #between 9 and 54 and must be a multiple of 9.
 slots: 54
@@ -183,8 +183,8 @@ items:
       - '&7&oti incoraggia molto!'
       - ''
       - '&7Bonus party ({count}):'
-      - '&8+{buff_additional_experience} Experience Earned!'
-      - '&8+{buff_health_regeneration} Health Regeneration'
+      - '&8+{buff_additional_experience} Esperianza Guadagnata!'
+      - '&8+ Rigenerazione Salute{buff_health_regeneration}'
   stats:
     slots:
       - 15
