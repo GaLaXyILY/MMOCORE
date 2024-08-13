@@ -63,11 +63,11 @@ items:
       - ''
       - '&7Рыболовство может дать вам уникальные предметы,'
       - '&7которые вы больше нигде не сможете найти. Чем больше вы'
-      - '&7&oрыбачите, тем будет проще их найти.'
+      - '&7&oрыбачьте, и их будет легче найти.'
       - ''
-      - '&7Навык Рабалки: &c{fishing_strength}%'
-      - '&7Навык Удачи Рыбалки: &c{critical_fishing_chance}%'
-      - '&7Шанс Неудачи Рыбалки: &c{critical_fishing_failure_chance}%'
+      - '&7Навык Рыбалки: &c{fishing_strength}%'
+      - '&7Шанс критической удачи Рыбалки: &c{critical_fishing_chance}%'
+      - '&7Шанс критической неудачи Рыбалки: &c{critical_fishing_failure_chance}%'
   alchemy-profession:
     slots:
       - 20
@@ -79,8 +79,8 @@ items:
       - '&7Текущий Уровень: &e{level}'
       - '&8[&e{progress}&8] &e{percent}%'
       - ''
-      - '&7В мире, где вы больше не ограничены'
-      - '&7&простыми зельями, попробуйте освоить кучу новых алхимических'
+      - '&7&oВ мире, где вы больше не ограничены'
+      - '&7&oпростые зелья, попробуйте освоить кучу новых способов варки'
       - '&7&oрецептов, чтобы получить преимущество на поле боя.'
   smithing-profession:
     slots:
@@ -183,8 +183,8 @@ items:
       - '&7&oочень поощряет вас!'
       - ''
       - '&7Бонусы Группы ({count}):'
-      - '&8+{buff_additional_experience} Experience Earned!'
-      - '&8+{buff_health_regeneration} Health Regeneration'
+      - '&8+{buff_additional_experience} Получаемого Опыта!'
+      - '&8+{buff_health_regeneration} Регенерации Здоровья'
   stats:
     slots:
       - 15
