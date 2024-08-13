@@ -41,14 +41,11 @@ items:
       - 27
     lore:
       - ''
-      - '&a描述:'
       - '{tree-lore}'
       - ''
-      - '-----------------'
-      - '&e◆最大点数&e: &6{max-point-spent}'
-      - '&e◆点数花费&e:&6 {point-spent}'
-      - '&e◆当前 {name} &e点数: &6{skill-tree-points}'
-      - '&e◆当前全局点数: &6{global-points}'
+      - '&e◆ Points: &6{max-point-spent}&e/&6{point-spent}'
+      - '&e◆ Current {name} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current Global Points: &6{global-points}'
   next-tree-list-page:
     function: 'next-tree-list-page'
     item: PLAYER_HEAD
@@ -118,6 +115,7 @@ items:
       - 42
       - 43
       - 44
+    name: '&a{name}'
     #The lore that will be displayed after the lore of the node.
     #The {node-lore} placeholder will be replaced by the lore specified in the skill tree node config.
     #All the placeholders you see here can also be used in the node lore.
@@ -127,24 +125,23 @@ items:
       - '&7当前等级: &6{current-level}'
       - '&7最大等级: &6{max-level}'
       - '&7最大子级: &6{max-children}'
-      - '&7需要点数: &6{point-consumed}'
+      - '&7Points Required: &6{point-consumed}'
       - '&7大小: &6{size}'
-      - '-----------------'
+      - ''
       - '&7⧆ &6需求: '
       - '&f强父节点: '
       - '{strong-parents}'
       - ''
       - '&f弱父节点: '
       - '{soft-parents}'
-      - '-----------------'
-      - '{node-lore}'
-      - '-----------------'
-      - '&e◆{skill-tree}&e 最大点数: &6{max-point-spent}'
-      - '&e◆{skill-tree}&e 已花费点数:&6 {point-spent}'
-      - '&e◆当前 {skill-tree} &e点数: &6{skill-tree-points}'
-      - '&e◆当前 &6全局&e 点数: &6{global-points}'
-    path-lore:
       - ''
+      - '{node-lore}'
+      - ''
+      - '&e◆ Max points for {skill-tree}&e: &6{max-point-spent}'
+      - '&e◆ Points spent for {skill-tree}&e:&6 {point-spent}'
+      - '&e◆ Current {skill-tree} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current &6global&e points: &6{global-points}'
+    path-lore: [ ]
 #This is the name that will be displayed for each status.
 status-names:
   unlocked: '已解锁'
