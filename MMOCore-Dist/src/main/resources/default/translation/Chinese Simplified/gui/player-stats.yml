@@ -65,9 +65,9 @@ items:
       - '&7&o独特的掉落物. 垂钓的越多,'
       - '&7&o获得的越多.'
       - ''
-      - '&7垂钓力度: &c{fishing_strength}%'
-      - '&7垂钓暴击率: &c{critical_fishing_chance}%'
-      - '&7垂钓暴击失败率: &c{critical_fishing_failure_chance}%'
+      - '&7Fishing Strength: &c%mmocore_stat_fishing_strength%%'
+      - '&7Crit Fishing Rate: &c%mmocore_stat_critical_fishing_chance%%'
+      - '&7Crit Failure Rate: &c%mmocore_stat_critical_fishing_failure_chance%%'
   alchemy-profession:
     slots:
       - 20
@@ -183,7 +183,7 @@ items:
       - '&7&o可以大幅激励你!'
       - ''
       - '&7队伍加成 ({count}):'
-      - '&8+{buff_additional_experience} 经验获取!'
+      - '&8+{buff_additional_experience}% Experience Earned!'
       - '&8+{buff_health_regeneration} 生命恢复'
   stats:
     slots:
