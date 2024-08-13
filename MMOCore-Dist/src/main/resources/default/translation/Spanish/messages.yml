@@ -116,7 +116,7 @@ already-friends: '&cYa eres amigo de {player}.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &eacaba de enviarte una solicitud de amistad!"}'
-  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '[{"text":"        "},{"text":"&8[&a&lACEPTAR&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&e¡Clic para aceptar!"}},{"text":"&r             "},{"text":"&8[&c&lRECHAZAR&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClic para rechazar."}}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[Grupo] {player}: {message}'
