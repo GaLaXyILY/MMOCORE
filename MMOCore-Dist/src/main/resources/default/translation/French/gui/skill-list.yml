@@ -66,23 +66,23 @@ items:
       - 53
     function: slot
     item: GRAY_DYE
-    name: '&aSkill Slot {slot}'
-    no-skill: '&cNone'
+    name: '&aEmplacement de compétence {slot}'
+    no-skill: '&cAucun'
     #If this is filled, the item shown in the GUI when a slot is filled will be the item specified here.
     #Else it will be the display item of the bound skill.
     #filled-item:
     #filled-custom-model-data:
     lore:
-      - '&7Current Skill: &6{skill}'
+      - '&7Compétence actuelle: &6{skill}'
       - ''
       - '{slot-lore}'
       - ''
-      - '&7&oCast this spell by pressing [F] followed'
-      - '&7&oby the keybind displayed on the action bar.'
+      - '&7&oLancez ce sort en appuyant sur [F] puis sur'
+      - '&7&opar le raccourci clavier affiché dans la barre d''action.'
       - ''
-      - '&e► Left click to bind {selected}.'
-      - '&e► Right click to unbind.'
-      - '&e► Shift left click to select.'
+      - '&e► Clic gauche pour lier {selected}.'
+      - '&e► Clic droit pour délier.'
+      - '&e► Shift clic gauche pour sélectionner.'
   skill-level:
     slots:
       - 6
