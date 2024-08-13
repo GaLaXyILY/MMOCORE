@@ -31,25 +31,25 @@ pvp-mode:
   cooldown: '&cПожалуйста, подождите {remaining} секунд, чтобы использовать эту команду снова.'
   #When you cannot hit another player
   cannot-hit:
-    high-level-difference: '&cLevel difference is too high to fight this player.'
-    low-level-target: '&cYou cannot fight this player as their level is too low.'
-    low-level-self: '&cYour level is too low to fight other players.'
-    pvp-mode-disabled-target: '&cThis player has not toggled on PvP.'
-    pvp-mode-disabled-self: '&cYou have not toggled on PvP.'
-    invulnerable-self: '&cYou are still out of combat for {left} seconds.'
-    invulnerable-target: '&cThis player is out of combat for {left} seconds.'
+    high-level-difference: '&cРазница уровня слишком высока для борьбы с этим игроком.'
+    low-level-target: '&cВы не можете сражаться с этим игроком, так как его уровень слишком низкий.'
+    low-level-self: '&cВаш уровень слишком низкий, чтобы сражаться с другими игроками.'
+    pvp-mode-disabled-target: '&cЭтот игрок не включил PvP.'
+    pvp-mode-disabled-self: '&cВы не включили режим PvP.'
+    invulnerable-self: '&cВы все еще находитесь в бою на {left} секунд.'
+    invulnerable-target: '&cЭтот игрок закончил сражение на {left} секунд.'
   #When using /pvpmode
   toggle:
-    on-safe: '&aYou will now be able to fight other players in dedicated areas.'
-    on-invulnerable: '&aYou will be able to fight other players in {time} seconds.'
-    off-safe: '&cYou can no longer fight other players.'
+    on-safe: '&aТеперь вы сможете сражаться с другими игроками в специальных зонах.'
+    on-invulnerable: '&aВы сможете сражаться с другими игроками через {time} секунд.'
+    off-safe: '&cВы больше не можете сражаться с другими игроками.'
   #Entering/leaving regions
   leave:
-    pvp-allowed: '&cYou left a PVP zone but are still vulnerable for {remaining} seconds!'
-    pvp-denied: '&cYou left the PVP zone.'
+    pvp-allowed: '&cВы покинули PVP зону, но все еще уязвимы в течение {remaining} секунд!'
+    pvp-denied: '&cВы вышли из PVP зоны.'
   enter:
-    pvp-mode-on: '&aYou entered a PVP zone and gained invulnerability for {time} seconds!'
-    pvp-mode-off: '&aYou entered a PVP zone. You may use /pvpmode to fight other players.'
+    pvp-mode-on: '&aВы вошли в PVP зону и получили неуязвимость на {time} секунд!'
+    pvp-mode-off: '&aВы вошли в PVP зону. Вы можете использовать /pvpmode для борьбы с другими игроками.'
 #Fishing Profession
 caught-fish: '&cВы поймали рыбу!'
 fish-out-water: '&aОтлично!'
@@ -80,7 +80,7 @@ casting:
   no-longer: '%&cYou cancelled skill casting.'
   no-mana: '&cУ вас недостаточно {mana}, необходимо {mana-required}!'
   no-stamina: '&cВам не хватает выносливости!'
-  on-cooldown: '&cThis skill is on a {cooldown}s cooldown.'
+  on-cooldown: '&cЭтот навык перезарядится через {cooldown}.'
 #Combat Log
 now-in-combat: '%&cТеперь вы в бою!'
 leave-combat: '%&aТы ушел из боя.'
@@ -116,7 +116,7 @@ already-friends: '&cВы уже дружите с {player}.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &ejust отправил вам запрос на добавление в друзья!"}'
-  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '[{"text":"        ","hoverEvent":{}},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eНажмите, чтобы принять!"}},{"text":"&r             ","hoverEvent":{}},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eНажмите, чтобы отклонить."}}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[Party] {player}: {message}'
@@ -180,10 +180,10 @@ no-class-skill: '&cУ вашего класса нет навыков.'
 not-enough-skill-points: '&cНеобходимо одно очко навыка.'
 not-enough-skill-points-shift: '&cВам нужно {shift_points} очков навыка.'
 upgrade-skill: '&eВаш уровень &6{skill} &eтеперь &6{level}&!'
-skill-level-not-met: '&cYou cannot use this skill yet.'
+skill-level-not-met: '&cВы пока не можете использовать этот навык.'
 no-skill-bound: '&cУ вас нет привязанных навыков привязанных к этому слоту.'
-not-compatible-skill: '&cThe selected skill is not compatible with this slot.'
-cant-manually-bind: "&cYou can't manually bind/unbind a skill to this slot."
+not-compatible-skill: '&cВыбранный навык не совместим с данным слотом.'
+cant-manually-bind: "&cВы не можете привязать/отвязать навык от этого слота вручную."
 skill-max-level-hit: '&cВы уже достигли максимального уровня для этого навыка.'
 no-skill-placeholder: 'Навыки не найдены'
 not-skill-reallocation-point: '&cУ вас нет 1 очка перераспределения навыков.'
@@ -195,8 +195,8 @@ no-skill-tree-points-spent: '&cВы не потратили ни одного о
 locked-node: '&cЭтот навык заблокирован!'
 upgrade-skill-node: '&eВаш уровень &6{skill-node} &eтеперь &6{level}&!'
 skill-node-max-level-hit: '&cВы уже достигли максимального уровня для этого навыка.'
-missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
-not-enough-skill-tree-points: '&cYou need {point} skill tree point.'
+missing-skill-node-permission: '&cУ вас нет доступа к этому узлу навыка.'
+not-enough-skill-tree-points: '&cНеобходимо очков навыка: {point}.'
 reallocated-points: '&eВы успешно сбросили дерево навыков {skill-tree}. Теперь у вас есть &6{points} &eочков дерева навыков.'
 not-skill-tree-reallocation-point: '&cУ вас нет 1 очка перераспределения дерева навыков.'
 no-skill-tree: '&cУ вашего класса нет дерева навыков.'
