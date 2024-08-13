@@ -48,37 +48,37 @@ items:
       not-ready: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as the two waypoints are not linked.'
+        - '&7两个航路点没有互相连接, 你不能传送.'
     #When you cannot teleport to a non dynamic waypoint
     not-dynamic:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you are not standing on a waypoint.'
+        - '&7你没有站在航路点上, 不能进行传送.'
     current-waypoint:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7The waypoint you are standing at.'
+        - '&7你所处的航路点.'
     #When you don't have enough stellium
     not-enough-stellium:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you do not have enough Stellium.'
-        - '&7Teleporting costs &b{normal_cost}&7/&b{dynamic_cost} &7Stellium.'
+        - '&7你的星能不足, 无法传送.'
+        - '&7传送将花费 &b{normal_cost}&7/&b{dynamic_cost} &7星能.'
     #Displayed when the waypoint is unlocked and usable
     display:
       name: '&a{name}'
       item: ENDER_EYE
       lore:
         - '{lore}'
-        - '&7You can teleport to this waypoint.'
-        - '&7Intermediary waypoints: {intermediary_waypoints}'
-        - '&7Click to teleport for &b{current_cost} &7Stellium.'
+        - '&7你可以传送到这个航路点.'
+        - '&7中转航路点: {intermediary_waypoints}'
+        - '&7点击花费 &b{current_cost} &7星能以传送.'
   next:
     slots:
       - 26
