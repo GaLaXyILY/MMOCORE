@@ -47,15 +47,15 @@ items:
       #ready (not dynamic, or not enough stellium)
       not-ready: ENDER_PEARL
       lore:
-        - '{lore}'
-        - '&7You cannot teleport as the two waypoints are not linked.'
+        - ''
+        - '&7你不能傳送, 因為兩個導航點沒有連接.'
     #When you cannot teleport to a non dynamic waypoint
     not-dynamic:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you are not standing on a waypoint.'
+        - '&7你不能傳送, 因為你沒有站在導航點附近.'
     current-waypoint:
       name: '&a{name}'
       item: ENDER_PEARL
