@@ -147,10 +147,10 @@ items:
       - ''
 #This is the name that will be displayed for each status.
 status-names:
-  unlocked: 'Unlocked'
-  unlockable: 'Unlockable'
-  locked: 'Locked'
-  fully-locked: 'Fully Locked'
+  unlocked: '已解锁'
+  unlockable: '可解锁'
+  locked: '已锁定'
+  fully-locked: '完全锁定'
 display:
   paths:
     unlocked:
