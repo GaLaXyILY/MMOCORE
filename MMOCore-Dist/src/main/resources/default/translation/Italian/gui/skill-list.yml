@@ -76,13 +76,12 @@ items:
       - '&7Abilità attuale: &6{skill}'
       - ''
       - '{slot-lore}'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
       - ''
-      - '&7oLancia questo incantesimo premendo [F] seguito'
-      - '&7odal tasto associato e visualizzato sulla barra delle azioni.'
-      - ''
-      - '&e► Click sinistro per associare {selected}.'
-      - '&c► Click destro per annullare.'
-      - '&e► Shift+clic sinistro per selezionare.'
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
