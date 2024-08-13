@@ -183,8 +183,8 @@ items:
       - '&7&ovous encourage fortement !'
       - ''
       - '&7Bonus de groupe ({count} ) :'
-      - '&8+{buff_additional_experience} Experience Earned!'
-      - '&8+{buff_health_regeneration} Health Regeneration'
+      - '&8+{buff_additional_experience} Expérience acquise!'
+      - '&8+{buff_health_regeneration} Régénération de la santé'
   stats:
     slots:
       - 15
