@@ -63,12 +63,26 @@ player-input:
     guild-creation-tag: 'Thẻ bang hội..'
     guild-creation-name: 'Tên bang hội..'
   chat:
-    friend-request: '&eViết trong phần trò chuyện tên người chơi.'
-    party-invite: '&eViết trong phần trò chuyện người chơi bạn muốn mời.'
-    guild-invite: '&eViết trong phần trò chuyện người chơi bạn muốn mời.'
-    guild-creation-tag: '&eViết trong phần trò chuyện THẺ của BANG HỘI bạn muốn tạo.'
-    guild-creation-name: '&eViết trong phần trò chuyện tên của BANG HỘI bạn muốn tạo.'
-    cancel: '&eViết &c''cancel'' &eđể hủy.'
+    friend-request:
+      - '&eWrite in the chat the player name.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    party-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-tag:
+      - '&eWrite in the chat the TAG of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-name:
+      - '&eWrite in the chat the name of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    friend-request-cancel: ''
+    party-invite-cancel: ''
+    guild-invite-cancel: ''
+    guild-creation-tag-cancel: ''
+    guild-creation-name-cancel: ''
 #Spell Casting
 casting:
   action-bar:
@@ -182,6 +196,7 @@ not-enough-skill-points-shift: '&cBạn cần {shift_points} điểm kỹ năng.
 upgrade-skill: '&6{skill} &ecủa bạn bây giờ đã đạt cấp &6{level}&e!'
 skill-level-not-met: '&cBạn chưa thể sử dụng kỹ năng này.'
 no-skill-bound: '&cBạn không có bất kỳ kỹ năng nào được gán ở vị trí này.'
+skill-cannot-be-bound: '&cThis skill is always active and cannot be bound.'
 not-compatible-skill: '&cKỹ năng đã chọn không tương thích với vị trí này.'
 cant-manually-bind: "&cBạn không thể liên kết/hủy liên kết thủ công một kỹ năng với vị trí này."
 skill-max-level-hit: '&cBạn đã đạt cấp độ tối đa cho kỹ năng đó.'
@@ -190,6 +205,7 @@ not-skill-reallocation-point: '&cBạn không có 1 điểm phân bổ lại k�
 no-skill-points-spent: '&cBạn chưa sử dụng bất kỳ điểm kỹ năng nào.'
 skill-points-reallocated: '&eBạn đã đặt lại thành công các thuộc tính của mình. Bây giờ bạn có &6{points} &eđiểm kỹ năng.'
 max-points-reached: 'Bạn đã đạt đến số điểm tối đa mà bạn có thể chi ra. Bạn cần phân bổ lại điểm của mình để khôi phục.'
+cannot-upgrade-skill: '&cYou cannot upgrade this skill.'
 #Skill Trees
 no-skill-tree-points-spent: '&cBạn chưa sử dụng bất kỳ điểm cây kỹ năng nào.'
 locked-node: '&cKỹ năng này đã bị khóa!'
