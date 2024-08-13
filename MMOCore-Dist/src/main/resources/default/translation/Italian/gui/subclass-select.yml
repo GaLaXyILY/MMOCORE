@@ -14,8 +14,8 @@ items:
   arcane-mage:
     slots:
       - 13
-    function: sub-class-arcane-mage
-    name: '&a&lThe Arcane Mage'
+    function: sotto-classe-mago-arcano
+    name: '&a&lIl Mago Arcano'
     lore:
       - '{lore}'
       - ''
