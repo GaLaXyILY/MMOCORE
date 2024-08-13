@@ -31,7 +31,7 @@ items:
     #When quest is locked
     locked:
       item: PAPER
-      name: '&c- Unavailable -'
+      name: '&c- Indisponible -'
     #When there is no quest to display
     no-quest:
       item: GRAY_STAINED_GLASS_PANE
