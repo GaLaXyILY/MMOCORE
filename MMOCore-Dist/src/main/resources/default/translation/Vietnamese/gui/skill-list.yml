@@ -76,13 +76,12 @@ items:
       - '&7Kĩ năng hiện tại: &6{skill}'
       - ''
       - '{slot-lore}'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
       - ''
-      - '&7&oThực hiện phép thuật này bằng cách nhấn [nút đổi thay cầm vật phẩm] theo sau'
-      - '&7&obởi tổ hợp phím được hiển thị trên thanh hành động.'
-      - ''
-      - '&e► Nhấp chuột trái để liên kết {selected}.'
-      - '&e► Nhấp chuột phải để hủy liên kết.'
-      - '&e► Shift nhấp chuột trái để chọn.'
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
