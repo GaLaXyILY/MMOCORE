@@ -76,13 +76,12 @@ items:
       - '&7當前技能: &6{skill}'
       - ''
       - '{slot-lore}'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
       - ''
-      - '&7&o按下 [F] 以觸發技能'
-      - '&7&在 action bar查看按鍵綁定'
-      - ''
-      - '&e► 左鍵綁定 {selected}'
-      - '&e► 右鍵解除綁定'
-      - '&e► Shift+左鍵選取'
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
