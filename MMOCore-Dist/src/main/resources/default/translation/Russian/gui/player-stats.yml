@@ -65,9 +65,9 @@ items:
       - '&7которые вы больше нигде не сможете найти. Чем больше вы'
       - '&7&oрыбачьте, и их будет легче найти.'
       - ''
-      - '&7Навык Рыбалки: &c{fishing_strength}%'
-      - '&7Шанс критической удачи Рыбалки: &c{critical_fishing_chance}%'
-      - '&7Шанс критической неудачи Рыбалки: &c{critical_fishing_failure_chance}%'
+      - '&7Fishing Strength: &c%mmocore_stat_fishing_strength%%'
+      - '&7Crit Fishing Rate: &c%mmocore_stat_critical_fishing_chance%%'
+      - '&7Crit Failure Rate: &c%mmocore_stat_critical_fishing_failure_chance%%'
   alchemy-profession:
     slots:
       - 20
@@ -183,7 +183,7 @@ items:
       - '&7&oочень поощряет вас!'
       - ''
       - '&7Бонусы Группы ({count}):'
-      - '&8+{buff_additional_experience} Получаемого Опыта!'
+      - '&8+{buff_additional_experience}% Experience Earned!'
       - '&8+{buff_health_regeneration} Регенерации Здоровья'
   stats:
     slots:
