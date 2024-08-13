@@ -15,7 +15,7 @@ items:
     slots:
       - 13
     function: sub-class-arcane-mage
-    name: '&a&lThe Arcane Mage'
+    name: '&a&lМаг [ТАЙНАЯ МАГИЯ]'
     lore:
       - '{lore}'
       - ''
