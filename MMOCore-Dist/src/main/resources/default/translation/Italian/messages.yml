@@ -31,25 +31,25 @@ pvp-mode:
   cooldown: '&cSei pregato d''attendere {remaining} secondi per riutilizzare questo comando.'
   #When you cannot hit another player
   cannot-hit:
-    high-level-difference: '&cLevel difference is too high to fight this player.'
-    low-level-target: '&cYou cannot fight this player as their level is too low.'
-    low-level-self: '&cYour level is too low to fight other players.'
-    pvp-mode-disabled-target: '&cThis player has not toggled on PvP.'
-    pvp-mode-disabled-self: '&cYou have not toggled on PvP.'
-    invulnerable-self: '&cYou are still out of combat for {left} seconds.'
-    invulnerable-target: '&cThis player is out of combat for {left} seconds.'
+    high-level-difference: '&cLa differenza di livello è troppo alta per combattere questo giocatore.'
+    low-level-target: '&cNon puoi combattere questo giocatore perché il suo livello è troppo basso.'
+    low-level-self: '&cIl tuo livello è troppo basso per combattere gli altri giocatori.'
+    pvp-mode-disabled-target: '&cQuesto giocatore non ha attivato PvP.'
+    pvp-mode-disabled-self: '&cNon hai attivato PvP.'
+    invulnerable-self: '&cSei ancora fuori combattimento per {left} secondi.'
+    invulnerable-target: '&cQuesto giocatore è fuori combattimento per {left} secondi.'
   #When using /pvpmode
   toggle:
-    on-safe: '&aYou will now be able to fight other players in dedicated areas.'
-    on-invulnerable: '&aYou will be able to fight other players in {time} seconds.'
-    off-safe: '&cYou can no longer fight other players.'
+    on-safe: '&aOra sarai in grado di combattere altri giocatori in aree dedicate.'
+    on-invulnerable: '&aSarai in grado di combattere altri giocatori in {time} secondi.'
+    off-safe: '&cNon puoi più combattere gli altri giocatori.'
   #Entering/leaving regions
   leave:
-    pvp-allowed: '&cYou left a PVP zone but are still vulnerable for {remaining} seconds!'
-    pvp-denied: '&cYou left the PVP zone.'
+    pvp-allowed: '&cHai abbandonato una zona PVP ma sarai ancora vulnerabile per {remaining} secondi!'
+    pvp-denied: '&cHai lasciato la zona PVP.'
   enter:
-    pvp-mode-on: '&aYou entered a PVP zone and gained invulnerability for {time} seconds!'
-    pvp-mode-off: '&aYou entered a PVP zone. You may use /pvpmode to fight other players.'
+    pvp-mode-on: '&aSei entrato in una zona PVP e hai ottenuto l''invulnerabilità per {time} secondi!'
+    pvp-mode-off: '&aSei entrato in una zona PVP. Puoi usare /pvpmode per combattere altri giocatori.'
 #Fishing Profession
 caught-fish: '&cHai catturato un pesce!'
 fish-out-water: '&aBen fatto!'
@@ -80,7 +80,7 @@ casting:
   no-longer: '%&cHai annullato la canalizzazione dell'' abilità.'
   no-mana: '&cNon hai abbastanza {mana}, {mana-required} in più necessario!'
   no-stamina: '&cNon hai abbastanza stamina!'
-  on-cooldown: '&cThis skill is on a {cooldown}s cooldown.'
+  on-cooldown: '&cQuesta abilità è in ricarica di {cooldown}.'
 #Combat Log
 now-in-combat: '%&cOra sei in combattimento!'
 leave-combat: '%&aHai lasciato il combattimento.'
@@ -116,7 +116,7 @@ already-friends: '&cSei già un amico di {player}.'
 friend-request:
   - '{"text":""}'
   - '{"text":"&6{player} &eti ha appena inviato una richiesta d''amicizia!"}'
-  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '[{"text":" "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClicca per accettare!"}},{"text"&r "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"show"text","value":"value":"&Clicca per rifiutare."}]}]}]'
   - '{"text":""}'
 #Parties
 party-chat: '&5[Party] {player}: {message}'
@@ -180,10 +180,10 @@ no-class-skill: '&cLa tua classe non ha nessuna abilità.'
 not-enough-skill-points: '&cHai bisogno di un punto abilità.'
 not-enough-skill-points-shift: '&cHai bisogno di {shift_points} punti abilità.'
 upgrade-skill: '&6{skill} &eè ora di livello &6{level}&e!'
-skill-level-not-met: '&cYou cannot use this skill yet.'
+skill-level-not-met: '&cNon puoi ancora usare questa abilità.'
 no-skill-bound: '&cNon hai alcuna abilità legata a questo slot.'
-not-compatible-skill: '&cThe selected skill is not compatible with this slot.'
-cant-manually-bind: "&cYou can't manually bind/unbind a skill to this slot."
+not-compatible-skill: '&cL''abilità selezionata non è compatibile con questo slot.'
+cant-manually-bind: "&cNon puoi associare/rimuovere manualmente un'abilità a questo slot."
 skill-max-level-hit: '&cHai già raggiunto il livello massimo per questa abilità.'
 no-skill-placeholder: 'Nessuna abilità associata'
 not-skill-reallocation-point: '&cNon hai 1 punto di riallocazione delle abilità.'
@@ -195,8 +195,8 @@ no-skill-tree-points-spent: '&cNon hai spento alcun punto dell''albero delle abi
 locked-node: '&cQuesta abilità è bloccata!'
 upgrade-skill-node: '&eIl nodo delle tue abilità &6{skill-node} &eè ora di Livello &6{level}&e!'
 skill-node-max-level-hit: '&cHai già raggiunto il livello massimo per quel nodo dell''abilità.'
-missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
-not-enough-skill-tree-points: '&cYou need {point} skill tree point.'
+missing-skill-node-permission: '&cNon hai il permesso di sbloccare questo nodo abilità.'
+not-enough-skill-tree-points: '&cHai bisogno di {point} punti abilità.'
 reallocated-points: '&eHai ripristinato correttamente l''albero dell''abilità {skill-tree}. &eHai ora &6{points} &epunti dell''albero dell''abilità.'
 not-skill-tree-reallocation-point: '&cNon hai 1 punto di riallocazione dell''albero delle abilità.'
 no-skill-tree: '&cLa tua classe non ha alcun albero delle abilità.'
