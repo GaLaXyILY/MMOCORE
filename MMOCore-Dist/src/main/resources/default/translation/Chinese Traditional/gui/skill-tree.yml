@@ -41,14 +41,11 @@ items:
       - 27
     lore:
       - ''
-      - '&a描述:'
       - '{tree-lore}'
       - ''
-      - '-----------------'
-      - '&e◆最大點數&e: &6{max-point-spent}'
-      - '&e◆點數花費&e:&6 {point-spent}'
-      - '&e◆當前 {name} &e點數: &6{skill-tree-points}'
-      - '&e◆當前全局點數: &6{global-points}'
+      - '&e◆ Points: &6{max-point-spent}&e/&6{point-spent}'
+      - '&e◆ Current {name} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current Global Points: &6{global-points}'
   next-tree-list-page:
     function: 'next-tree-list-page'
     item: PLAYER_HEAD
@@ -118,6 +115,7 @@ items:
       - 42
       - 43
       - 44
+    name: '&a{name}'
     #The lore that will be displayed after the lore of the node.
     #The {node-lore} placeholder will be replaced by the lore specified in the skill tree node config.
     #All the placeholders you see here can also be used in the node lore.
@@ -127,24 +125,23 @@ items:
       - '&7當前等級: &6{current-level}'
       - '&7最大等級: &6{max-level}'
       - '&7最大子級: &6{max-children}'
-      - '&7所需點數: &6{point-consumed}'
+      - '&7Points Required: &6{point-consumed}'
       - '&7大小: &6{size}'
-      - '-----------------'
+      - ''
       - '&7⧆ &6需求: '
       - '&f強父級: '
       - '{strong-parents}'
       - ''
       - '&f弱父級: '
       - '{soft-parents}'
-      - '-----------------'
-      - '{node-lore}'
-      - '-----------------'
-      - '&e◆{skill-tree}&e 最大點數: &6{max-point-spent}'
-      - '&e◆{skill-tree}&e 已花費點數:&6 {point-spent}'
-      - '&e◆當前 {skill-tree} &e點數: &6{skill-tree-points}'
-      - '&e◆當前 &6全局&e 點數: &6{global-points}'
-    path-lore:
       - ''
+      - '{node-lore}'
+      - ''
+      - '&e◆ Max points for {skill-tree}&e: &6{max-point-spent}'
+      - '&e◆ Points spent for {skill-tree}&e:&6 {point-spent}'
+      - '&e◆ Current {skill-tree} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current &6global&e points: &6{global-points}'
+    path-lore: [ ]
 #This is the name that will be displayed for each status.
 status-names:
   unlocked: '已解鎖'
