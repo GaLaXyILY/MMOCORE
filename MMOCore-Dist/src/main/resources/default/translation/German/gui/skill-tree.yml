@@ -41,14 +41,11 @@ items:
       - 27
     lore:
       - ''
-      - '&aBeschreibung:'
       - '{tree-lore}'
       - ''
-      - '-----------------'
-      - '&e◆Maximale Punkte &6{max-point-spent}'
-      - '&e◆Punkte ausgegeben &e:&6 {point-spent}'
-      - '&e◆Aktuelle {name} &ePunkte: &6{skill-tree-points}'
-      - '&e◆Aktuelle Globale Punkte: &6{global-points}'
+      - '&e◆ Points: &6{max-point-spent}&e/&6{point-spent}'
+      - '&e◆ Current {name} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current Global Points: &6{global-points}'
   next-tree-list-page:
     function: 'next-tree-list-page'
     item: PLAYER_HEAD
@@ -118,6 +115,7 @@ items:
       - 42
       - 43
       - 44
+    name: '&a{name}'
     #The lore that will be displayed after the lore of the node.
     #The {node-lore} placeholder will be replaced by the lore specified in the skill tree node config.
     #All the placeholders you see here can also be used in the node lore.
@@ -127,24 +125,23 @@ items:
       - '&7Aktuelles Level: &e{current-level}'
       - '&7Max. Level: &6{max-level}'
       - '&7Max Kinder: &6{max-children}'
-      - '&7Points required: &6{point-consumed}'
+      - '&7Points Required: &6{point-consumed}'
       - '&7Size: &6{size}'
-      - '-----------------'
+      - ''
       - '&7⧆ &6Requirements: '
       - '&fStrong Parents: '
       - '{strong-parents}'
       - ''
       - '&fSoft Parents: '
       - '{soft-parents}'
-      - '-----------------'
-      - '{node-lore}'
-      - '-----------------'
-      - '&e◆Max points for {skill-tree}&e: &6{max-point-spent}'
-      - '&e◆Points spent for {skill-tree}&e:&6 {point-spent}'
-      - '&e◆Current {skill-tree} &epoints: &6{skill-tree-points}'
-      - '&e◆Current &6global&e points: &6{global-points}'
-    path-lore:
       - ''
+      - '{node-lore}'
+      - ''
+      - '&e◆ Max points for {skill-tree}&e: &6{max-point-spent}'
+      - '&e◆ Points spent for {skill-tree}&e:&6 {point-spent}'
+      - '&e◆ Current {skill-tree} &ePoints: &6{skill-tree-points}'
+      - '&e◆ Current &6global&e points: &6{global-points}'
+    path-lore: [ ]
 #This is the name that will be displayed for each status.
 status-names:
   unlocked: 'Unlocked'
