@@ -76,13 +76,12 @@ items:
       - '&7Habilidad actual: &6{skill}'
       - ''
       - '{slot-lore}'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
       - ''
-      - '&7&oRealiza este hechizo pulsando [F] seguido'
-      - '&7&ode la teclada mostrada en la barra de acción.'
-      - ''
-      - '&e► Clic izquierdo para enlazar {selected}.'
-      - '&e► Clic derecho para desenlazar.'
-      - '&e► Shift y clic izquierdo para seleccionar.'
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
