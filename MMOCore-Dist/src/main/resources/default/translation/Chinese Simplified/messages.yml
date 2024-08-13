@@ -63,12 +63,26 @@ player-input:
     guild-creation-tag: '公会标签..'
     guild-creation-name: '公会名称..'
   chat:
-    friend-request: '&e在聊天栏输入玩家名.'
-    party-invite: '&e在聊天栏输入你想邀请的玩家名.'
-    guild-invite: '&e在聊天栏输入你想邀请的玩家名.'
-    guild-creation-tag: '&e在聊天栏输入你想创建的公会标签.'
-    guild-creation-name: '&e在聊天栏输入你想创建的公会名.'
-    cancel: '&e输入 &c''cancel'' &e以取消.'
+    friend-request:
+      - '&eWrite in the chat the player name.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    party-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-tag:
+      - '&eWrite in the chat the TAG of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-name:
+      - '&eWrite in the chat the name of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    friend-request-cancel: ''
+    party-invite-cancel: ''
+    guild-invite-cancel: ''
+    guild-creation-tag-cancel: ''
+    guild-creation-name-cancel: ''
 #Spell Casting
 casting:
   action-bar:
@@ -182,6 +196,7 @@ not-enough-skill-points-shift: '&c你需要 {shift_points} 技能点数.'
 upgrade-skill: '&e你的 &6{skill} &e升级到了等级 &6{level}&e!'
 skill-level-not-met: '&c你还不能使用此技能.'
 no-skill-bound: '&c你没有绑定到这个槽位的技能.'
+skill-cannot-be-bound: '&cThis skill is always active and cannot be bound.'
 not-compatible-skill: '&c选中的技能与这个技能槽不兼容.'
 cant-manually-bind: "&c你不能手动将技能绑定到这个技能槽或从技能槽解绑."
 skill-max-level-hit: '&c你已经达到了这个技能的最大等级.'
@@ -190,6 +205,7 @@ not-skill-reallocation-point: '&c你没有1点技能重新分配点数.'
 no-skill-points-spent: '&c你还没有使用过技能点数.'
 skill-points-reallocated: '&e你成功重置了你的技能. 你现在拥有 &6{points} &e技能点数.'
 max-points-reached: '&c你达到了可以使用点数的最大数量. 你需要重新分配你的点数.'
+cannot-upgrade-skill: '&cYou cannot upgrade this skill.'
 #Skill Trees
 no-skill-tree-points-spent: '&c你还没有使用任何技能树点数.'
 locked-node: '&c技能已被锁定!'
