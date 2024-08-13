@@ -48,37 +48,37 @@ items:
       not-ready: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as the two waypoints are not linked.'
+        - '&7Вы не можете телепортироваться, так как две точки не связаны между собой.'
     #When you cannot teleport to a non dynamic waypoint
     not-dynamic:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you are not standing on a waypoint.'
+        - '&7Вы не можете телепортироваться, поскольку вы не стоите на точке.'
     current-waypoint:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7The waypoint you are standing at.'
+        - '&7Точка телепортации, на которой вы стоите.'
     #When you don't have enough stellium
     not-enough-stellium:
       name: '&a{name}'
       item: ENDER_PEARL
       lore:
         - '{lore}'
-        - '&7You cannot teleport as you do not have enough Stellium.'
-        - '&7Teleporting costs &b{normal_cost}&7/&b{dynamic_cost} &7Stellium.'
+        - '&7Вы не можете телепортироваться, так как у вас недостаточно Стеллиума.'
+        - '&7Стоимость телепортации &b{normal_cost}&7/&b{dynamic_cost} &7Стеллиума.'
     #Displayed when the waypoint is unlocked and usable
     display:
       name: '&a{name}'
       item: ENDER_EYE
       lore:
         - '{lore}'
-        - '&7You can teleport to this waypoint.'
-        - '&7Intermediary waypoints: {intermediary_waypoints}'
-        - '&7Click to teleport for &b{current_cost} &7Stellium.'
+        - '&7Вы можете телепортироваться к этой точке.'
+        - '&7Промежуточные точки: {intermediary_waypoints}'
+        - '&7Нажмите, чтобы телепортироваться за &b{current_cost} &7Стеллиума.'
   next:
     slots:
       - 26
