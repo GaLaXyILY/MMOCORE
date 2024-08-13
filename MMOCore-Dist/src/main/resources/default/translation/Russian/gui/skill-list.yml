@@ -76,13 +76,12 @@ items:
       - '&7Текущий Навык: &6{skill}'
       - ''
       - '{slot-lore}'
+      - '&7&oCast this spell by pressing [F] followed'
+      - '&7&oby the keybind displayed on the action bar.'
       - ''
-      - '&7&oЧтобы использовать этот навык, нажмите [F]'
-      - '&7&oпо привязанной клавише, отображаемой на панели быстрого доступа.'
-      - ''
-      - '&e► ЛКМ, чтобы привязать {selected}.'
-      - '&e► ПКМ, чтобы отвязать.'
-      - '&e► Shift+ЛКМ, чтобы выбрать.'
+      - '&e► Left click to bind {selected}.'
+      - '&e► Right click to unbind.'
+      - '&e► Shift left click to select.'
   skill-level:
     slots:
       - 6
