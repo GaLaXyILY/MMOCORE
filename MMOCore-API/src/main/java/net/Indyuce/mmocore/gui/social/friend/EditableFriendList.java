@@ -2,7 +2,7 @@ package net.Indyuce.mmocore.gui.social.friend;
 
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigMessage;
-import net.Indyuce.mmocore.api.player.PlayerActivity;
+import net.Indyuce.mmocore.player.CooldownType;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
 import net.Indyuce.mmocore.api.util.input.ChatInput;
@@ -201,7 +201,7 @@ public class EditableFriendList extends EditableInventory {
 
             if (item.getFunction().equals("request")) {
 
-                long remaining = playerData.getActivityTimeOut(PlayerActivity.FRIEND_REQUEST);
+                double remaining = playerData.getCooldownMap().getCooldown(CooldownType.FRIEND_REQUEST);
                 if (remaining > 0) {
                     ConfigMessage.fromKey("friend-request-cooldown", "cooldown", new DelayFormat().format(remaining))
                             .send(player);

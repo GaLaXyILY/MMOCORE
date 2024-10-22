@@ -1,7 +1,7 @@
 package net.Indyuce.mmocore.skill;
 
 import io.lumine.mythic.lib.api.player.EquipmentSlot;
-import io.lumine.mythic.lib.player.cooldown.CooldownObject;
+import io.lumine.mythic.lib.player.cooldown.CooldownReference;
 import io.lumine.mythic.lib.player.modifier.ModifierSource;
 import io.lumine.mythic.lib.player.skill.PassiveSkill;
 import net.Indyuce.mmocore.MMOCore;
@@ -11,12 +11,13 @@ import net.Indyuce.mmocore.api.util.math.formula.LinearValue;
 import net.Indyuce.mmocore.gui.api.item.Placeholders;
 import net.Indyuce.mmocore.player.Unlockable;
 import org.apache.commons.lang.Validate;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class ClassSkill implements CooldownObject, Unlockable {
+public class ClassSkill implements CooldownReference, Unlockable {
     private final RegisteredSkill skill;
     private final int unlockLevel, maxSkillLevel;
     private final boolean unlockedByDefault, permanent, upgradable;
@@ -206,7 +207,7 @@ public class ClassSkill implements CooldownObject, Unlockable {
     }
 
     @Override
-    public String getCooldownPath() {
-        return "skill_" + skill.getHandler().getId();
+    public NamespacedKey getCooldownKey() {
+        return skill.getHandler().getCooldownKey();
     }
 }

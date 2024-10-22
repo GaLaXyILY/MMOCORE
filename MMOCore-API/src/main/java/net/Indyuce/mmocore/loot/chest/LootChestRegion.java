@@ -1,7 +1,7 @@
 package net.Indyuce.mmocore.loot.chest;
 
 import net.Indyuce.mmocore.MMOCore;
-import net.Indyuce.mmocore.api.player.PlayerActivity;
+import net.Indyuce.mmocore.player.CooldownType;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.loot.RandomWeightedRoll;
 import net.Indyuce.mmocore.api.event.LootChestSpawnEvent;
@@ -30,7 +30,7 @@ public class LootChestRegion {
 
         @Override
         public void run() {
-            getBounds().getPlayers().filter(player -> player.getActivityTimeOut(PlayerActivity.LOOT_CHEST_SPAWN) == 0)
+            getBounds().getPlayers().filter(player -> !player.getCooldownMap().isOnCooldown(CooldownType.LOOT_CHEST_SPAWN))
                     .findAny().ifPresent(player -> spawnChest(player));
         }
     };
@@ -84,7 +84,7 @@ public class LootChestRegion {
     public void spawnChest(PlayerData player) {
 
         // Apply chest cooldown
-        player.setLastActivity(PlayerActivity.LOOT_CHEST_SPAWN);
+        player.getCooldownMap().applyCooldown(CooldownType.LOOT_CHEST_SPAWN);
 
         // First randomly determine the chest tier
         ChestTier tier = rollTier(player);
@@ -121,7 +121,7 @@ public class LootChestRegion {
     /**
      * @param player Player rolling the tier
      * @return A randomly picked tiers taking into account tier spawn rates
-     *         and the player Chance attribute
+     * and the player Chance attribute
      */
     @NotNull
     public ChestTier rollTier(PlayerData player) {

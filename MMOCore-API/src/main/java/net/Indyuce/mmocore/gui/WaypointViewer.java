@@ -2,7 +2,7 @@ package net.Indyuce.mmocore.gui;
 
 import net.Indyuce.mmocore.MMOCore;
 import net.Indyuce.mmocore.api.ConfigMessage;
-import net.Indyuce.mmocore.api.player.PlayerActivity;
+import net.Indyuce.mmocore.player.CooldownType;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.api.util.MMOCoreUtils;
 import net.Indyuce.mmocore.gui.api.EditableInventory;
@@ -269,8 +269,7 @@ public class WaypointViewer extends EditableInventory {
                     return;
                 }
 
-                if (playerData.getActivityTimeOut(PlayerActivity.USE_WAYPOINT) > 0)
-                    return;
+                if (playerData.getCooldownMap().isOnCooldown(CooldownType.USE_WAYPOINT)) return;
 
                 player.closeInventory();
                 playerData.warp(waypoint, withdraw);

@@ -25,14 +25,17 @@ import java.util.logging.Level;
 public class ConfigManager {
     public final CommandVerbose commandVerbose = new CommandVerbose();
 
-    public boolean overrideVanillaExp, canCreativeCast, passiveSkillsNeedBinding, cobbleGeneratorXP, saveDefaultClassInfo, splitMainExp, splitProfessionExp, disableQuestBossBar,
-            pvpModeEnabled, pvpModeInvulnerabilityCanDamage, forceClassSelection, enableGlobalSkillTreeGUI, enableSpecificSkillTreeGUI, waypointAutoPathCalculation, waypointLinkReciprocity;
+    public boolean overrideVanillaExp, canCreativeCast, passiveSkillsNeedBinding, cobbleGeneratorXP, saveDefaultClassInfo,
+            splitMainExp, splitProfessionExp, disableQuestBossBar, pvpModeEnabled, pvpModeInvulnerabilityCanDamage,
+            forceClassSelection, enableGlobalSkillTreeGUI, enableSpecificSkillTreeGUI, waypointAutoPathCalculation, waypointLinkReciprocity;
     public String partyChatPrefix, noSkillBoundPlaceholder;
     public ChatColor staminaFull, staminaHalf, staminaEmpty;
-    public long combatLogTimer, lootChestExpireTime, lootChestPlayerCooldown, globalSkillCooldown;
-    public double lootChestsChanceWeight, dropItemsChanceWeight, fishingDropsChanceWeight, partyMaxExpSplitRange, pvpModeToggleOnCooldown, pvpModeToggleOffCooldown, pvpModeCombatCooldown,
-            pvpModeCombatTimeout, pvpModeInvulnerabilityTimeRegionChange, pvpModeInvulnerabilityTimeCommand, pvpModeRegionEnterCooldown, pvpModeRegionLeaveCooldown;
-    public int maxPartyLevelDifference, maxPartyPlayers, minCombatLevel, maxCombatLevelDifference, skillTreeScrollStepX, skillTreeScrollStepY, waypointWarpTime;
+    public long combatLogTimer, lootChestExpireTime, lootChestPlayerCooldown, globalSkillCooldown, waypointUseCooldown, friendRequestTimeout;
+    public double lootChestsChanceWeight, dropItemsChanceWeight, fishingDropsChanceWeight, partyMaxExpSplitRange, pvpModeToggleOnCooldown,
+            pvpModeToggleOffCooldown, pvpModeCombatCooldown, pvpModeCombatTimeout, pvpModeInvulnerabilityTimeRegionChange,
+            pvpModeInvulnerabilityTimeCommand, pvpModeRegionEnterCooldown, pvpModeRegionLeaveCooldown;
+    public int maxPartyLevelDifference, maxPartyPlayers, minCombatLevel, maxCombatLevelDifference, skillTreeScrollStepX, skillTreeScrollStepY,
+            waypointWarpTime, maxfriendRequests;
     public final List<EntityDamageEvent.DamageCause> combatLogDamageCauses = new ArrayList<>();
 
     private final FileConfiguration messages;
@@ -153,6 +156,9 @@ public class ConfigManager {
         waypointWarpTime = MMOCore.plugin.getConfig().getInt("waypoints.default-warp-time");
         waypointAutoPathCalculation = MMOCore.plugin.getConfig().getBoolean("waypoints.auto_path_calculation");
         waypointLinkReciprocity = MMOCore.plugin.getConfig().getBoolean("waypoints.link_reciprocity");
+        waypointUseCooldown = MMOCore.plugin.getConfig().getLong("waypoints.use_cooldown") * 50;
+        friendRequestTimeout = MMOCore.plugin.getConfig().getLong("friends.requests.time_out") * 1000;
+        maxfriendRequests = MMOCore.plugin.getConfig().getInt("friends.requests.max_simultaneously");
 
         // Combat
         pvpModeEnabled = config.getBoolean("pvp_mode.enabled");

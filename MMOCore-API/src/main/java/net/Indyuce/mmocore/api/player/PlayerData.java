@@ -39,6 +39,7 @@ import net.Indyuce.mmocore.party.provided.MMOCorePartyModule;
 import net.Indyuce.mmocore.party.provided.Party;
 import net.Indyuce.mmocore.player.ClassDataContainer;
 import net.Indyuce.mmocore.player.CombatHandler;
+import net.Indyuce.mmocore.player.CooldownType;
 import net.Indyuce.mmocore.player.Unlockable;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skill.RegisteredSkill;
@@ -106,7 +107,6 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     private final PlayerProfessions collectSkills = new PlayerProfessions(this);
     private final PlayerAttributes attributes = new PlayerAttributes(this);
     private final Map<String, SavedClassInformation> classSlots = new HashMap<>();
-    private final Map<PlayerActivity, Long> lastActivity = new HashMap<>();
     private final CombatHandler combat = new CombatHandler(this);
 
     /**
@@ -142,9 +142,10 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      */
     private final Map<String, Integer> tableItemClaims = new HashMap<>();
 
-    // NON-FINAL player data stuff made public to facilitate field change
+    // NON-FINAL player data stuff made public to facilitate field access
     public boolean noCooldown;
     public long lastDropEvent;
+    //public List<FriendRequest> activeFriendRequests = new ArrayList<>();
 
     public PlayerData(MMOPlayerData mmoData) {
         super(MMOCore.plugin, mmoData);
@@ -446,7 +447,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
     /**
      * @return If the item is unlocked by the player
-     *         This is used for skills that can be locked & unlocked.
+     * This is used for skills that can be locked & unlocked.
      */
     public boolean hasUnlocked(Unlockable unlockable) {
         return unlockable.isUnlockedByDefault() || unlockedItems.contains(unlockable.getUnlockNamespacedKey());
@@ -534,22 +535,6 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         return questData;
     }
 
-    public long getLastActivity(PlayerActivity activity) {
-        return this.lastActivity.getOrDefault(activity, 0l);
-    }
-
-    public long getActivityTimeOut(PlayerActivity activity) {
-        return Math.max(0, getLastActivity(activity) + activity.getTimeOut() - System.currentTimeMillis());
-    }
-
-    public void setLastActivity(PlayerActivity activity) {
-        setLastActivity(activity, System.currentTimeMillis());
-    }
-
-    public void setLastActivity(PlayerActivity activity, long timestamp) {
-        this.lastActivity.put(activity, timestamp);
-    }
-
     @Override
     public long getLastLogin() {
         return getMMOPlayerData().getLastLogActivity();
@@ -625,7 +610,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     /**
      * @param key The identifier of an exp table item.
      * @return Amount of times an item has been claimed
-     *         inside an experience table.
+     * inside an experience table.
      */
     public int getClaims(@NotNull String key) {
         return tableItemClaims.getOrDefault(key, 0);
@@ -829,7 +814,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     public void sendFriendRequest(PlayerData target) {
         if (!isOnline() || !target.isOnline()) return;
 
-        setLastActivity(PlayerActivity.FRIEND_REQUEST);
+        getCooldownMap().applyCooldown(CooldownType.FRIEND_REQUEST);
         FriendRequest request = new FriendRequest(this, target);
         ConfigMessage.fromKey("friend-request").addPlaceholders("player", getPlayer().getName(), "uuid", request.getUniqueId().toString()).send(target.getPlayer());
         MMOCore.plugin.requestManager.registerRequest(request);
@@ -848,7 +833,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
          * spamming waypoints. There is no need to reset it when resetting the
          * player waypoints data
          */
-        setLastActivity(PlayerActivity.USE_WAYPOINT);
+        getCooldownMap().applyCooldown(CooldownType.USE_WAYPOINT);
         giveStellium(-cost, PlayerResourceUpdateEvent.UpdateReason.USE_WAYPOINT);
 
         new BukkitRunnable() {
@@ -1128,7 +1113,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
     /**
      * @return If the PlayerEnterCastingModeEvent successfully put the player
-     *         into casting mode, otherwise if the event is cancelled, returns false.
+     * into casting mode, otherwise if the event is cancelled, returns false.
      */
     public boolean setSkillCasting() {
         Validate.isTrue(!isCasting(), "Player already in casting mode");
@@ -1147,7 +1132,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
     /**
      * @return If player successfully left skill casting i.e the Bukkit
-     *         event has not been cancelled
+     * event has not been cancelled
      */
     public boolean leaveSkillCasting() {
         return leaveSkillCasting(false);
@@ -1156,7 +1141,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
     /**
      * @param skipEvent Skip firing the exit event
      * @return If player successfully left skill casting i.e the Bukkit
-     *         event has not been cancelled
+     * event has not been cancelled
      */
     public boolean leaveSkillCasting(boolean skipEvent) {
         Validate.isTrue(isCasting(), "Player not in casting mode");
@@ -1169,7 +1154,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
 
         skillCasting.close();
         this.skillCasting = null;
-        setLastActivity(PlayerActivity.ACTION_BAR_MESSAGE, 0); // Reset action bar
+        getCooldownMap().resetCooldown(CooldownType.ACTION_BAR_MESSAGE); // Reset action bar
         return true;
     }
 
@@ -1182,7 +1167,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
         // TODO add an option to disable action-bar properly in all casting modes
         if (ChatColor.stripColor(message).isEmpty()) return;
 
-        setLastActivity(PlayerActivity.ACTION_BAR_MESSAGE);
+        getCooldownMap().applyCooldown(CooldownType.ACTION_BAR_MESSAGE);
         if (raw) MythicLib.plugin.getVersion().getWrapper().sendActionBarRaw(getPlayer(), message);
         else getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
     }
@@ -1358,7 +1343,7 @@ public class PlayerData extends SynchronizedDataHolder implements OfflinePlayerD
      * checks if they could potentially upgrade to one of these
      *
      * @return If the player can change its current class to
-     *         a subclass
+     * a subclass
      */
     @Deprecated
     public boolean canChooseSubclass() {

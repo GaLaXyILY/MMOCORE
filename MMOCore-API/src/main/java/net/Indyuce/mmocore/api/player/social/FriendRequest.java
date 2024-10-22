@@ -1,7 +1,7 @@
 package net.Indyuce.mmocore.api.player.social;
 
 import net.Indyuce.mmocore.api.ConfigMessage;
-import net.Indyuce.mmocore.api.player.PlayerActivity;
+import net.Indyuce.mmocore.player.CooldownType;
 import net.Indyuce.mmocore.api.player.PlayerData;
 import org.bukkit.Sound;
 
@@ -17,7 +17,7 @@ public class FriendRequest extends Request {
 
     @Override
     public void whenAccepted() {
-        getCreator().setLastActivity(PlayerActivity.FRIEND_REQUEST, 0);
+        getCreator().getCooldownMap().resetCooldown(CooldownType.FRIEND_REQUEST);
         getCreator().addFriend(getTarget().getUniqueId());
         getTarget().addFriend(getCreator().getUniqueId());
         if (getCreator().isOnline()) {

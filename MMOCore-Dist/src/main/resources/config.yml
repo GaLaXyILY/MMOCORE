@@ -79,6 +79,15 @@ party-plugin: mmocore
 # - ultimate_clans
 guild-plugin: mmocore
 
+friends:
+
+  requests:
+    # Maximum number of requests sent simultaneously
+    # Not implemented yet
+    max_simultaneously: 3
+    # Time during which the friend request is valid in seconds
+    time_out: 120
+
 # MythicLib introduces a CHANCE stat that is used in
 # several different systems in MMOCore. By changing these
 # weights you can define how much the Chance stat impacts
@@ -100,12 +109,13 @@ skill-tree-scroll-step-y: 1
 # provide the player with experience points or not
 should-cobblestone-generators-give-exp: false
 
-# Edit how to cast skills here. This part of the config is
-# pretty tricky so it's best to read the wiki page before editing anything
+# Edit how to cast skills here. To customize skill casting,
+# please refer to the "Skill Casting" wiki page.
 skill-casting:
   mode: SKILL_BAR
   open: SWAP_HANDS
   disable-sneak: false
+  use-lowest-indices: true
 
 loot-chests:
 
@@ -273,6 +283,9 @@ waypoints:
   # Default value of waypoint warp time. This is the time it
   # takes to use the waypoint and teleport to target location.
   default-warp-time: 100
+
+  # Cooldown for using two consecutive waypoints, in ticks
+  use_cooldown: 120
 
   link_reciprocity: false
 

@@ -26,13 +26,14 @@ import java.util.Objects;
 
 public class SkillBar extends SkillCastingHandler {
     private final PlayerKey mainKey;
-    private final boolean disableSneak;
+    private final boolean disableSneak, useLowestSlots;
 
     public SkillBar(@NotNull ConfigurationSection config) {
         super(config);
 
         mainKey = PlayerKey.valueOf(UtilityMethods.enumName(Objects.requireNonNull(config.getString("open"), "Could not find open key")));
         disableSneak = config.getBoolean("disable-sneak");
+        useLowestSlots = config.getBoolean("use-lowest-indices");
     }
 
     @Override
