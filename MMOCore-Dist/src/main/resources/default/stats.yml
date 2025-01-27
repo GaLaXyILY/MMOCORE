@@ -146,9 +146,9 @@ default:
     JUMP_STRENGTH:
         base: 0.42
         per-level: 0
-    SCALE:
-        base: 1.0
-        per-level: 0
+    #SCALE:
+    #    base: 1.0
+    #    per-level: 0
     ENTITY_INTERACTION_RANGE:
         base: 3.0
         per-level: 0
