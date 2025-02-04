@@ -5,7 +5,7 @@
     <parent>
         <artifactId>MMOCore</artifactId>
         <groupId>net.Indyuce</groupId>
-        <version>1.13.1-SNAPSHOT</version>
+        <version>1.12.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -119,7 +119,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.3-R0.1-SNAPSHOT</version>
+            <version>1.20.6-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
             <optional>true</optional>
 
@@ -143,14 +143,14 @@
         <dependency>
             <groupId>io.papermc</groupId>
             <artifactId>paperlib</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.5</version>
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
+            <version>1.18.20</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -159,7 +159,7 @@
         <dependency>
             <groupId>io.lumine</groupId>
             <artifactId>Mythic-Dist</artifactId>
-            <version>5.7.2</version>
+            <version>5.7.1</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -199,7 +199,7 @@
         <dependency>
             <groupId>com.sk89q.worldguard</groupId>
             <artifactId>worldguard-bukkit</artifactId>
-            <version>7.0.12</version>
+            <version>7.0.2-SNAPSHOT</version>
             <scope>provided</scope>
             <optional>true</optional>
 
@@ -218,7 +218,7 @@
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
-            <version>5.1.0</version>
+            <version>4.8.0</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -235,7 +235,7 @@
         <dependency>
             <groupId>de.simonsator</groupId>
             <artifactId>DevelopmentPAFSpigot</artifactId>
-            <version>1.0.239</version>
+            <version>1.0.65</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -243,7 +243,7 @@
         <dependency>
             <groupId>de.simonsator</groupId>
             <artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-            <version>1.6.2-RELEASE</version>
+            <version>1.5.4-RELEASE</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -251,7 +251,7 @@
         <dependency>
             <groupId>de.simonsator</groupId>
             <artifactId>spigot-party-api-for-party-and-friends</artifactId>
-            <version>1.0.7-RELEASE</version>
+            <version>1.0.4-RELEASE</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -275,7 +275,7 @@
         <dependency>
             <groupId>com.gmail.nossr50</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>2.1.228</version>
+            <version>2.1.209</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -283,7 +283,7 @@
         <dependency>
             <groupId>de.erethon</groupId>
             <artifactId>DungeonsXL</artifactId>
-            <version>0.18-PRE-02</version>
+            <version>0.18-SNAPSHOT-1149</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -291,7 +291,7 @@
         <dependency>
             <groupId>com.herocraftonline</groupId>
             <artifactId>Heroes</artifactId>
-            <version>1.9.22-SNAPSHOTaaee8ba6</version>
+            <version>1.9.22</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -314,13 +314,12 @@
 
         <!-- Quest Plugins -->
         <dependency>
-            <groupId>me.pikamug.quests</groupId>
-            <artifactId>quests-core</artifactId>
-            <version>5.1.4</version>
+            <groupId>me.blackvein</groupId>
+            <artifactId>Quests</artifactId>
+            <version>4.4.1-b340</version>
             <scope>provided</scope>
-            <optional>true</optional>        
+            <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>fr.skytasul.quests</groupId>
             <artifactId>BeautyQuests</artifactId>
@@ -355,7 +354,7 @@
         <dependency>
             <groupId>com.github.UlrichBR</groupId>
             <artifactId>UClansV7-API</artifactId>
-            <version>7.13.0-R1</version>
+            <version>7.1.0</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>

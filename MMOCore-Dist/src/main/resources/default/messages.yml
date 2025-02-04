@@ -167,6 +167,7 @@ high-level-difference: '&cYou cannot invite {player} as the level difference is 
 guild-chat: '&a[{tag}] {player}: {message}'
 sent-guild-invite: '&eYou sent a guild invite to &6{player}&e.'
 already-in-guild: '&c{player} is already in your guild.'
+not-your-guild: '&cYou are not the guild master.'
 guild-invite:
   - '{"text":""}'
   - '{"text":"&6{player} &ehas invited you to their guild!"}'

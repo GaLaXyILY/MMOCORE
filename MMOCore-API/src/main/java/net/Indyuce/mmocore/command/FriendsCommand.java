@@ -6,11 +6,13 @@ import net.Indyuce.mmocore.api.player.social.FriendRequest;
 import net.Indyuce.mmocore.command.api.RegisteredCommand;
 import net.Indyuce.mmocore.command.api.ToggleableCommand;
 import net.Indyuce.mmocore.manager.InventoryManager;
+import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.event.MMOCommandEvent;
 import net.Indyuce.mmocore.api.player.social.Request;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -38,6 +40,36 @@ public class FriendsCommand extends RegisteredCommand {
         if (event.isCancelled()) return true;
 
         if (args.length > 1) {
+
+            // Player wants to invite someone
+            if (args[0].equalsIgnoreCase("invite")) {
+                    String input = args[1];
+                    Player target = Bukkit.getPlayer(input);
+                    Player player = (Player) sender;
+                    PlayerData playerData = PlayerData.get(player);
+                    if (target == null) {
+                        ConfigMessage.fromKey("not-online-player", "player", input).send(player);
+                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        return true;
+                    }
+
+                    if (playerData.hasFriend(target.getUniqueId())) {
+                        ConfigMessage.fromKey("already-friends", "player", target.getName()).send(player);
+                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        return true;
+                    }
+
+                    if (playerData.getUniqueId().equals(target.getUniqueId())) {
+                        ConfigMessage.fromKey("cant-request-to-yourself").send(player);
+                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                        return true;
+                    }
+
+                    playerData.sendFriendRequest(PlayerData.get(target));
+                    ConfigMessage.fromKey("sent-friend-request", "player", target.getName()).send(player);
+                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                    return true;
+            }
 
             final @Nullable FriendRequest invite;
             if (args.length > 1)

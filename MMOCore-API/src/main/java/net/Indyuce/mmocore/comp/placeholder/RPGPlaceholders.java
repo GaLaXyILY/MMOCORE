@@ -16,6 +16,8 @@ import net.Indyuce.mmocore.party.AbstractParty;
 import net.Indyuce.mmocore.skill.CastableSkill;
 import net.Indyuce.mmocore.skill.ClassSkill;
 import net.Indyuce.mmocore.skill.RegisteredSkill;
+import net.Indyuce.mmocore.skilltree.SkillTreeNode;
+import net.Indyuce.mmocore.skilltree.tree.SkillTree;
 import net.Indyuce.mmocore.skill.binding.BoundSkillInfo;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -26,7 +28,8 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RPGPlaceholders extends PlaceholderExpansion {
@@ -227,7 +230,27 @@ public class RPGPlaceholders extends PlaceholderExpansion {
         } else if (identifier.startsWith("profession_"))
             return String
                     .valueOf(playerData.getCollectionSkills().getLevel(identifier.substring(11).replace(" ", "-").replace("_", "-").toLowerCase()));
-
+        else if (identifier.startsWith("skilltree_")) {
+                String regex = "skilltree_(.+?)\\[(.+?)\\]";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(identifier);
+        
+                if (matcher.find()) {
+                    // Return an array with skill tree name and node name
+                    try {
+                        SkillTree tree = MMOCore.plugin.skillTreeManager.get(matcher.group(1));
+                        SkillTreeNode node = tree.getNode(matcher.group(2));
+                        return String.valueOf(playerData.getNodeLevel(node));
+                    } catch (Exception e) {
+                        return ERROR_PLACEHOLDER;
+                    }
+                }
+        
+                // Return "Not found" if not matching the expected format
+                return "Could not find a match.";
+            
+        }
+        
         else if (identifier.equals("experience"))
             return MythicLib.plugin.getMMOConfig().decimal.format(playerData.getExperience());
 

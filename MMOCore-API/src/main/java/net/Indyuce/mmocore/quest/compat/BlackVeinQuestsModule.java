@@ -1,12 +1,12 @@
 package net.Indyuce.mmocore.quest.compat;
 
-import me.blackvein.quests.Quest;
-import me.blackvein.quests.Quester;
-import me.blackvein.quests.Quests;
+import me.pikamug.quests.quests.Quest;
+import me.pikamug.quests.player.Quester;
+import me.pikamug.quests.Quests;
+import me.pikamug.quests.BukkitQuestsPlugin;
 import net.Indyuce.mmocore.quest.AbstractQuest;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-
 
 public class BlackVeinQuestsModule implements QuestModule<BlackVeinQuestsModule.BlackVeinQuestQuest> {
     private final Quests plugin = (Quests) Bukkit.getPluginManager().getPlugin("Quests");
@@ -15,7 +15,7 @@ public class BlackVeinQuestsModule implements QuestModule<BlackVeinQuestsModule.
 
     @Override
     public BlackVeinQuestQuest getQuestOrThrow(String id) {
-        Quests plugin = (Quests) Bukkit.getPluginManager().getPlugin("Quests");
+        BukkitQuestsPlugin plugin = (BukkitQuestsPlugin) Bukkit.getPluginManager().getPlugin("Quests");
         return plugin.getQuestById(id)==null?null:new BlackVeinQuestQuest(plugin.getQuestById(id));
     }
 

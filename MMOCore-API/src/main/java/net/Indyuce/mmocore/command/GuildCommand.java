@@ -5,13 +5,18 @@ import net.Indyuce.mmocore.api.player.PlayerData;
 import net.Indyuce.mmocore.command.api.RegisteredCommand;
 import net.Indyuce.mmocore.command.api.ToggleableCommand;
 import net.Indyuce.mmocore.manager.InventoryManager;
+import net.Indyuce.mmocore.api.ConfigMessage;
 import net.Indyuce.mmocore.api.event.MMOCommandEvent;
 import net.Indyuce.mmocore.api.player.social.Request;
+import net.Indyuce.mmocore.api.util.input.ChatInput;
+import net.Indyuce.mmocore.api.util.input.PlayerInput;
+import net.Indyuce.mmocore.api.util.math.format.DelayFormat;
 import net.Indyuce.mmocore.guild.provided.GuildInvite;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -39,6 +44,44 @@ public class GuildCommand extends RegisteredCommand {
         if (event.isCancelled()) return true;
 
         if (args.length >= 1) {
+
+            if (args[0].equalsIgnoreCase("invite")) {
+                String input = args[1];
+                Player target = Bukkit.getPlayer(input);
+                Player player = (Player) sender;
+                PlayerData playerData = PlayerData.get(player);
+
+                if (playerData.getGuild().getOwner() != player.getUniqueId()) {
+                    ConfigMessage.fromKey("not-your-guild", "player", target.getName()).send(player);
+                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                    return true; 
+                }
+                if (target == null) {
+                    ConfigMessage.fromKey("not-online-player", "player", input).send(player);
+                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                    return true;
+                }
+
+                long remaining = playerData.getGuild().getLastInvite(target) + 60 * 2 * 1000 - System.currentTimeMillis();
+                if (remaining > 0) {
+                    ConfigMessage.fromKey("guild-invite-cooldown", "player", target.getName(), "cooldown",
+                            new DelayFormat().format(remaining)).send(player);
+                    return true;
+                }
+
+                PlayerData targetData = PlayerData.get(target);
+                if (playerData.getGuild().hasMember(target.getUniqueId())) {
+                    ConfigMessage.fromKey("already-in-guild", "player", target.getName()).send(player);
+                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                    return true;
+                }
+
+                playerData.getGuild().sendGuildInvite(playerData, targetData);
+                ConfigMessage.fromKey("sent-guild-invite", "player", target.getName()).send(player);
+                player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                return true;
+
+            }
 
             final @Nullable GuildInvite invite;
             if (args.length > 1)
