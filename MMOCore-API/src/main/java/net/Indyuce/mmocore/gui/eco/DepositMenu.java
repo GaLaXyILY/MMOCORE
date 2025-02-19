@@ -42,8 +42,10 @@ public class DepositMenu extends PluginInventory {
 
     @Override
     public void whenClicked(InventoryClickContext event) {
+        ItemStack clickedItem = event.getClickedItem();
+        if (clickedItem == null) return;
 
-        if (event.getClickedItem().isSimilar(depositItem)) {
+        if (clickedItem.isSimilar(depositItem)) {
             event.setCancelled(true);
 
             updateDeposit(event.getInventory());
@@ -61,7 +63,7 @@ public class DepositMenu extends PluginInventory {
             return;
         }
 
-        int worth = NBTItem.get(event.getClickedItem()).getInteger("RpgWorth");
+        int worth = NBTItem.get(clickedItem).getInteger("RpgWorth");
         if (worth < 1)
             event.setCancelled(true);
         else
