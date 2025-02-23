@@ -4,6 +4,7 @@ import io.lumine.mythic.lib.MythicLib;
 import io.lumine.mythic.lib.UtilityMethods;
 import io.lumine.mythic.lib.data.sql.SQLDataSource;
 import io.lumine.mythic.lib.metrics.bukkit.Metrics;
+import io.lumine.mythic.lib.player.modifier.PlayerModifier;
 import io.lumine.mythic.lib.util.MMOPlugin;
 import io.lumine.mythic.lib.version.SpigotPlugin;
 import net.Indyuce.mmocore.api.player.PlayerData;
@@ -116,7 +117,7 @@ public class MMOCore extends MMOPlugin {
         // Register MMOCore-specific objects
         MythicLib.plugin.getEntities().registerRelationHandler(new PartyRelationHandler());
         MythicLib.plugin.getEntities().registerRelationHandler(new GuildRelationHandler());
-        MythicLib.plugin.getModifiers().registerModifierType("attribute", configObject -> new AttributeModifier(configObject));
+        PlayerModifier.registerPlayerModifierType("attribute", configObject -> new AttributeModifier(configObject));
         MMOCoreTriggerType.registerAll();
 
         // Custom scripts
