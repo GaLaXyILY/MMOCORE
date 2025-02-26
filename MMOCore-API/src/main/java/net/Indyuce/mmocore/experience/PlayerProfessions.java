@@ -113,7 +113,6 @@ public class PlayerProfessions {
         return getLevel(profession.getId());
     }
 
-    @NotNull
     public double getExperience(String id) {
         return exp.getOrDefault(id, 0d);
     }
@@ -122,11 +121,11 @@ public class PlayerProfessions {
         return getExperience(profession.getId());
     }
 
-    public int getLevelUpExperience(Profession profession) {
+    public long getLevelUpExperience(Profession profession) {
         return profession.getExpCurve().getExperience(getLevel(profession) + 1);
     }
 
-    public int getLevelUpExperience(String id) {
+    public long getLevelUpExperience(String id) {
         return MMOCore.plugin.professionManager.has(id) ? MMOCore.plugin.professionManager.get(id).getExpCurve().getExperience(getLevel(id) + 1) : 0;
     }
 
@@ -144,10 +143,10 @@ public class PlayerProfessions {
     }
 
     public void giveLevels(Profession profession, int value, EXPSource source) {
-        int total = 0, level = getLevel(profession);
-        while (value-- > 0)
-            total += profession.getExpCurve().getExperience(level + value + 1);
-        giveExperience(profession, total, source);
+        long equivalentExp = 0;
+        int level = getLevel(profession);
+        while (value-- > 0) equivalentExp += profession.getExpCurve().getExperience(level + value + 1);
+        giveExperience(profession, equivalentExp, source);
     }
 
     public boolean hasReachedMaxLevel(Profession profession) {

@@ -31,11 +31,11 @@ public class ExperienceCommandTreeNode extends CommandTreeNode {
 	}
 
 	public static class ActionCommandTreeNode extends CommandTreeNode {
-		private final BiConsumer<PlayerData, Integer> main;
-		private final TriConsumer<PlayerProfessions, Profession, Integer> profession;
+		private final BiConsumer<PlayerData, Long> main;
+		private final TriConsumer<PlayerProfessions, Profession, Long> profession;
 
-		public ActionCommandTreeNode(CommandTreeNode parent, String type, BiConsumer<PlayerData, Integer> main,
-				TriConsumer<PlayerProfessions, Profession, Integer> profession) {
+		public ActionCommandTreeNode(CommandTreeNode parent, String type, BiConsumer<PlayerData, Long> main,
+				TriConsumer<PlayerProfessions, Profession, Long> profession) {
 			super(parent, type);
 
 			this.main = main;
@@ -57,9 +57,9 @@ public class ExperienceCommandTreeNode extends CommandTreeNode {
 				return CommandResult.FAILURE;
 			}
 
-			int amount;
+			long amount;
 			try {
-				amount = Integer.parseInt(args[5]);
+				amount = Long.parseLong(args[5]);
 				Validate.isTrue(amount >= 0);
 			} catch (RuntimeException exception) {
 				sender.sendMessage(ChatColor.RED + args[5] + " is not a valid number.");

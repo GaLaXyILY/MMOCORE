@@ -1,14 +1,13 @@
 package net.Indyuce.mmocore.experience;
 
+import net.Indyuce.mmocore.api.player.PlayerData;
+import org.apache.commons.lang.Validate;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import net.Indyuce.mmocore.api.player.PlayerData;
-import org.apache.commons.lang.Validate;
 
 public class ExpCurve {
 	private final String id;
@@ -17,7 +16,7 @@ public class ExpCurve {
 	 * Experience needed to level up. Different professions or classes can have
 	 * different exp curves so that it is easier to balance.
 	 */
-	private final List<Integer> experience = new ArrayList<>();
+	private final List<Long> experience = new ArrayList<>();
 
 	/**
 	 * Purely arbitrary but MMOCore needs a default exp curve for everything
@@ -33,7 +32,6 @@ public class ExpCurve {
 	 * value has to be the only thing written on every line
 	 *
 	 * @param  file        Text file to read data from
-	 * @throws IOException IO exception when reading file
 	 */
 	public ExpCurve(File file) {
         this.id = file.getName().replace(".txt", "").toLowerCase().replace("_", "-").replace(" ", "-");
@@ -42,7 +40,7 @@ public class ExpCurve {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String readLine;
             while ((readLine = reader.readLine()) != null)
-                experience.add(Integer.valueOf(readLine));
+                experience.add(Long.valueOf(readLine));
             reader.close();
 
             Validate.isTrue(!experience.isEmpty(), "There must be at least one exp value in your exp curve");
@@ -59,9 +57,9 @@ public class ExpCurve {
 	 * @param values The exp values, at to be at least one or the constructor
 	 *               will throw an error
 	 */
-	public ExpCurve(String id, int... values) {
+	public ExpCurve(String id, long... values) {
 		this.id = id;
-		for (int value : values)
+		for (long value : values)
 			experience.add(value);
 		Validate.isTrue(!experience.isEmpty(), "There must be at least one exp value in your exp curve");
 	}
@@ -76,7 +74,7 @@ public class ExpCurve {
 	 *               an index for a list checkup. If the level is higher than
 	 *               the list size, it just returns the last value of the list
 	 */
-	public int getExperience(int level) {
+	public long getExperience(int level) {
 		Validate.isTrue(level > 0, "Level must be stricly positive");
 		return experience.get(Math.min(level, experience.size()) - 1);
 	}

@@ -54,7 +54,7 @@ public class YAMLPlayerDataHandler extends YAMLSynchronizedDataHandler<PlayerDat
         data.setAttributePoints(config.getInt("attribute-points"));
         data.setAttributeReallocationPoints(config.getInt("attribute-realloc-points"));
         data.setLevel(config.getInt("level"));
-        data.setExperience(config.getInt("experience"));
+        data.setExperience(config.getDouble("experience"));
         if (config.contains("class")) data.setClass(MMOCore.plugin.classManager.get(config.getString("class")));
 
         if (config.contains("guild")) {

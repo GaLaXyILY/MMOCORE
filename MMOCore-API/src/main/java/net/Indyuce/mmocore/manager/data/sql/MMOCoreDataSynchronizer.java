@@ -44,7 +44,7 @@ public class MMOCoreDataSynchronizer extends SQLDataSynchronizer<PlayerData> {
         getData().setAttributePoints(result.getInt("attribute_points"));
         getData().setAttributeReallocationPoints(result.getInt("attribute_realloc_points"));
         getData().setLevel(result.getInt("level"));
-        getData().setExperience(result.getInt("experience"));
+        getData().setExperience(result.getDouble("experience"));
 
         if (!isEmpty(result.getString("class")))
             getData().setClass(MMOCore.plugin.classManager.get(result.getString("class")));

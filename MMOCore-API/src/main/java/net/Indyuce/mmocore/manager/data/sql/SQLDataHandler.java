@@ -48,8 +48,9 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
                 "skill_tree_points LONGTEXT," +
                 "skill_tree_levels LONGTEXT," +
                 "level INT(11) DEFAULT 1," +
-                "experience INT(11) DEFAULT 0," +
-                "class VARCHAR(20),guild VARCHAR(20)," +
+                "experience DOUBLE PRECISION DEFAULT 0," +
+                "class VARCHAR(20)," +
+                "guild VARCHAR(20)," +
                 "last_login LONG," +
                 "attributes LONGTEXT," +
                 "professions LONGTEXT," +
@@ -81,6 +82,9 @@ public class SQLDataHandler extends SQLSynchronizedDataHandler<PlayerData, Offli
                 }
             });
         }
+
+        // Modify exp to be a double precision instead
+        getDataSource().executeUpdateAsync("ALTER TABLE mmocore_playerdata MODIFY COLUMN experience DOUBLE PRECISION");
     }
 
     @Override
