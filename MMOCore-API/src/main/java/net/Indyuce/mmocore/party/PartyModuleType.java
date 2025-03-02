@@ -1,6 +1,7 @@
 package net.Indyuce.mmocore.party;
 
 import net.Indyuce.mmocore.party.compat.*;
+import net.Indyuce.mmocore.party.provided.NonePartyModule;
 import net.Indyuce.mmocore.party.provided.MMOCorePartyModule;
 import org.bukkit.Bukkit;
 
@@ -8,6 +9,7 @@ import javax.inject.Provider;
 
 public enum PartyModuleType {
     MMOCORE("MMOCore", MMOCorePartyModule::new),
+    NONE("MMOCore", NonePartyModule::new),
     // DUNGEONS("Dungeons", DungeonsPartyModule::new),
     DUNGEONSXL("DungeonsXL", DungeonsXLPartyModule::new),
     HEROES("Heroes", HeroesPartyModule::new),
@@ -39,7 +41,7 @@ public enum PartyModuleType {
     }
 
     public boolean isValid() {
-        return Bukkit.getPluginManager().getPlugin(pluginName) != null;
+        return pluginName == null || Bukkit.getPluginManager().getPlugin(pluginName) != null;
     }
 
     public PartyModule provideModule() {

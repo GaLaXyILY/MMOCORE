@@ -60,6 +60,7 @@ protect-custom-mine: false
 # Choose the plugin handling parties here.
 # Supported values (just copy and paste):
 # - mmocore (Default built-in party system)
+# - none (Used to fully disable parties)
 # - dungeonsxl
 # - heroes
 # - mcmmo
@@ -73,7 +74,8 @@ party-plugin: mmocore
 
 # Edit the plugin handling guilds here.
 # Supported values (just copy and paste):
-# - mmocore
+# - mmocore (Default built-in guild system
+# - none (Used to fully disable guilds)
 # - guilds
 # - kingdomsx
 # - ultimate_clans
