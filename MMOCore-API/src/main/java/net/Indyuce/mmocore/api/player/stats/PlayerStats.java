@@ -71,6 +71,8 @@ public class PlayerStats {
         updateStats(false);
     }
 
+    private static final String MODIFIER_KEY = "MMOCoreClass";
+
     /**
      * Used to update MMOCore stat modifiers due to class and send them over to
      * MythicLib. Must be ran everytime the player levels up, changes class or
@@ -85,21 +87,19 @@ public class PlayerStats {
     public synchronized void updateStats(boolean castLoginScripts) {
 
         // Update player stats
-        for (String stat : MMOCore.plugin.statManager.getRegistered()) {
-            final StatInstance instance = getMap().getInstance(stat);
-            final StatInstance.ModifierPacket packet = instance.newPacket();
+        getMap().bufferUpdates(() -> {
+            for (String stat : MMOCore.plugin.statManager.getRegistered()) {
+                final StatInstance instance = getMap().getInstance(stat);
 
-            // Remove old stat modifier
-            packet.remove("mmocoreClass");
+                // Remove modifiers due to class
+                instance.removeIf(MODIFIER_KEY::equals);
 
-            // Add newest one
-            final double total = getBase(instance.getStat()) - instance.getBase();
-            if (total != 0)
-                packet.addModifier(new StatModifier("mmocoreClass", instance.getStat(), total, ModifierType.FLAT, EquipmentSlot.OTHER, ModifierSource.OTHER));
-
-            // Then update the stat
-            packet.runUpdate();
-        }
+                // Add newest one
+                final double total = getBase(instance.getStat()) - instance.getBase();
+                if (total != 0)
+                    instance.registerModifier(new StatModifier(MODIFIER_KEY, instance.getStat(), total, ModifierType.FLAT, EquipmentSlot.OTHER, ModifierSource.OTHER));
+            }
+        });
 
         // Updates the player's unbindable CLASS passive skills
         final PassiveSkillMap skillMap = data.getMMOPlayerData().getPassiveSkillMap();
