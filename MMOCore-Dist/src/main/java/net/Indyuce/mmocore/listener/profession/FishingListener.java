@@ -176,17 +176,20 @@ public class FishingListener implements Listener {
                 return;
             }
 
+            Item item = hook.getWorld().dropItemNaturally(hook.getLocation(), collect);
+
             // Call Bukkit event
-            CustomPlayerFishEvent called = new CustomPlayerFishEvent(playerData, collect);
+            CustomPlayerFishEvent called = new CustomPlayerFishEvent(playerData, collect, item);
             Bukkit.getPluginManager().callEvent(called);
-            if (called.isCancelled())
+            if (called.isCancelled()) {
+                item.remove();
                 return;
+            }
 
             // Increase player statistic
             player.incrementStatistic(Statistic.FISH_CAUGHT);
 
             // Calculate yeet velocity
-            Item item = hook.getWorld().dropItemNaturally(hook.getLocation(), collect);
             MMOCoreUtils.displayIndicator(location.add(0, 1.25, 0),
                     ConfigMessage.fromKey("fish-out-water" + (isCriticalFish() ? "-crit" : "")).asLine());
             Vector vec = player.getLocation().subtract(hook.getLocation()).toVector();
