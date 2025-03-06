@@ -205,7 +205,7 @@ public class KeyCombos extends SkillCastingHandler {
          */
         @EventHandler
         public void ignoreOtherSkills(PlayerCastSkillEvent event) {
-            if (event.getPlayer().equals(getCaster().getPlayer()) && IGNORED_WHEN_CASTING.contains(event.getCast().getTrigger()))
+            if (event.getPlayer().equals(getCaster().getPlayer()) && IGNORED_WHEN_CASTING.contains(event.getMetadata()))
                 event.setCancelled(true);
         }
     }

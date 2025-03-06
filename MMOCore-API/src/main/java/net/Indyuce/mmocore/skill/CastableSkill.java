@@ -6,11 +6,11 @@ import io.lumine.mythic.lib.player.cooldown.CooldownInfo;
 import io.lumine.mythic.lib.skill.Skill;
 import io.lumine.mythic.lib.skill.SkillMetadata;
 import io.lumine.mythic.lib.skill.handler.SkillHandler;
-import net.Indyuce.mmocore.MMOCore;
+import io.lumine.mythic.lib.skill.trigger.TriggerType;
 import net.Indyuce.mmocore.api.ConfigMessage;
+import net.Indyuce.mmocore.api.event.PlayerResourceUpdateEvent;
 import net.Indyuce.mmocore.api.player.PlayerActivity;
 import net.Indyuce.mmocore.api.player.PlayerData;
-import net.Indyuce.mmocore.api.event.PlayerResourceUpdateEvent;
 
 import javax.inject.Provider;
 
@@ -25,17 +25,18 @@ public class CastableSkill extends Skill {
 
     @Deprecated
     public CastableSkill(ClassSkill skill, int fixedLevel) {
-        super(skill.getSkill().getTrigger());
-
         this.skill = skill;
         this.skillLevel = () -> fixedLevel;
     }
 
     public CastableSkill(ClassSkill skill, PlayerData playerData) {
-        super(skill.getSkill().getTrigger());
-
         this.skill = skill;
         this.skillLevel = () -> playerData.getSkillLevel(skill.getSkill());
+    }
+
+    @Override
+    public TriggerType getTrigger() {
+        return skill.getSkill().getTrigger();
     }
 
     public ClassSkill getSkill() {
