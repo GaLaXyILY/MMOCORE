@@ -17,5 +17,6 @@ exp-sources:
 - 'mineblock{type=BIRCH_LOG;amount=1-3}'
 - 'mineblock{type=JUNGLE_LOG;amount=1-3}'
 - 'mineblock{type=ACACIA_LOG;amount=1-3}'
-- 'mineblock{type=BIRCH_LOG;amount=1-3}'
 - 'mineblock{type=DARK_OAK_LOG;amount=1-3}'
+# - 'mineblock{type=CHERRY_LOG;amount=1-3}'
+# - 'mineblock{type=MANGROVE_LOG;amount=1-3}'
