@@ -1,0 +1,35 @@
+#GUI display name, used by default
+name: 'Xác Nhận: {class}'
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  yes:
+    slots:
+      - 12
+    function: 'yes'
+    #Displayed when the player had already selected this class
+    #before (only if class slots are enabled in the config).
+    unlocked:
+      item: GREEN_TERRACOTTA
+      name: '&aChọn {class}'
+      lore:
+        - ''
+        - '&7Cấp Độ: &e{level}'
+        - '&7Tiến trình: &e{exp} / {next_level}'
+        - '&8[&e{progress}&8] &e{percent}%'
+        - ''
+        - '&7Điểm kĩ năng: &6{skill_points}'
+        - '&7Các kĩ năng bạn đã mở khoá: &6{unlocked_skills}&7/&6{class_skills}'
+    #Displayed when the class is being chosen for the first time.
+    locked:
+      item: GREEN_TERRACOTTA
+      name: '&aChọn {class}'
+      lore: { }
+  back:
+    slots:
+      - 14
+    item: RED_TERRACOTTA
+    function: back
+    name: '&aQuay lại'
+    lore: { }

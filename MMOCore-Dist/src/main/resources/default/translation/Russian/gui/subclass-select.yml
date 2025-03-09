@@ -1,0 +1,22 @@
+#GUI display name
+name: Выберите ваш путь...
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  back:
+    function: back
+    slots:
+      - 26
+    item: RED_STAINED_GLASS_PANE
+    name: '&aНазад к Выбору Класса'
+    lore: [ ]
+  arcane-mage:
+    slots:
+      - 13
+    function: sub-class-arcane-mage
+    name: '&a&lМаг [ТАЙНАЯ МАГИЯ]'
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'

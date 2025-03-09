@@ -1,0 +1,40 @@
+#GUI display name
+name: 队伍 ({players}/{max})
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  member:
+    slots:
+      - 10
+      - 12
+      - 14
+      - 16
+      - 28
+      - 30
+      - 32
+      - 34
+    function: member
+    empty:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&a无成员'
+    member:
+      item: PLAYER_HEAD
+      name: '&a{name}'
+      lore:
+        - '&7等级 {level} {class}'
+        - '&7在线时间: {since} 时'
+  leave:
+    slots:
+      - 50
+    function: leave
+    item: REDSTONE
+    name: '&c离开队伍'
+    lore: { }
+  request:
+    slots:
+      - 48
+    function: invite
+    item: WRITABLE_BOOK
+    name: '&a邀请一个玩家...'
+    lore: { }

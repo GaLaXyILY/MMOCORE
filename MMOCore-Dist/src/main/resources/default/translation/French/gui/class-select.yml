@@ -1,0 +1,56 @@
+#GUI display name
+name: Choix de la classe
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  class-rogue:
+    slots:
+      - 11
+    function: class-rogue
+    name: '&a&lLe Voleur'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-mage:
+    slots:
+      - 12
+    function: class-mage
+    name: '&a&lLe Mage'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-marksman:
+    slots:
+      - 13
+    function: class-marksman
+    name: '&a&lLe tireur d''élite'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-warrior:
+    slots:
+      - 14
+    function: class-warrior
+    name: '&a&lLe guerrier'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-paladin:
+    slots:
+      - 15
+    function: class-paladin
+    name: '&a&lLe Paladin'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'

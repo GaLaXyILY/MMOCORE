@@ -1,0 +1,257 @@
+#GUI display name
+name: Vos personnages
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  mining-profession:
+    slots:
+      - 10
+    function: profession_mining
+    item: IRON_PICKAXE
+    name: '&aMinage'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oL''exploitation minière débloque les minerais rares et les matières premières.'
+      - '&7&oCeci est vital pour votre montée en puissance et en puissance,'
+      - '&7&omine fréquemment pour des gouttes uniques et rares.'
+  woodcutting-profession:
+    slots:
+      - 11
+    function: profession_woodcutting
+    item: IRON_AXE
+    name: '&aCoupage en bois'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oBien que cela puisse sembler une tâche ennuyeuse, la coupe du bois'
+      - '&7&ois essentiels à l''obtention de matériaux utilisés pour l''artisanat et le commerce'
+      - '&7&oand vous aidera à prendre le dessus dans les sens arcaniques.'
+  farming-profession:
+    slots:
+      - 12
+    function: profession_farming
+    item: IRON_HOE
+    name: '&aFermer'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oAvec des tonnes de nouvelles recettes alimentaires et consommables,'
+      - '&7&ovous devrez rester au-dessus des récoltes afin de pouvoir'
+      - '&7&oto obtenir les meilleurs aliments et boissons pour vous maintenir en santé.'
+  fishing-profession:
+    slots:
+      - 19
+    function: profession_fishing
+    item: FISHING_ROD
+    name: '&aFishing'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - ''
+      - '&7&oLa pêche peut vous donner des gouttes uniques'
+      - '&7&ocanne ne trouve nulle part ailleurs. Plus vous'
+      - '&7&ofish, plus il devient facile de les trouver.'
+      - ''
+      - '&7Fishing Strength: &c%mmocore_stat_fishing_strength%%'
+      - '&7Crit Fishing Rate: &c%mmocore_stat_critical_fishing_chance%%'
+      - '&7Crit Failure Rate: &c%mmocore_stat_critical_fishing_failure_chance%%'
+  alchemy-profession:
+    slots:
+      - 20
+    function: profession_alchemy
+    item: BREWING_STAND
+    name: '&aAlchemy'
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - ''
+      - '&7&oDans un monde où vous n''êtes plus limité à'
+      - '&7&opotions simples, essayez d''apprendre des tonnes de nouvelles préparations'
+      - '&7&orecipes pour vous donner l''avantage sur le champ de bataille.'
+  smithing-profession:
+    slots:
+      - 21
+    function: profession_smithing
+    item: ANVIL
+    name: '&aForge'
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - ''
+      - '&7&oAgiter les ennemis et les faire rire est le pire,'
+      - '&7&oLa pratique est parfaite quand il s''agit de forger.'
+      - '&7&o&nLa guerre est gagnée par l''homme avec le bâton le plus pointu.'
+  enchanting-profession:
+    slots:
+      - 28
+    function: profession_enchanting
+    item: ENCHANTED_BOOK
+    name: '&aEnchantement'
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - ''
+      - '&7&oLorem ipsum dolor sit amet, consectetur'
+      - '&7&oadipiscing elit. Proin malesuada maximus massa,'
+      - '&7&osodales imperdiet sapien fermentum at.'
+  smelting-profession:
+    slots:
+      - 29
+    function: profession_smelting
+    item: FURNACE
+    name: '&aFonte'
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - ''
+      - '&7&oChanter vos sourcils deviendra standard.'
+      - '&7&oVos longues heures de chaleur vous feront passer'
+      - '&7&ofaster plus efficace avec votre four.'
+  boost-display:
+    slots:
+      - 47
+      - 48
+      - 49
+      - 50
+      - 51
+    function: boost
+    item: BARRIER
+    no-boost:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&aPas de Booster'
+      lore: { }
+    #Profession experience boosters
+    profession:
+      item: EXPERIENCE_BOTTLE
+      name: '&aBoost d''EXP'
+      lore:
+        - '&7Montant : &6+{value}%'
+        - '&7Temps restant : &6{left}'
+        - '&7Profession: &6{profession}'
+        - '&7'
+        - '&eContacté par {author}'
+    #Main class experience boosters
+    main-level:
+      item: EXPERIENCE_BOTTLE
+      name: '&aBoost d''Exp'
+      lore:
+        - '&7Montant : &6+{value}%'
+        - '&7Temps restant : &6{left}'
+        - '&7'
+        - '&eContacté par {author}'
+  boost-next:
+    slots:
+      - 52
+    function: boost-next
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
+    name: '&aSuivant'
+    lore: { }
+  boost-prev:
+    slots:
+      - 46
+    function: boost-previous
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
+    name: '&aPrécédent'
+    lore: { }
+  party:
+    slots:
+      - 16
+    function: party
+    item: CAKE
+    name: '&aMoral de la Cavalerie'
+    lore:
+      - '&7&oJouez avec vos amis'
+      - '&7&ovous encourage fortement !'
+      - ''
+      - '&7Bonus de groupe ({count} ) :'
+      - '&8+{buff_additional_experience}% Experience Earned!'
+      - '&8+{buff_health_regeneration} Régénération de la santé'
+  stats:
+    slots:
+      - 15
+    function: profile
+    item: PLAYER_HEAD
+    name: '&e{player}'
+    lore:
+      - ''
+      - '&7Niveau de classe : &e{level}'
+      - '&7Progression: &e{exp} / {next_level}'
+      - '&8[<progress>&8] &e<percent>%'
+      - '&7Points de compétence : &6{skill_points}'
+      - ''
+      - '&7Classe actuelle : &c{class}'
+      - '&7Points de classe : &c{class_points}'
+  phys:
+    slots:
+      - 32
+    function: stats
+    name: '&cPhysique'
+    item: GOLDEN_APPLE
+    hide-flags: true
+    lore:
+      - ''
+      - 'Force actuelle : &c&l{attribute_strength}'
+      - ''
+      - '✦ Dégâts d''attaque : &c{attack_damage} &7(&c{attack_damage_base} &7+ &c{attack_damage_extra}&7)'
+      - '✦ Dégâts d''attaque : &c{attack_speed} &7(&c{attack_speed_base} &7+ &c{attack_speed_extra}&7)'
+      - ''
+      - '❤ Santé Max : &c{max_health} &7(&c{max_health_base} &7+ &c{max_health_extra}&7)'
+      - '❤ Health Regen: &c{health_regeneration} &7(&c{health_regeneration_base} &7+ &c{health_regeneration_extra}&7)'
+      - ''
+      - '✤ Endurance maximale : &9{max_stamina} &7(&9{max_stamina_base} &7+ &9{max_stamina_extra}&7)'
+      - '✤ Health Regen: &c{stamina_regeneration} &9(&c{stamina_regeneration_base} &9+ &c{stamina_regeneration_extra}&7)'
+      - ''
+      - '❖ Armor: &c{armor} &7(&c{armor_base} &7+ &c{armor_extra}&7)'
+      - '❖ Endurance de l''armure : &c{armor_toughness} &7(&c{armor_toughness_base} &7+ &c{armor_toughness_extra}&7)'
+  dex:
+    slots:
+      - 33
+    function: stats
+    name: '&aDextérité'
+    item: LEATHER_BOOTS
+    hide-flags: true
+    lore:
+      - ''
+      - 'Dextérité actuelle: &a&l{attribute_dexterity}'
+      - ''
+      - '✤ Résistance au recul : &f{knockback_resistance} &7(&f{knockback_resistance_base} &7+ &f{knockback_resistance_extra}&7)'
+      - '✤ Vitesse de déplacement : &f{movement_speed} &7(&f{movement_speed_base} &7+ &f{movement_speed_extra}&7)'
+      - '✤ Réduction du Malus de Vitesse: &f{speed_malus_reduction}% &7(&f{speed_malus_reduction_base} &7+ &f{speed_malus_reduction_extra}&7)'
+  int:
+    slots:
+      - 34
+    function: stats
+    name: '&bIntellect'
+    item: BOOK
+    hide-flags: true
+    lore:
+      - ''
+      - 'Intelligence actuelle: &b&l{attribute_intelligence}'
+      - ''
+      - '✤ Endurance maximale : &9{max_mana} &7(&9{max_mana_base} &7+ &9{max_mana_extra}&7)'
+      - '✤ Health Regen: &c{mana_regeneration} &9(&c{mana_regeneration_base} &9+ &c{mana_regeneration_extra}&7)'
+      - ''
+      - '✤ Réduction du temps de recharge des compétences : &9{cooldown_reduction} &7(&9{cooldown_reduction_base} &7+ &9{cooldown_reduction_extra}&7)'
+      - '✤ Expérience supplémentaire : &9{additional_experience} &7(&9{additional_experience_base} &7+ &9{additional_experience_extra}&7)'
+      - ''
+      - '❊ Endurance maximale : &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
+      - '❊ Health Regen: &c{stellium_regeneration} &9(&c{stellium_regeneration_base} &9+ &c{stellium_regeneration_extra}&7)'

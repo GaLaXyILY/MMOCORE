@@ -1,0 +1,218 @@
+#Level & Experience
+level-up:
+  - ''
+  - '&eFélicitations, vous avez atteint le niveau &6{level}&e!'
+  - '&eUtilisez &6/p &epour voir vos nouvelles statistiques !'
+  - ''
+profession-level-up:
+  - '&eVous êtes maintenant niveau &6{level}&e dans &6{profession}&e!'
+exp-notification: '%&f{profession} &e{progress} &e{ratio}%'
+exp-hologram: '&e+{exp} EXP!'
+class-select: '&eVous êtes maintenant un &6{class}&e!'
+already-on-class: '&cVous êtes déjà un {class}.'
+death-exp-loss:
+  - ''
+  - '&4Vous êtes mort et avez perdu {loss} d''expérience.'
+  - ''
+#General
+not-enough-perms: '&cVous n''avez pas la permission.'
+#Experience boosters
+booster-main:
+  - '&e'
+  - '&eUn multiplicateur &6{multiplier}x&e EXP est maintenant actif !'
+  - '&e'
+booster-skill:
+  - '&e'
+  - '&eUn multiplicateur &6{multiplier}x&e Exp est maintenant actif !'
+  - '&e'
+booster-expired: '&cExpiré !'
+#PvP Mode
+pvp-mode:
+  cooldown: '&cAttends {remaining} pour réutiliser cette commande s''il te plaît.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&cLa différence de niveau est trop élevée pour combattre ce joueur.'
+    low-level-target: '&cVous ne pouvez pas combattre ce joueur car son niveau est trop bas.'
+    low-level-self: '&cVotre niveau est trop bas pour combattre les autres joueurs.'
+    pvp-mode-disabled-target: '&cCe joueur n''a pas basculé en JcJ.'
+    pvp-mode-disabled-self: '&cVous n''avez pas basculé sur PvP.'
+    invulnerable-self: '&cVous êtes toujours hors combat pendant {left} secondes.'
+    invulnerable-target: '&cVous êtes toujours hors combat pendant {left} secondes.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&aVous pourrez désormais combattre d''autres joueurs dans des zones dédiées.'
+    on-invulnerable: '&aVous pourrez combattre d''autres joueurs en {time} secondes.'
+    off-safe: '&cVous ne pouvez plus combattre les autres joueurs.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&cVous avez quitté une zone PVP mais êtes toujours vulnérable pendant {remaining} secondes !'
+    pvp-denied: '&cVous avez quitté la zone PVP.'
+  enter:
+    pvp-mode-on: '&aVous êtes entré dans une zone PVP et avez gagné l''invulnérabilité pendant {time} secondes !'
+    pvp-mode-off: '&aVous êtes entré dans une zone PVP. Vous pouvez utiliser /pvpmode pour combattre d''autres joueurs.'
+#Fishing Profession
+caught-fish: '&cVous avez attrapé un poisson !'
+fish-out-water: '&aBien joué!'
+fish-out-water-crit: '&aPoisson critique !'
+#Player Input
+player-input:
+  anvil:
+    friend-request: 'Le nom de votre ami(e)'
+    party-invite: 'Noms des joueurs..'
+    guild-invite: 'Noms des joueurs'
+    guild-creation-tag: 'Tag de la guilde'
+    guild-creation-name: 'Nom du serveur.'
+  chat:
+    friend-request:
+      - '&eWrite in the chat the player name.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    party-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-tag:
+      - '&eWrite in the chat the TAG of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-name:
+      - '&eWrite in the chat the name of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    friend-request-cancel: ''
+    party-invite-cancel: ''
+    guild-invite-cancel: ''
+    guild-creation-tag-cancel: ''
+    guild-creation-name-cancel: ''
+#Spell Casting
+casting:
+  action-bar:
+    ready: '&6[{index}] &a&l{skill}'
+    on-cooldown: '&6[{index}] &c&l{skill} &6(&c{cooldown}&6)'
+    no-mana: '&6[{index}] &9&l{skill}'
+    no-stamina: '&6[{index}] &9&l{skill}'
+  split: '&7 &7 - &7 '
+  no-longer: '%&cVous avez annulé le lancement de compétences.'
+  no-mana: '&cVous n''avez pas assez de {mana}, {mana-required} de plus requis !'
+  no-stamina: '&cVous n''avez pas assez d''énergie!'
+  on-cooldown: '&cCette compétence a un temps de recharge de {cooldown}.'
+#Combat Log
+now-in-combat: '%&cVous êtes en combat !'
+leave-combat: '%&aVous avez quitté le combat.'
+#Waypoints
+new-waypoint: '%&eVous avez débloqué le &6{waypoint} &ewaypoint !'
+new-waypoint-book: '%&eVous avez débloqué le &6{waypoint} &ewaypoint !'
+not-enough-stellium: '&cVous n''avez pas assez de stellium : vous avez besoin de {more} de plus.'
+waypoint-cooldown: '&cVeuillez patienter {cooldown} avant d''utiliser un waypoint à nouveau.'
+not-unlocked-waypoint: '&cVous n''avez pas encore ouvert ce chapitre.'
+not-dynamic-waypoint: '&cVous êtes nombreux à vous téléporter à un waypoint non dynamique lorsque vous êtes sur un autre waypoint.'
+standing-on-waypoint: '&cVous êtes déjà sur ce waypoint.'
+warping-canceled: '%&cDéformation de waypoint annulée.'
+warping-comencing: '%&cNE PAS MOUVE!&e Vous serez déformé dans {left}sec.'
+cannot-teleport-to: '&cLes deux waypoints ne sont pas liés.'
+#Cash
+deposit: '&eVous avez déposé avec succès &6{worth}g&e.'
+withdrawing: '&eTapez dans le chat le montant de &6gold&e que vous voulez &6retirer.'
+withdraw-cancel: '&eRetrait annulé.'
+withdrew: '&eVous avez déposé avec succès &6{worth}g&e.'
+wrong-number: '&c{arg} n''est pas un nombre valide.'
+not-enough-money: '&cVous n''avez pas assez de stellium : vous avez besoin de {left} de plus.'
+stand-near-enderchest: '&cVous devez être à proximité d''une banque pour faire cela.'
+#Blocks
+cannot-break: '%&cVous n''avez pas le bon outil pour casser ce bloc.'
+#Friends
+no-longer-friends: '&cVous et {unfriend} n''êtes plus amis.'
+not-online-player: '&eLe joueur {player} n''est pas connecté.'
+sent-friend-request: '&eVous avez envoyé une demande d''ami à &6{player}&e.'
+now-friends: '&eVous êtes maintenant amis avec &6{player}&e.'
+friend-request-cooldown: '&cVeuillez patienter {cooldown}.'
+cant-request-to-yourself: '&cTu ne pouve pas t’envoyer de demande d''ami.'
+already-friends: '&cTu es déjà ami avec {player}.'
+friend-request:
+  - '{"text":""}'
+  - '{"text":"&6{player} &evient de vous envoyer une demande d''ami!"}'
+  - '[{"text":" ","hoverEvent":{}},{"text":"&8[&a&lACCEPTER&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick pour accepter!"}},{"text":"&r ","hoverEvent":{}},{"text":"&8[&c&lREFUSER&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e":"}}]'
+  - '{"text":""}'
+#Parties
+party-chat: '&5[Party] {player}: {message}'
+sent-party-invite: '&eVous avez envoyé une demande d''ami à &6{player}&e.'
+already-in-party: '&c{player} est déjà dans votre party.'
+party-invite:
+  - '{"text":""}'
+  - '{"text":"&6{player} &evous a invité à rejoindre leur groupe!"}'
+  - '[{"text":" ","hoverEvent":{}},{"text":"&8[&a&lACCEPTER&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick pour accepter!"}},{"text":"&r ","hoverEvent":{}},{"text":"&8[&c&lREFUSER&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e":"}}]'
+  - '{"text":""}'
+party-is-full: '&cDésolé, votre groupe est plein.'
+party-joined: '&eVous avez rejoint avec succès le groupe &6{owner}.'
+party-joined-other: '&6{player}&e a rejoint votre groupe !'
+transfer-party-ownership: '&eVous avez été transféré la propriété du groupe.'
+kick-from-party: '&eVous avez déposé avec succès &6{player}g&e.'
+party-invite-cooldown: '&cVeuillez patienter {cooldown} avant d''inviter {player}.'
+high-level-difference: '&cVous ne pouvez pas inviter {player} car la différence de niveau est trop élevée ({diff}).'
+#Guilds
+guild-chat: '&a[{tag}] {player}: {message}'
+sent-guild-invite: '&eVous avez envoyé une demande d''ami à &6{player}&e.'
+already-in-guild: '&c{player} est déjà dans votre party.'
+guild-invite:
+  - '{"text":""}'
+  - '{"text":"&6{player} &evous a invité à rejoindre leur groupe!"}'
+  - '[{"text":" ","hoverEvent":{}},{"text":"&8[&a&lACCEPTER&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick pour accepter!"}},{"text":"&r ","hoverEvent":{}},{"text":"&8[&c&lREFUSER&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&e":"}}]'
+  - '{"text":""}'
+#guild-is-full: '&cSorry, your guild is full.' -Unused right now
+guild-joined: '&eVous avez rejoint avec succès le groupe &6{owner}.'
+guild-joined-other: '&6{player}&e a rejoint votre groupe !'
+transfer-guild-ownership: '&eVous avez été transféré la propriété du groupe.'
+kick-from-guild: '&eVous avez déposé avec succès &6{player} g&e.'
+guild-invite-cooldown: '&cVeuillez patienter {cooldown} avant d''inviter {player}.'
+guild-creation:
+  failed: "&cImpossible de créer la guilde : {reason}"
+  reasons:
+    invalid-characters: "&eInvalid character(s)!"
+    invalid-length: "Le nombre de caractères du code Pin doit être compris entre {min} et {max}."
+    already-exists: "&eCette étiquette existe déjà!"
+#Quests
+already-on-quest: '&cVous êtes déjà sur cette Quête.'
+cancel-quest: '&eVous avez annulé votre quête en cours.'
+quest-level-restriction: '&cVous devez être {level} {count}.'
+cant-redo-quest: '&cVous ne pouvez pas commencer cette quête deux fois.'
+quest-cooldown: '&cVous devez être {delay}.'
+start-quest: '&eVous avez déposé avec succès &6{quest}g&e.'
+#Attributes
+no-attribute-points-spent: '&cVous n''avez pas dépensé de points de compétence.'
+not-attribute-reallocation-point: '&cVous n''avez pas 1 point de réaffectation de compétence.'
+not-attribute-point: '&cVous n''avez pas dépensé de points de compétence.'
+not-attribute-point-shift: '&cVous devez avoir &4{shift_points} &cattribute points.'
+attribute-points-reallocated: '&eVous avez réinitialisé vos points de compétence. Vous avez maintenant &6{points} points de tuer.'
+attribute-max-points-hit: '&cVous ne pouvez plus augmenter de niveau cet attribut.'
+attribute-level-up: '&eVous avez réussi à améliorer votre &6{attribute}&e.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&cVous avez besoin d''un point de classe pour effectuer cette action.'
+no-permission-for-class:
+  - "&cTu n'as pas le droit d'utiliser cette commande."
+#Skills
+no-class-skill: '&cVotre classe n''a pas de compétence.'
+not-enough-skill-points: '&cVous avez besoin d''un point de compétence.'
+not-enough-skill-points-shift: '&cVous avez besoin de {shift_points} points de compétence.'
+upgrade-skill: '&eVotre &6{skill} &eest maintenant niveau &6{level}&e!'
+skill-level-not-met: '&cVous ne pouvez pas encore utiliser cette compétence.'
+no-skill-bound: '&cVous n''avez aucune compétence liée à cet emplacement.'
+skill-cannot-be-bound: '&cThis skill is always active and cannot be bound.'
+not-compatible-skill: '&cLa compétence sélectionnée n''est pas compatible avec cet emplacement.'
+cant-manually-bind: "&cVous ne pouvez pas lier/délier manuellement une compétence à cet emplacement."
+skill-max-level-hit: '&cVous avez déjà atteint le niveau maximum pour cette compétence.'
+no-skill-placeholder: 'Aucune compétence trouvée'
+not-skill-reallocation-point: '&cVous n''avez pas 1 point de réaffectation de compétence.'
+no-skill-points-spent: '&cVous n''avez pas dépensé de points de compétence.'
+skill-points-reallocated: '&eVous avez réinitialisé vos points de compétence. Vous avez maintenant &6{points} points de tuer.'
+max-points-reached: '&cVous avez atteint le maximum de points que vous pouvez dépenser. Vous devez réaffecter vos points pour annuler.'
+cannot-upgrade-skill: '&cYou cannot upgrade this skill.'
+#Skill Trees
+no-skill-tree-points-spent: '&cVous n''avez pas dépensé de points de compétence.'
+locked-node: '&cCette boutique est verouillée.'
+upgrade-skill-node: '&eVotre &6{skill-node} &eest maintenant niveau &6{level}&e!'
+skill-node-max-level-hit: '&cVous avez déjà atteint le niveau maximum pour cette compétence.'
+missing-skill-node-permission: '&cTu n''as pas le droit d''utiliser cette commande.'
+not-enough-skill-tree-points: '&cVous avez besoin d''un point de compétence.'
+reallocated-points: '&eVous avez réinitialisé vos points de compétence {skill-tree}. Vous avez maintenant &6{points} points de tuer.'
+not-skill-tree-reallocation-point: '&cVous n''avez pas 1 point de réaffectation de compétence.'
+no-skill-tree: '&cVotre classe n''a pas d''arbre de compétences.'

@@ -1,0 +1,218 @@
+#Level & Experience
+level-up:
+  - ''
+  - '&eTebrikler, &6{level}&e''e ulaştın!'
+  - '&eYeni istatistiklerinizi görmek için &6/p &ekullanın!'
+  - ''
+profession-level-up:
+  - '&eArtık &6{profession}&e mesleğinde &6{level}&e seviyesindesin!'
+exp-notification: '%&f{profession} &e{progress} &e{ratio}%'
+exp-hologram: '&e+{exp} TP!'
+class-select: '&eArtık bir &6{sınıf}&esın! '
+already-on-class: '&cSen zaten bir {class}sın.'
+death-exp-loss:
+  - ''
+  - '&4Öldün ve {loss} deneyim kaybettin.'
+  - ''
+#General
+not-enough-perms: '&cYeterli izne sahip değilsin.'
+#Experience boosters
+booster-main:
+  - '&e'
+  - '&eŞimdi &6{multiplier}x&e bir EXP çarpanı aktif!'
+  - '&e'
+booster-skill:
+  - '&e'
+  - '&eŞimdi &6{multiplier}x&e &6{profession} &eEXP çarpanı aktif!'
+  - '&e'
+booster-expired: '&cSüresi doldu!'
+#PvP Mode
+pvp-mode:
+  cooldown: '&cBu komutu tekrar kullanmak için lütfen {remaining} saniye bekleyin.'
+  #When you cannot hit another player
+  cannot-hit:
+    high-level-difference: '&cBu oyuncuyla savaşmak için seviye farkı çok yüksek.'
+    low-level-target: '&cBu oyuncuyla savaşamazsın çünkü seviyesi çok düşük.'
+    low-level-self: '&cSeviyen diğer oyuncularla savaşmak için çok düşük.'
+    pvp-mode-disabled-target: '&cBu oyuncu PvP’yi açmamış.'
+    pvp-mode-disabled-self: '&cPvP’yi açmamışsın.'
+    invulnerable-self: '&cHala {left} saniye boyunca savaş dışındasın.'
+    invulnerable-target: '&cBu oyuncu {left} saniye boyunca savaş dışında.'
+  #When using /pvpmode
+  toggle:
+    on-safe: '&aArtık belirli alanlarda diğer oyuncularla savaşabileceksin.'
+    on-invulnerable: '&a{time} Saniye sonra diğer oyuncularla savaşabilirsin.'
+    off-safe: '&cArtık diğer oyuncularla savaşamazsınız.'
+  #Entering/leaving regions
+  leave:
+    pvp-allowed: '&cBir PVP bölgesinden ayrıldınız, ancak {remaining} saniye boyunca hala savunmasızsınız!'
+    pvp-denied: '&cPVP bölgesinden ayrıldınız.'
+  enter:
+    pvp-mode-on: '&aBir PVP bölgesine girdiniz ve {time} saniye boyunca dokunulmazlık kazandınız!'
+    pvp-mode-off: '&aBir PVP bölgesine girdiniz. Diğer oyuncularla savaşmak için /pvpmode kullanabilirsiniz.'
+#Fishing Profession
+caught-fish: '&cBir balık yakaladın!'
+fish-out-water: '&aTebrikler!'
+fish-out-water-crit: '&aBüyük Fish!'
+#Player Input
+player-input:
+  anvil:
+    friend-request: 'Arkadaş ismi..'
+    party-invite: 'Oyuncu ismi..'
+    guild-invite: 'Oyuncu ismi..'
+    guild-creation-tag: 'Klan etiketi..'
+    guild-creation-name: 'Klan ismi..'
+  chat:
+    friend-request:
+      - '&eWrite in the chat the player name.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    party-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-invite:
+      - '&eWrite in the chat the player you want to invite.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-tag:
+      - '&eWrite in the chat the TAG of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    guild-creation-name:
+      - '&eWrite in the chat the name of the Guild you want to create.'
+      - '&eWrite &c''cancel'' &eto cancel.'
+    friend-request-cancel: ''
+    party-invite-cancel: ''
+    guild-invite-cancel: ''
+    guild-creation-tag-cancel: ''
+    guild-creation-name-cancel: ''
+#Spell Casting
+casting:
+  action-bar:
+    ready: '&6[{index}] &a&l{skill}'
+    on-cooldown: '&6[{index}] &c&l{skill} &6(&c{cooldown}&6)'
+    no-mana: '&6[{index}] &9&l{skill}'
+    no-stamina: '&6[{index}] &9&l{skill}'
+  split: '&7 &7 - &7 '
+  no-longer: '%&cYetenek kullanımını iptal ettin.'
+  no-mana: '&cYeterince {mana}, {mana-required} daha fazlasına sahip değilsiniz!'
+  no-stamina: '&cYeterli dayanıklılığın yok!'
+  on-cooldown: '&cBu beceri {cooldown}s bekleme süresindedir.'
+#Combat Log
+now-in-combat: '%&cŞu anda savaştasınız!'
+leave-combat: '%&aÇatışmayı bıraktın.'
+#Waypoints
+new-waypoint: '%&6{waypoint} &eara noktasının kilidini açtın!'
+new-waypoint-book: '%&6{waypoint} &eara noktasının kilidini açtın!'
+not-enough-stellium: '&cYeterli stelyumunuz yok: {more} daha fazlasına ihtiyacınız var.'
+waypoint-cooldown: '&cBir ara noktayı tekrar kullanmadan önce lütfen {cooldown} bekleyin.'
+not-unlocked-waypoint: '&cHenüz bu ara noktanın kilidini açmadınız.'
+not-dynamic-waypoint: '&cSadece başka bir Ara Nokta üzerinde dururken dinamik olmayan bir Ara Noktasına ışınlanabilirsin.'
+standing-on-waypoint: '&cZaten bu Ara Nokta üzerinde duruyorsun.'
+warping-canceled: '%&cAra Nokta ışınlanması iptal edildi.'
+warping-comencing: 'HAREKET ETME!&e {left}s içinde ışınlanıcaksın.'
+cannot-teleport-to: 'İki ara nokta bağlantılı değil.'
+#Cash
+deposit: '&eBaşarıyla Altın yatırdınız &6{worth}a&e.'
+withdrawing: '&eSohbete &6çekmek&e istediğiniz &6altın&e miktarını yazın.'
+withdraw-cancel: '&eÇekme işlemi iptal edildi.'
+withdrew: '&eBaşarıyla &6{worth}a&e çektiniz.'
+wrong-number: '&c{arg} geçerli bir sayı değil.'
+not-enough-money: '&cYeterli paranız yok, {left} altına ihtiyacınız var.'
+stand-near-enderchest: '&cBunu yapmak için bir bankanın yakınında duruyor olmalısınız.'
+#Blocks
+cannot-break: '%&cBu bloğu kırmak için doğru alete sahip değilsin.'
+#Friends
+no-longer-friends: '&cSen ve {unfriend} artık arkadaş değilsiniz.'
+not-online-player: '&c{player} çevrimiçi değil.'
+sent-friend-request: '&6{player} &eadlı oyuncuya arkadaşlık isteği gönderdiniz.'
+now-friends: '&eArtık &6{player}&e ile arkadaşsınız.'
+friend-request-cooldown: '&cLütfen bekleyin {cooldown}.'
+cant-request-to-yourself: '&cKendine bir istek gönderemezsin.'
+already-friends: '&cSen zaten {player} ile arkadaşsın.'
+friend-request:
+  - '{"text":""}'
+  - '{“text”:“&6{player} &esize bir arkadaşlık isteği gönderdi!”}'
+  - '[{"text":"        "},{"text":"&8[&a&lACCEPT&8]","clickEvent":{"action":"run_command","value":"/friends accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to accept!"}},{"text":"&r             "},{"text":"&8[&c&lDENY&8]","clickEvent":{"action":"run_command","value":"/friends deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eClick to deny."}}]'
+  - '{"text":""}'
+#Parties
+party-chat: '&5[Parti] {player}: {message}'
+sent-party-invite: '&6{player}&e bir parti daveti gönderdiniz.'
+already-in-party: '&c{player} zaten partinizde.'
+party-invite:
+  - '{"text":""}'
+  - '{“text”:“&6{player} &esizi partisine davet etti!”}'
+  - '[{"text":"        "},{"text":"&8[&a&lKABUL ET&8]","clickEvent":{"action":"run_command","value":"/party accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eKabul etmek için tıklayın!"}},{"text":"&r             "},{"text":"&8[&c&lREDDET&8]","clickEvent":{"action":"run_command","value":"/party deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eReddetmek için tıklayın."}}]'
+  - '{"text":""}'
+party-is-full: '&cÜzgünüm, partiniz dolu.'
+party-joined: '&6{owner}&e''nin partisine başarıyla katıldın.'
+party-joined-other: '&6{player}&e partinize katıldı!'
+transfer-party-ownership: '&eParti sahipliği size devredildi.'
+kick-from-party: '&6{player}&e başarıyla attınız.'
+party-invite-cooldown: '&c{player} davet etmeden önce lütfen {cooldown} bekleyin.'
+high-level-difference: '&cSeviye farkı çok yüksek olduğundan {player} davet edemezsin ({diff}).'
+#Guilds
+guild-chat: '&a[{tag}] {player}: {message}'
+sent-guild-invite: '&6{player} &e bir Lonca daveti gönderdin.'
+already-in-guild: '&c{player} zaten Loncada.'
+guild-invite:
+  - '{"text":""}'
+  - '{“text”:“&6{player} &esizi loncalarına davet etti!”}'
+  - '[{"text":"        "},{"text":"&8[&a&lKABUL ET&8]","clickEvent":{"action":"run_command","value":"/guild accept {uuid}"},"hoverEvent":{"action":"show_text","value":"&eKabul etmek için tıklayın!"}},{"text":"&r             "},{"text":"&8[&c&lREDDET&8]","clickEvent":{"action":"run_command","value":"/guild deny {uuid}"},"hoverEvent":{"action":"show_text","value":"&eReddetmek için tıklayın."}}]'
+  - '{"text":""}'
+#guild-is-full: '&cSorry, your guild is full.' -Unused right now
+guild-joined: '&eBaşarıyla &6{owner}&e’nin loncasına katıldınız.'
+guild-joined-other: '&6{player}&e loncanıza katıldı!'
+transfer-guild-ownership: '&eLonca sahipliği size devredildi.'
+kick-from-guild: '&eBaşarıyla &6{player}&e loncadan attınız.'
+guild-invite-cooldown: '&cLütfen {player} davet etmeden önce {cooldown} bekleyin.'
+guild-creation:
+  failed: "&cLonca oluşturulamadı: {reason}"
+  reasons:
+    invalid-characters: "&eGeçersiz karakter(ler)!"
+    invalid-length: "&eUzunluk {min} ile {max} arasında olmalı!"
+    already-exists: "&eBu lonca etiketi zaten var!"
+#Quests
+already-on-quest: '&cZaten bir görevdesiniz.'
+cancel-quest: '&eDevam eden görevinizi başarıyla iptal ettiniz.'
+quest-level-restriction: '&c{level} {count} olmanız gerekir.'
+cant-redo-quest: '&cBu göreve iki kez başlayamazsın.'
+quest-cooldown: '&cBeklemeniz gerekiyor {delay}.'
+start-quest: '&eBaşarıyla &6{quest}&e başladınız.'
+#Attributes
+no-attribute-points-spent: '&cHerhangi bir nitelik puanı harcamadınız.'
+not-attribute-reallocation-point: '&c1 yeniden dağıtım puanın yok.'
+not-attribute-point: '&cNitelik puanın yok.'
+not-attribute-point-shift: '&cNitelik puanın &4{shift_points} &colması gerekir.'
+attribute-points-reallocated: '&eNitelik puanlarını başarıyla sıfırladın. Şimdi &6{points} &enitelik puanın var.'
+attribute-max-points-hit: '&cArtık bu niteliğin seviyesini yükseltemezsin.'
+attribute-level-up: '&6{attribute}&e seviyenizi başarıyla yükselttin.' #{level}
+#Class selection
+cant-choose-new-class:
+  - '&cBu eylemi gerçekleştirmek için bir sınıf puanına ihtiyacın var.'
+no-permission-for-class:
+  - "&cBu sınıfı seçme izniniz yok."
+#Skills
+no-class-skill: '&cSınıfınızın hiçbir becerisi yok.'
+not-enough-skill-points: '&cBir beceri puanına ihtiyacınız var.'
+not-enough-skill-points-shift: '&c{shift_points} beceri puanına ihtiyacınız var.'
+upgrade-skill: '&6{skill} &eartık Seviye &6{level}&e!'
+skill-level-not-met: '&cBu beceriyi henüz kullanamıyorsun.'
+no-skill-bound: '&cBu yuvaya bağlı herhangi bir beceriniz yok.'
+skill-cannot-be-bound: '&cThis skill is always active and cannot be bound.'
+not-compatible-skill: '&cSeçilen beceri bu yuvayla uyumlu değil.'
+cant-manually-bind: "&cBir beceriyi bu yuvaya manuel olarak bağlayamaz/bağlantısını kaldıramazsınız."
+skill-max-level-hit: '&cBu beceri için zaten maksimum seviyeye ulaştın.'
+no-skill-placeholder: 'Beceriye Bağlı Değil'
+not-skill-reallocation-point: '&c1 beceri yeniden dağıtım puanı yok.'
+no-skill-points-spent: '&cHiç beceri puanı harcamadın.'
+skill-points-reallocated: '&eBecerilerinizi başarıyla sıfırladınız. Şimdi &6{points} &ebeceri puanınız var.'
+max-points-reached: '&cHarcayabileceğiniz maksimum puan''a ulaştınız. Geri almak için puanlarınızı yeniden dağıtmanız gerekiyor.'
+cannot-upgrade-skill: '&cYou cannot upgrade this skill.'
+#Skill Trees
+no-skill-tree-points-spent: '&cHerhangi bir beceri ağacı puanı harcamadınız.'
+locked-node: '&cBu yetenek kilitli!'
+upgrade-skill-node: '&eBeceriniz &6{skill-node} &eartık &6{level} &eSeviye!'
+skill-node-max-level-hit: '&cBu Beceriniz için maksimum seviyeye zaten ulaştınız.'
+missing-skill-node-permission: '&cYou do not have the permission to unlock this skill node.'
+not-enough-skill-tree-points: '&c{point} beceri ağacı puanına ihtiyacınız var.'
+reallocated-points: '&eBecerilerinizi başarıyla sıfırladınız {skill-tree}. &eŞimdi &6{points} &ebeceri ağacı puanınız var.'
+not-skill-tree-reallocation-point: '&c1 Beceri ağacı yeniden dağıtım puanın yok.'
+no-skill-tree: '&cSınıfınızın herhangi bir beceri ağacı yok.'

@@ -1,0 +1,72 @@
+#GUI display name
+name: Attributs du Joueur
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  reallocate:
+    slots:
+      - 26
+    function: reallocation
+    item: CAULDRON
+    name: '&aPoints d''Attribut'
+    lore:
+      - ''
+      - 'Vous avez dépensé un total de &6{total}&7 points d''attribut.'
+      - '&7Clic droit pour les réattribuer.'
+      - ''
+      - '&eCoûte 1 point de réattribution d''attribut.'
+      - '&e◆ Points de réallocation d''attribut: &6{points}'
+  str:
+    slots:
+      - 11
+    function: attribute_strength
+    name: '&a{name}'
+    item: GOLDEN_APPLE
+    lore:  #{buffs} returns amount of buffs
+      - ''
+      - '&7Points dépensés : &6{spent}&7/&6{max}'
+      - '&7 {name}actuel : &6&l{current}'
+      - ''
+      - '&8Quand un niveau est atteint :'
+      - '&7 +{buff_weapon_damage}% de dégâts d''arme (&a+{total_weapon_damage}%&7)'
+      - '&7  +{buff_max_health}% Max Health (&a+{total_max_health}%&7)'
+      - ''
+      - '&eCliquez pour passer au niveau supérieur pour 1 point d''attribut.'
+      - '&e★ Points d''Attribut Actuels: {attribute_points}'
+  dex:
+    slots:
+      - 13
+    function: attribute_dexterity
+    name: '&a{name}'
+    item: LEATHER_BOOTS
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Points dépensés : &6{spent}&7/&6{max}'
+      - '&7 {name} actuel : &6&l{current}'
+      - ''
+      - '&8Quand un niveau est atteint :'
+      - '&7 +{buff_physical_damage}% de dégâts physiques (&a+{total_physical_damage}%&7)'
+      - '&7 +{buff_projectile_damage}% de dégâts de projectile (&a+{total_projectile_damage}%&7)'
+      - '&7  +{buff_attack_speed}% Attack Speed (&a+{total_attack_speed}%&7)'
+      - ''
+      - '&eCliquez pour passer au niveau supérieur pour 1 point d''attribut.'
+      - '&e★ Points d''Attribut Actuels: {attribute_points}'
+  int:
+    slots:
+      - 15
+    function: attribute_intelligence
+    name: '&a{name}'
+    item: BOOK
+    lore:
+      - ''
+      - '&7Points dépensés : &6{spent}&7/&6{max}'
+      - '&7 {name} actuel : &6&l{current}'
+      - ''
+      - '&8Quand un niveau est atteint :'
+      - '&7 +{buff_magic_damage}% de dégâts d''arme (&a+{total_magic_damage}%&7)'
+      - '&7 +{buff_cooldown_reduction}% de réduction de temps de récupération (&a+{total_cooldown_reduction}%&7)'
+      - ''
+      - '&eCliquez pour passer au niveau supérieur pour 1 point d''attribut.'
+      - '&e★ Points d''Attribut Actuels: {attribute_points}'

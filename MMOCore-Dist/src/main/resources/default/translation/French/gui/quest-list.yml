@@ -1,0 +1,82 @@
+#GUI display name
+name: Quêtes
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 45
+items:
+  skill:
+    slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 28
+      - 29
+      - 30
+      - 31
+      - 32
+      - 33
+      - 34
+    function: quest
+    #When quest is locked
+    locked:
+      item: PAPER
+      name: '&c- Indisponible -'
+    #When there is no quest to display
+    no-quest:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&a'
+    level-requirement:
+      main:
+        hit: '&a ✔ Nécessite le niveau {level}'
+        not-hit: '&c ✖ Nécessite le niveau {level}'
+      profession:
+        hit: '&a ✔ Nécessite {profession} Niveau {level}'
+        not-hit: '&a ✔ Nécessite {profession} Niveau {level}'
+    #Date format used in the {date} placeholder
+    date-format: 'd MMM, yyyy'
+    item: BOOK
+    name: '&a{name}'
+    lore:
+      - '{lore}'
+      - ''
+      - '{started}&8Quête commencée !'
+      - '{started}&7► Progression : &e{progress}%'
+      - '{started}&7► &o{objective}'
+      - '{started}'
+      - '{level_req}&7Exigences de niveau ({current_level_req}/{total_level_req} ) :'
+      - '{level_req}{level_requirements}'
+      - '{level_req}'
+      - '{completed}&8Vous avez terminé cette quête sur le {date}.'
+      - '{completed_cannot_redo}&8Vous ne pouvez pas faire cette quête deux fois.'
+      - '{completed_delay}&8Vous pouvez commencer la quête dans {delay}.'
+      - '{completed_can_redo}&8Vous ne pouvez pas faire cette quête deux fois.'
+      - '{completed}'
+      - '{started}&c► Clic droit pour annuler.'
+      - '{!started}&e► Clic gauche pour commencer.'
+  next:
+    slots:
+      - 26
+    function: next
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
+    name: '&aSuivant'
+    lore: { }
+  previous:
+    slots:
+      - 18
+    function: previous
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
+    name: '&aPrécédent'
+    lore: { }

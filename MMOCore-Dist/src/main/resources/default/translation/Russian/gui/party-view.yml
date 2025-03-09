@@ -1,0 +1,40 @@
+#GUI display name
+name: Группа ({players}/{max})
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  member:
+    slots:
+      - 10
+      - 12
+      - 14
+      - 16
+      - 28
+      - 30
+      - 32
+      - 34
+    function: member
+    empty:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&aНет игрока'
+    member:
+      item: PLAYER_HEAD
+      name: '&a{name}'
+      lore:
+        - '&7Уровень {level} {class}'
+        - '&7В сети с: {since}'
+  leave:
+    slots:
+      - 50
+    function: leave
+    item: REDSTONE
+    name: '&cПокинуть группу'
+    lore: { }
+  request:
+    slots:
+      - 48
+    function: invite
+    item: WRITABLE_BOOK
+    name: '&aПригласить игрока..'
+    lore: { }

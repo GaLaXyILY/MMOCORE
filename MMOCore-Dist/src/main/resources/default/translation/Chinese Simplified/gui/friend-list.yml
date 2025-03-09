@@ -1,0 +1,58 @@
+#GUI display name
+name: 好友
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  friend:
+    slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 28
+      - 29
+      - 30
+      - 31
+      - 32
+      - 33
+      - 34
+    function: friend
+    #No friend
+    item: GRAY_STAINED_GLASS_PANE
+    name: '&c没有好友'
+    lore: { }
+    #Online friend
+    online:
+      item: PLAYER_HEAD
+      name: '&a[Online] &f{name}'
+      lore:
+        - '&7等级 {level} {class}'
+        - '&7在线时间: {online_since} 时'
+        - ''
+        - '&c右键删除.'
+    #Offline friend
+    offline:
+      item: PLAYER_HEAD
+      name: '&c[Offline] &f{name}'
+      lore:
+        - '&7最后在线: {last_seen} 前'
+        - ''
+        - '&c右键删除.'
+  request:
+    slots:
+      - 49
+    function: request
+    item: WRITABLE_BOOK
+    name: '&a好友请求'
+    lore: { }

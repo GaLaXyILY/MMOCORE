@@ -1,0 +1,56 @@
+#GUI display name
+name: 职业选择
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  class-rogue:
+    slots:
+      - 11
+    function: class-rogue
+    name: '&a&l流氓'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-mage:
+    slots:
+      - 12
+    function: class-mage
+    name: '&a&l法师'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-marksman:
+    slots:
+      - 13
+    function: class-marksman
+    name: '&a&l神枪手'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-warrior:
+    slots:
+      - 14
+    function: class-warrior
+    name: '&a&l战士'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'
+  class-paladin:
+    slots:
+      - 15
+    function: class-paladin
+    name: '&a&l圣骑士'
+    hide-flags: true
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'

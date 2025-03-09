@@ -1,0 +1,58 @@
+#GUI display name
+name: Arkadaşlar
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  friend:
+    slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 28
+      - 29
+      - 30
+      - 31
+      - 32
+      - 33
+      - 34
+    function: friend
+    #No friend
+    item: GRAY_STAINED_GLASS_PANE
+    name: '&cArkadaşın yok'
+    lore: { }
+    #Online friend
+    online:
+      item: PLAYER_HEAD
+      name: '&a[Online] &f{name}'
+      lore:
+        - '&7Seviye {level} {class}'
+        - '&7{online_since}''dir online'
+        - ''
+        - '&cSilmek için sağ tıklayın.'
+    #Offline friend
+    offline:
+      item: PLAYER_HEAD
+      name: '&c[Offline] &f{name}'
+      lore:
+        - '&7Son Görülme: {last_seen}'
+        - ''
+        - '&cSilmek için sağ tıklayın.'
+  request:
+    slots:
+      - 49
+    function: request
+    item: WRITABLE_BOOK
+    name: '&aYeni Arkadaşlık İsteği'
+    lore: { }

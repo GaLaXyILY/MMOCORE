@@ -1,0 +1,22 @@
+#GUI display name
+name: Choissisez votre Destin
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 27
+items:
+  back:
+    function: back
+    slots:
+      - 26
+    item: RED_STAINED_GLASS_PANE
+    name: '&aRetour à la sélection de classe'
+    lore: [ ]
+  arcane-mage:
+    slots:
+      - 13
+    function: sous-classe-arcane-mage
+    name: '&a&lLe mage des arcanes'
+    lore:
+      - '{lore}'
+      - ''
+      - '{attribute-lore}'

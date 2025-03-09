@@ -1,0 +1,257 @@
+#GUI display name
+name: Ваш Персонаж
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  mining-profession:
+    slots:
+      - 10
+    function: profession_mining
+    item: IRON_PICKAXE
+    name: '&aШахтёрство'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oШахтёрство открывает редкие ресурсы и сырьё.'
+      - '&7&oЭто жизненно важно для повышения мощи и силы,'
+      - '&7&oкопайте чаще, чтобы получить уникальные и редкие предметы.'
+  woodcutting-profession:
+    slots:
+      - 11
+    function: profession_woodcutting
+    item: IRON_AXE
+    name: '&aЛесорубство'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7Хотя это может показаться скучным заданием, добыча дерева'
+      - '&7&oимеет жизненно важное значение для получения материалов для крафта и торговли,'
+      - '&7и поможет вам одержать верх в вашем пути.'
+  farming-profession:
+    slots:
+      - 12
+    function: profession_farming
+    item: IRON_HOE
+    name: '&aФермерство'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7С большим числом новой еды и расходников,'
+      - '&7Вам нужно будет следить за вашим урожаем, чтобы'
+      - '&7&oполучить лучшую еду и напитки для поддержания здоровья.'
+  fishing-profession:
+    slots:
+      - 19
+    function: profession_fishing
+    item: FISHING_ROD
+    name: '&aРыболовство'
+    hide-flags: true
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7Рыболовство может дать вам уникальные предметы,'
+      - '&7которые вы больше нигде не сможете найти. Чем больше вы'
+      - '&7&oрыбачьте, и их будет легче найти.'
+      - ''
+      - '&7Fishing Strength: &c%mmocore_stat_fishing_strength%%'
+      - '&7Crit Fishing Rate: &c%mmocore_stat_critical_fishing_chance%%'
+      - '&7Crit Failure Rate: &c%mmocore_stat_critical_fishing_failure_chance%%'
+  alchemy-profession:
+    slots:
+      - 20
+    function: profession_alchemy
+    item: BREWING_STAND
+    name: '&aАлхимия'
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oВ мире, где вы больше не ограничены'
+      - '&7&oпростые зелья, попробуйте освоить кучу новых способов варки'
+      - '&7&oрецептов, чтобы получить преимущество на поле боя.'
+  smithing-profession:
+    slots:
+      - 21
+    function: profession_smithing
+    item: ANVIL
+    name: '&aКузнечное Дело'
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oКолоть врагов и заставлять их смеяться - это самое худшее,'
+      - '&7&oПрактика делает кузнечное дело совершенным.'
+      - '&7&o&nВойну выиграл человек с самой острой палкой.'
+  enchanting-profession:
+    slots:
+      - 28
+    function: profession_enchanting
+    item: ENCHANTED_BOOK
+    name: '&aЗачарование'
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oLorem ipsum dolor sit amet, consectetur'
+      - '&7&oadipiscing elit. Proin malesuada maximus massa,'
+      - '&7&osodales imperdiet sapien fermentum at.'
+  smelting-profession:
+    slots:
+      - 29
+    function: profession_smelting
+    item: FURNACE
+    name: '&aПлавка'
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - ''
+      - '&7&oПечать бровей станет стандартным.'
+      - '&7&oДолгие часы, проведенные на огне, позволят вам'
+      - '&7&oбыстрее и эффективнее использовать печь..'
+  boost-display:
+    slots:
+      - 47
+      - 48
+      - 49
+      - 50
+      - 51
+    function: boost
+    item: BARRIER
+    no-boost:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&aНету Ускорителя'
+      lore: { }
+    #Profession experience boosters
+    profession:
+      item: EXPERIENCE_BOTTLE
+      name: '&aУсиление EXP'
+      lore:
+        - '&7Количество: &6+{value}%'
+        - '&7Осталось времени: &6{left}'
+        - '&7Профессия: &6{profession}'
+        - '&7'
+        - '&eНачат игроком {author}'
+    #Main class experience boosters
+    main-level:
+      item: EXPERIENCE_BOTTLE
+      name: '&aУсиление EXP'
+      lore:
+        - '&7Количество: &6+{value}%'
+        - '&7Осталось времени: &6{left}'
+        - '&7'
+        - '&eНачат игроком {author}'
+  boost-next:
+    slots:
+      - 52
+    function: boost-next
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
+    name: '&aСледующая'
+    lore: { }
+  boost-prev:
+    slots:
+      - 46
+    function: boost-previous
+    item: PLAYER_HEAD
+    texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
+    name: '&aПредыдущая'
+    lore: { }
+  party:
+    slots:
+      - 16
+    function: party
+    item: CAKE
+    name: '&aБоевой дух группы'
+    lore:
+      - '&7&oИгра с вашими друзьями'
+      - '&7&oочень поощряет вас!'
+      - ''
+      - '&7Бонусы Группы ({count}):'
+      - '&8+{buff_additional_experience}% Experience Earned!'
+      - '&8+{buff_health_regeneration} Регенерации Здоровья'
+  stats:
+    slots:
+      - 15
+    function: profile
+    item: PLAYER_HEAD
+    name: '&e{player}'
+    lore:
+      - ''
+      - '&7Текущий Уровень: &e{level}'
+      - '&7Прогресс: &e{exp} / {next_level}'
+      - '&8[&e{progress}&8] &e{percent}%'
+      - '&7Очки Навыка: &6{skill_points}'
+      - ''
+      - '&7Текущий класс: &c{class}'
+      - '&7Очки Класса: &c{class_points}'
+  phys:
+    slots:
+      - 32
+    function: stats
+    name: '&cФизический'
+    item: GOLDEN_APPLE
+    hide-flags: true
+    lore:
+      - ''
+      - 'Текущая Сила: &c&l{attribute_strength}'
+      - ''
+      - '✦ Урон от Атак: &c{attack_damage} &7(&c{attack_damage_base} &7+ &c{attack_damage_extra}&7)'
+      - '✦ Скорость Атаки: &c{attack_speed} &7(&c{attack_speed_base} &7+ &c{attack_speed_extra}&7)'
+      - ''
+      - '❤ Максимум Здоровья: &c{max_health} &7(&c{max_health_base} &7+ &c{max_health_extra}&7)'
+      - '❤ Регенерация Здоровья: &c{health_regeneration} &7(&c{health_regeneration_base} &7+ &c{health_regeneration_extra}&7)'
+      - ''
+      - '✤ Максимум Стамины: &9{max_stamina} &7(&9{max_stamina_base} &7+ &9{max_stamina_extra}&7)'
+      - '✤ Регенерация Стамины: &9{stamina_regeneration} &7(&9{stamina_regeneration_base} &7+ &9{stamina_regeneration_extra}&7)'
+      - ''
+      - '❖ Броня: &c{armor} &7(&c{armor_base} &7+ &c{armor_extra}&7)'
+      - '❖ Прочность Брони: &c{armor_toughness} &7(&c{armor_toughness_base} &7+ &c{armor_toughness_extra}&7)'
+  dex:
+    slots:
+      - 33
+    function: stats
+    name: '&aЛовкость'
+    item: LEATHER_BOOTS
+    hide-flags: true
+    lore:
+      - ''
+      - 'Текущая Ловкость: &a&l{attribute_dexterity}'
+      - ''
+      - '✤ Сопротивление Отталкиванию: &f{knockback_resistance} &7(&f{knockback_resistance_base} &7+ &f{knockback_resistance_extra}&7)'
+      - '✤ Скорость Передвижения: &f{movement_speed} &7(&f{movement_speed_base} &7+ &f{movement_speed_extra}&7)'
+      - '✤ Сокращение Скорости: &f{speed_malus_reduction}% &7(&f{speed_malus_reduction_base} &7+ &f{speed_malus_reduction_extra}&7)'
+  int:
+    slots:
+      - 34
+    function: stats
+    name: '&bИнтеллект'
+    item: BOOK
+    hide-flags: true
+    lore:
+      - ''
+      - 'Текущий Интеллект: &b&л{attribute_intelligence}'
+      - ''
+      - '✤ Максимум Маны: &9{max_mana} &7(&9{max_mana_base} &7+ &9{max_mana_extra}&7)'
+      - '✤ Регенерация Маны: &9{mana_regeneration} &7(&9{mana_regeneration_base} &7+ &9{mana_regeneration_extra}&7)'
+      - ''
+      - '✤ Уменьшение Перезарядки Навыков: &9{cooldown_reduction} &7(&9{cooldown_reduction_base} &7+ &9{cooldown_reduction_extra}&7)'
+      - '✤ Дополнительный опыт: &9{additional_experience} &7(&9{additional_experience_base} &7+ &9{additional_experience_extra}&7)'
+      - ''
+      - '❊ Максимум Стеллиума: &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
+      - '❊ Регенерация Стеллиума: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'

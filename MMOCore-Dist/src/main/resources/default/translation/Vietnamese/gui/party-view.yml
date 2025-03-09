@@ -1,0 +1,40 @@
+#GUI display name
+name: Nhóm ({players}/{max})
+#Number of slots in your inventory. Must be
+#between 9 and 54 and must be a multiple of 9.
+slots: 54
+items:
+  member:
+    slots:
+      - 10
+      - 12
+      - 14
+      - 16
+      - 28
+      - 30
+      - 32
+      - 34
+    function: member
+    empty:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&aKhông có người chơi'
+    member:
+      item: PLAYER_HEAD
+      name: '&a{name}'
+      lore:
+        - '&7Cấp độ {level} {class}'
+        - '&7Hoạt động từ lúc: {since}'
+  leave:
+    slots:
+      - 50
+    function: leave
+    item: REDSTONE
+    name: '&cThoát nhóm'
+    lore: { }
+  request:
+    slots:
+      - 48
+    function: invite
+    item: WRITABLE_BOOK
+    name: '&aMời người chơi'
+    lore: { }
