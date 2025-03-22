@@ -64,8 +64,8 @@ public class Guild implements AbstractGuild {
 
     // Disband boolean is to prevent co-modification exception when disbanding a guild
     public void removeMember(UUID uuid, boolean disband) {
-        PlayerData data = PlayerData.get(uuid);
-        if (data.isOnline() && VersionUtils.getOpen(data.getPlayer()).getTopInventory().getHolder() instanceof EditableGuildView.GuildViewInventory)
+        PlayerData data = MMOCore.plugin.playerDataManager.getOrNull(uuid);
+        if (data != null && data.isOnline() && VersionUtils.getOpen(data.getPlayer()).getTopInventory().getHolder() instanceof EditableGuildView.GuildViewInventory)
             InventoryManager.GUILD_CREATION.newInventory(data).open();
 
         if (!disband)
